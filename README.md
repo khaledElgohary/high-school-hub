@@ -17,9 +17,6 @@
 <p style="font-size:large;color:white;text-indent: 2cm">The app will be considered successful if we are able to get around 250 new users in one month or less, or if at least 75% of new users successfully find and connect with a user from their high school within one month of using the app.<br><br>
 
 
-## <p style="text-align: center; color: orange; font-size:larger;"><span style="text-decoration: underline;"> **Features**</p>
-
-
 
 
 
