@@ -1,7 +1,7 @@
 # <div align="center"><p style="color: White; font-size:larger;">**Highschool Hub**</p></div>
 
 ## <div align="center"><p style="color: orange; font-size:larger;"><ins>**Vision Statement**</ins></p></div>
-
+<pre>
 <p style="font-size:large;color:white">Highschool Hub is a social platform where users can find other users who went to or worked at the high school they attended. After registering for an account, users will gain access to their own profile page where they can add their personal information—this can include their name, age, bio, marital status, social media links, and photos. Additionally, users will be able to add high schools they have attended to their profile, which will be an important feature that further allows users to find other users from their high school. When a user finds another user they would like to connect with, the app will offer the option of notifying this user; if a user agrees to be discoverable to another user, the other user will be able to view their socials.</p><br>
 
 <p style="font-size:large;color:white;text-indent: 2cm">Unlike other social media platforms (LinkedIn, Facebook, etc.), Highschool Hub will be limited to high schools, which makes it more focused and, hence, easier to use. Users will benefit from this limitation since they would not be overwhelmed by all the additional features that come with a contemporary social media platform.</p><br>
