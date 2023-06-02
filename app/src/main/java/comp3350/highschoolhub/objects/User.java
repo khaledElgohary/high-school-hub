@@ -1,11 +1,15 @@
 package comp3350.highschoolhub.objects;
 
+import java.util.ArrayList;
+
 public class User {
     private int userId;
     private String firstName;
     private String lastName;
     private String bio;
     private String maritalStatus;
+    private HighSchool highSchool;
+    private ArrayList<User> connections;
 
     public User(int userId, String firstName, String lastName, String bio, String maritalStatus) {
         this.userId = userId;
@@ -13,6 +17,8 @@ public class User {
         this.lastName = lastName;
         this.bio = bio;
         this.maritalStatus = maritalStatus;
+        this.highSchool = null;
+        this.connections = new ArrayList<>();
     }
 
     public int getUserId() {
@@ -33,5 +39,13 @@ public class User {
 
     public String getMaritalStatus() {
         return maritalStatus;
+    }
+
+    public HighSchool getHighSchool() {
+        return highSchool;
+    }
+
+    public ArrayList<User> getConnections() {
+        return connections;
     }
 }
