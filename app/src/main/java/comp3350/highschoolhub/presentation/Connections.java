@@ -2,9 +2,8 @@ package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 
-import comp3350.srsys.highschoolhub.R;
+import comp3350.highschoolhub.R;
 
 public class Connections extends Activity {
 
@@ -12,7 +11,10 @@ public class Connections extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_connections);
+    }
 
-        
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
