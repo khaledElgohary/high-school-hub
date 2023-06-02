@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'comp3350.srsys.highschoolhub'
+    namespace 'comp3350.highschoolhub'
     compileSdk 33
 
     defaultConfig {
-        applicationId "comp3350.srsys.highschoolhub"
+        applicationId "comp3350.highschoolhub"
         minSdk 33
         targetSdk 33
         versionCode 1
