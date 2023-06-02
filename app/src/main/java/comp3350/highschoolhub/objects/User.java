@@ -48,4 +48,12 @@ public class User {
     public ArrayList<User> getConnections() {
         return connections;
     }
+
+    public void setHighSchool(HighSchool highSchool) {
+        this.highSchool = highSchool;
+    }
+
+    public void addConnection(User connection) {
+        connections.add(connection);
+    }
 }
