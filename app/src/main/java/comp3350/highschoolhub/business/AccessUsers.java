@@ -51,7 +51,7 @@ public class AccessUsers {
 
     //Set the user that is logged in.
     public User setLoggedInUser(User login){
-        loggedIn = user;
+        loggedIn = login;
         return loggedIn;
     }
 }
