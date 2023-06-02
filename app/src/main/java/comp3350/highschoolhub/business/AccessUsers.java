@@ -43,4 +43,15 @@ public class AccessUsers {
         user = userPersistence.insertUser(user);
         return user;
     }
+
+    //Get the user that is logged in.
+    public User getLoggedInUser(){
+        return loggedIn;
+    }
+
+    //Set the user that is logged in.
+    public User setLoggedInUser(User login){
+        loggedIn = user;
+        return loggedIn;
+    }
 }
