@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:conext="comp3350.highschoolhub.presentation.Connections">
 
     <TextView
         android:id="@+id/myConnectionsTitle"
@@ -26,8 +27,9 @@
     <ListView
         android:id="@+id/userConnections"
         android:layout_width="wrap_content"
-        android:layout_height="694dp"
-        android:layout_gravity="end"
+        android:layout_height="631dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
         android:background="#5103A9F4"
         android:choiceMode="singleChoice"
         android:clickable="false" />
@@ -41,8 +43,10 @@
     <Button
         android:id="@+id/backToMyProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="66dp"
+        android:layout_gravity="bottom"
         android:text="My Profile"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:onClick="backToLoginUserProfile"/>
 
 </LinearLayout>
