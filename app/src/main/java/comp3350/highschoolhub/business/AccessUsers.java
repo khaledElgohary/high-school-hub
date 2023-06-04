@@ -13,10 +13,6 @@ public class AccessUsers {
 
     private List<User> users;
 
-    private User user;
-
-    private int currentUser;
-
     private static User loggedIn = null;//Keeps track of the user that is logged in.
 
     private static User seeUserProfile = null;//Keeps track of which user profile to look at.
@@ -24,8 +20,6 @@ public class AccessUsers {
     public AccessUsers(){
         userPersistence = Services.getUserPersistence();
         users = null;
-        user = null;
-        currentUser = 0;
     }
 
     //This constructor is used mostly for completing testing of this class.
@@ -42,8 +36,7 @@ public class AccessUsers {
 
     //Used to update a user in the persistence
     public User updateUser(User user){
-        user = userPersistence.updateUser(user);
-        return user;
+        return userPersistence.updateUser(user);
     }
 
     //Used to insert a new user into the persistence
