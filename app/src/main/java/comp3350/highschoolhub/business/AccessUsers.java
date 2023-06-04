@@ -19,11 +19,19 @@ public class AccessUsers {
 
     private static User loggedIn = null;//Keeps track of the user that is logged in.
 
+    private static User seeUserProfile = null;//Keeps track of which user profile to look at.
+
     public AccessUsers(){
         userPersistence = Services.getUserPersistence();
         users = null;
         user = null;
         currentUser = 0;
+    }
+
+    //This constructor is used mostly for completing testing of this class.
+    public AccessUsers(final UserPersistence userPersistence) {
+        this();
+        this.userPersistence = userPersistence;
     }
 
     //Gets the list of users from the persistence.
@@ -45,13 +53,22 @@ public class AccessUsers {
     }
 
     //Get the user that is logged in.
-    public User getLoggedInUser(){
+    public static User getLoggedInUser(){
         return loggedIn;
     }
 
     //Set the user that is logged in.
-    public User setLoggedInUser(User login){
+    public static User setLoggedInUser(User login){
         loggedIn = login;
         return loggedIn;
+    }
+
+    //Get the user in which to look at their profile.
+    public static User getProfileUser() { return seeUserProfile; }
+
+    //Set the user to look at their profile.
+    public static User setProfileUser(User setUser) {
+        seeUserProfile = setUser;
+        return seeUserProfile;
     }
 }
