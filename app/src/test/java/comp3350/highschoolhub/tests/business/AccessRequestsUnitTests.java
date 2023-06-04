@@ -29,8 +29,8 @@ public class AccessRequestsUnitTests {
 
     @Test
     public void testInsertRequests() {
-        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
         accessRequests.insertRequest(newRequest);
 
@@ -48,8 +48,8 @@ public class AccessRequestsUnitTests {
 
     @Test
     public void testUpdateRequests() {
-        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1,  "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2,  "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
 
         accessRequests.insertRequest(newRequest);
