@@ -24,6 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="comp3350.highschoolhub.presentation.ConnectionsUserOptions"
+            android:label="ConnectionUserOptions" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="comp3350.highschoolhub.presentation.ConnectionsUserOptions" />
+        </activity>
     </application>
 
 </manifest>
