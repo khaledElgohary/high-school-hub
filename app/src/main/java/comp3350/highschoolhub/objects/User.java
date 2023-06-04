@@ -11,6 +11,8 @@ public class User {
     private HighSchool highSchool;
     private ArrayList<User> connections;
 
+    private String password;
+
     public User(int userId, String firstName, String lastName, String bio, String maritalStatus) {
         this.userId = userId;
         this.firstName = firstName;
@@ -19,6 +21,19 @@ public class User {
         this.maritalStatus = maritalStatus;
         this.highSchool = null;
         this.connections = new ArrayList<>();
+        this.password = null;
+    }
+
+    public User(int userId, String firstName, String lastName, String bio, String maritalStatus,
+                String password) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bio = bio;
+        this.maritalStatus = maritalStatus;
+        this.highSchool = null;
+        this.connections = new ArrayList<>();
+        this.password = password;
     }
 
     public int getUserId() {
@@ -49,6 +64,8 @@ public class User {
         return connections;
     }
 
+    public String getPassword() { return password; }
+
     public void setHighSchool(HighSchool highSchool) {
         this.highSchool = highSchool;
     }
@@ -56,4 +73,6 @@ public class User {
     public void addConnection(User connection) {
         connections.add(connection);
     }
+
+    public void setPassword(String password) { this.password = password; }
 }
