@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.content.Intent;
 
+import comp3350.highschoolhub.business.AccessHighSchools;
+import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.objects.*;
 import comp3350.highschoolhub.business.AccessUsers;
@@ -25,6 +27,7 @@ import comp3350.highschoolhub.R;
 public class Connections extends Activity {
 
     private AccessUsers accessUsers;
+    private AccessRequests accessRequests;
     private ConnectionsManager connectionsManager;
     private List<User> connectionsList;
     private ArrayAdapter<User> connectionsArrayAdapter;
@@ -36,10 +39,18 @@ public class Connections extends Activity {
         setContentView(R.layout.user_connections);
 
         accessUsers = new AccessUsers();
+        accessRequests = new AccessRequests();
         connectionsManager = new ConnectionsManager();
 
-        //connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getUsers());
-        connectionsList = accessUsers.getUsers();//Get rid of this line, once the above method is implemented.
+        new AccessHighSchools();//REMOVE THIS LINE ONCE THE START UI IS DETERMINED.
+        new AccessRequests();//REMOVE THIS LINE ONCE THE START UI IS DETERMINED.
+
+
+        //Remove this line once the login feature is created.
+        accessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+
+
+        connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try{
             connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList){
@@ -100,11 +111,27 @@ public class Connections extends Activity {
     public void selectUserAtPosition(int position)
     {
         User selected = connectionsArrayAdapter.getItem(position);
-        boolean isUserAccepted;//Keeps track if the logged in user has permission to see the selected user's profile.
+        connectionsManager.setRecipientUser(selected);
+        Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
-        //Make calls to Connections manager to determine what to do next.
-        //isUserAccepted = connectionsManager.isUserAccepted(selected);//Determine whether this user has permission to see the selected user's profile.
+        boolean showProfile = false;//Used to keep track if the logged in user can see the selected user's profile.
 
+        if(findRequest != null) {
+            showProfile = findRequest.getAccepted();
+        }
+
+        if(!showProfile) {
+            ConnectionsManager.setRecipientUser(selected);
+            ConnectionsManager.setRequest(findRequest);
+
+            Intent connectionsUserOptions = new Intent(Connections.this, ConnectionsUserOptions.class);
+            Connections.this.startActivity(connectionsUserOptions);
+        }
+        else {
+            //Create Intent to go to profile for that user.
+            AccessUsers.setProfileUser(selected);
+            System.out.println(selected.getUserId());
+        }
 
     }
 
