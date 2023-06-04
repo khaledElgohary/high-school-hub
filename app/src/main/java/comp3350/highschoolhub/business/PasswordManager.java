@@ -10,8 +10,12 @@ public class PasswordManager {
     private static final Pattern THE_PATTERN = Pattern.compile(REGEX_PATTERN);
 
     public static boolean validDatePassword(String toValidate) {
-        Matcher theMatcher = THE_PATTERN.matcher(toValidate);
-        return theMatcher.matches();
+        boolean valid = false;
+        if(toValidate != null) {
+            Matcher theMatcher = THE_PATTERN.matcher(toValidate);
+            valid = theMatcher.matches();
+        }
+        return valid;
     }
 
     public static User getUserFromList(int userID, String enteredPassword, List<User> userList) {
