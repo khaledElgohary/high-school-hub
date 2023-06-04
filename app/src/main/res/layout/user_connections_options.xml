@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5103A9F4"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/myConnectionsTitleUserOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#673AB7"
+        android:text="My Connections"
+        android:textAlignment="center"
+        android:textColor="#F0F7F8"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="194dp" />
+
+    <Button
+        android:id="@+id/acceptRequestButton"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_gravity="top"
+        android:background="#41E447"
+        android:onClick="updateRequestOnClick"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_gravity="bottom"
+        android:background="#ED4949"
+        android:onClick="goBackOnCancel"
+        android:text="Button" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="455dp"
+        android:layout_gravity="bottom" />
+
+</LinearLayout>
