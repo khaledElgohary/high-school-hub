@@ -12,9 +12,10 @@ public class UserTest {
     public void testUserCreate() {
         System.out.println("Starting testUserCreate.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0,"testUser", "Test", "User", "Hello world!", "Single");
 
-        assertEquals(user.getUserId(), 0);
+        assertEquals(user.getUserNumber(), 0);
+        assertEquals(user.getUserId(), "testUser");
         assertEquals(user.getFirstName(), "Test");
         assertEquals(user.getLastName(), "User");
         assertEquals(user.getBio(), "Hello world!");
@@ -30,7 +31,7 @@ public class UserTest {
     public void testSetHighSchool() {
         System.out.println("Starting testSetHighSchool.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0,"testUser", "Test", "User", "Hello world!", "Single");
         HighSchool highSchool = new HighSchool("Generic High School");
         user.setHighSchool(highSchool);
 
@@ -43,8 +44,8 @@ public class UserTest {
     public void testAddConnection() {
         System.out.println("Starting testAddConnection.");
 
-        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
-        User user2 = new User(1, "Summer", "Sun", "It's hot outside!", "Single");
+        User user1 = new User(0,"testUser", "Test", "User", "Hello world!", "Single");
+        User user2 = new User(1,"summerSun", "Summer", "Sun", "It's hot outside!", "Single");
         user1.addConnection(user2);
 
         assertEquals(user1.getConnections().size(), 1);
