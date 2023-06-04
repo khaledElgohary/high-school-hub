@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.content.Intent;
 
@@ -47,10 +46,10 @@ public class Connections extends Activity {
 
 
         //Remove this line once the login feature is created.
-        accessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
 
-        connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getLoggedInUser(), accessUsers.getUsers());
+        connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try{
             connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList){
@@ -65,7 +64,7 @@ public class Connections extends Activity {
                     String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
 
                     text1.setText(fullName);
-                    text2.setText(connectionsList.get(position).getUserId());
+                    text2.setText(connectionsList.get(position).getUserName());
 
                     return view;
 
@@ -111,8 +110,8 @@ public class Connections extends Activity {
     public void selectUserAtPosition(int position)
     {
         User selected = connectionsArrayAdapter.getItem(position);
-        connectionsManager.setRecipientUser(selected);
-        Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+        ConnectionsManager.setRecipientUser(selected);
+        Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
         boolean showProfile = false;//Used to keep track if the logged in user can see the selected user's profile.
 
