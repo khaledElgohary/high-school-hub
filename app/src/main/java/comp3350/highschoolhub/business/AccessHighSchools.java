@@ -5,7 +5,6 @@ import comp3350.highschoolhub.application.Services;
 import comp3350.highschoolhub.persistence.HighSchoolPersistence;
 import comp3350.highschoolhub.objects.HighSchool;
 import java.util.List;
-import java.util.Collections;
 
 //This class is used for accessing the high school persistence
 public class AccessHighSchools {
@@ -19,7 +18,13 @@ public class AccessHighSchools {
         highSchools = null;
     }
 
-    public List<HighSchool> getHighSchool(){
+    //This constructor is used mostly for testing this class.
+    public AccessHighSchools(final HighSchoolPersistence highSchoolPersistence) {
+        this();
+        this.highSchoolPersistence = highSchoolPersistence;
+    }
+
+    public List<HighSchool> getHighSchools(){
         highSchools = highSchoolPersistence.getHighSchools();
         return highSchools;
     }
