@@ -14,7 +14,7 @@ public class PasswordManager {
         return theMatcher.matches();
     }
 
-    public User getUserFromList(int userID, String enteredPassword, List<User> userList) {
+    public static User getUserFromList(int userID, String enteredPassword, List<User> userList) {
         User found = null;
         if(enteredPassword != null && userList != null) {
             for(int i = 0; i < userList.size(); i++) {
