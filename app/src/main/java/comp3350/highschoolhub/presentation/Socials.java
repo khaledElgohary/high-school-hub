@@ -92,9 +92,8 @@ public class Socials extends Activity {
 
     //This method lets the user navigate back to the profile
     private void goToProfile(View v) {
-        //Uncomment this once there is a MyProfile class
-        //Intent intent = new Intent(this, MyProfile.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, MyProfile.class);
+        startActivity(intent);
     }
 
     //This method navigates the user to a page for adding new social media links
