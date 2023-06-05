@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface RequestPersistence {
     List<Request> getRequests();
+
+    Request insertRequest(Request newRequest);
+
+    Request updateRequest(Request updatedRequest);
 }

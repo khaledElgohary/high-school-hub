@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:conext="comp3350.highschoolhub.presentation.Connections">
+
+    <TextView
+        android:id="@+id/myConnectionsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#673AB7"
+        android:text="My Connections"
+        android:textAlignment="center"
+        android:textColor="#F0F7F8"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <ListView
+        android:id="@+id/userConnections"
+        android:layout_width="wrap_content"
+        android:layout_height="631dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#5103A9F4"
+        android:choiceMode="singleChoice"
+        android:clickable="false" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="?android:attr/listDivider" />
+
+    <Button
+        android:id="@+id/backToMyProfile"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_gravity="bottom"
+        android:text="My Profile"
+        android:textSize="20sp"
+        android:onClick="backToLoginUserProfile"/>
+
+</LinearLayout>
