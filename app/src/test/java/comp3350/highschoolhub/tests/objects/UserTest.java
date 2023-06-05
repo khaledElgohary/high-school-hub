@@ -22,6 +22,7 @@ public class UserTest {
         assertNull(user.getHighSchool());
         assertNotNull(user.getConnections());
         assertTrue(user.getConnections().isEmpty());
+        assertTrue(user.getSocials().isEmpty());
 
         System.out.println("Finished testUserCreate.");
     }
@@ -52,5 +53,19 @@ public class UserTest {
         assertFalse(user2.getConnections().contains(user1));
 
         System.out.println("Finished testAddConnection.");
+    }
+
+    @Test
+    public void testAddSocialMedia() {
+        System.out.println("Starting testAddSocialMedia.");
+
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        user1.addSocialMedia("Facebook", "facebook.com/test.user");
+
+        assertTrue(user1.getSocials().containsKey("Facebook"));
+        assertTrue(user1.getSocials().containsValue("facebook.com/test.user"));
+        assertEquals(user1.getSocials().size(), 1);
+
+        System.out.println("Finished testAddSocialMedia.");
     }
 }
