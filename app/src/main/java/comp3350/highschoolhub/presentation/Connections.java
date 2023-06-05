@@ -74,7 +74,7 @@ public class Connections extends Activity {
                     String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
 
                     text1.setText(fullName);
-                    text2.setText(connectionsList.get(position).getUserId());
+                    text2.setText(connectionsList.get(position).getUserName());
 
                     return view;
 
@@ -123,24 +123,15 @@ public class Connections extends Activity {
         connectionsManager.setRecipientUser(selected);
         Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
-        boolean showProfile = false;//Used to keep track if the logged in user can see the selected user's profile.
 
-        if(findRequest != null) {
-            showProfile = findRequest.getAccepted();
-        }
 
-        if(!showProfile) {
-            ConnectionsManager.setRecipientUser(selected);
-            ConnectionsManager.setRequest(findRequest);
+        ConnectionsManager.setRecipientUser(selected);
+        ConnectionsManager.setRequest(findRequest);
 
-            Intent connectionsUserOptions = new Intent(Connections.this, ConnectionsUserOptions.class);
-            Connections.this.startActivity(connectionsUserOptions);
-        }
-        else {
-            //Create Intent to go to profile for that user.
-            AccessUsers.setProfileUser(selected);
-            System.out.println(selected.getUserId());
-        }
+        Intent connectionsUserOptions = new Intent(Connections.this, ConnectionsUserOptions.class);
+        Connections.this.startActivity(connectionsUserOptions);
+
+
 
     }
 
