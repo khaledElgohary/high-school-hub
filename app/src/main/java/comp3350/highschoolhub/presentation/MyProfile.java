@@ -1,7 +1,9 @@
 package comp3350.highschoolhub.presentation;
 import comp3350.highschoolhub.R;
+import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.objects.User;
+import comp3350.highschoolhub.business.ConnectionsManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,9 +17,14 @@ import org.w3c.dom.Text;
 public class MyProfile extends Activity {
     //fetching the loggedin user
     private final User loggedIn=AccessUsers.getLoggedInUser();
+
+    private final ConnectionsManager connectionsManager = new ConnectionsManager();
+
+    private final AccessUsers accessUsers = new AccessUsers();
     //creating a string which is easier since both names will be combined and placed in a placeholder
     String name=loggedIn.getFirstName()+" "+loggedIn.getLastName();
-    String numberOfConnections=loggedIn.getConnections().size()+"";
+
+    String numberOfConnections=connectionsManager.getHighSchoolConnections(loggedIn, accessUsers.getUsers()).size()+"";
 
     String highSchoolName=loggedIn.getHighSchool().getName();
     @Override
@@ -32,6 +39,12 @@ public class MyProfile extends Activity {
             public void onClick(View v) {
                 showConnections();
             }
+        });
+
+        Button socialsButton = findViewById(R.id.socialLinksButton);
+        socialsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { showSocials(); }
         });
         //displaying the user name in the UI
         TextView textView=findViewById(R.id.user_name);
@@ -58,5 +71,11 @@ public class MyProfile extends Activity {
     private void showConnections(){
         Intent connections= new Intent(this,Connections.class);
         startActivity(connections);
+    }
+
+    //this method is used to go to the page where the user's socials are.
+    private void showSocials(){
+        Intent socials = new Intent(this, Socials.class);
+        startActivity(socials);
     }
 }
