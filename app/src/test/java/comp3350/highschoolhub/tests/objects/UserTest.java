@@ -68,4 +68,11 @@ public class UserTest {
 
         System.out.println("Finished testAddSocialMedia.");
     }
+
+    @Test
+    public void testGetUserName() {
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+
+        assertEquals(user1.getUserName(), "TestUser");
+    }
 }

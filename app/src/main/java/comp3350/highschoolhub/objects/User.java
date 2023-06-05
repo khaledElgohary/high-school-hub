@@ -28,6 +28,8 @@ public class User {
         return userId;
     }
 
+    public String getUserName() { return this.firstName + this.lastName; }
+
     public String getFirstName() {
         return firstName;
     }
@@ -43,6 +45,8 @@ public class User {
     public String getMaritalStatus() {
         return maritalStatus;
     }
+
+    public void setMaritalStatus(String newStatus){ this.maritalStatus = newStatus; }
 
     public HighSchool getHighSchool() {
         return highSchool;
@@ -67,4 +71,6 @@ public class User {
     public void addSocialMedia(String type, String link) {
         socials.put(type, link);
     }
+
+    public boolean equals(User user) { return this.userId == user.userId; }
 }

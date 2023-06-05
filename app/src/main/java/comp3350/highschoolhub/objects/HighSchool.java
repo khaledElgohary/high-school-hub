@@ -10,4 +10,6 @@ public class HighSchool {
     public String getName() {
         return name;
     }
+
+    public boolean equals(HighSchool highSchool) { return this.name.equals(highSchool.name); }
 }
