@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HighschoolHub"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".presentation.MyProfile"
             android:exported="false" />
@@ -28,11 +29,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".presentation.Socials">
+        </activity>
+        <activity
+            android:name=".presentation.SocialsAddLink">
+            </activity>
+            <activity
             android:name=".presentation.ConnectionsUserOptions"
             android:label="ConnectionUserOptions">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.highschoolhub.presentation.ConnectionsUserOptions" />
+
         </activity>
     </application>
 
