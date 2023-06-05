@@ -51,11 +51,27 @@ public class ConnectionsManager {
     public static String acceptOrRequest() {
         String option = "Send Request";
 
-        if(request != null){
+        if(request != null && !request.getAccepted()){
             option = "Accept Request";
+        }
+        else if(request != null && request.getAccepted()) {
+            option = "Ok";
         }
 
         return option;
+    }
+
+    public static String getTitleText() {
+        String text = "Send Request to User?";
+
+        if(request != null && !request.getAccepted()){
+            text = "Accept User's Request?";
+        }
+        else if(request != null && request.getAccepted()) {
+            text = "Request has been accepted!";
+        }
+
+        return text;
     }
 
     //This method is used to update a request.
