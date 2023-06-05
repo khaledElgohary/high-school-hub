@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
+import android.widget.TextView;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessRequests;
@@ -41,6 +42,10 @@ public class ConnectionsUserOptions extends Activity {
         request = connectionsManager.getRequest();
         user = connectionsManager.getRecipientUser();
         loggedIn = accessUsers.getLoggedInUser();
+
+        final TextView titleText = (TextView)findViewById(R.id.userOptionText);
+        String showTitleText = connectionsManager.getTitleText();
+        titleText.setText(showTitleText);
 
         //Set up accept or request button.
         String topButtonText = connectionsManager.acceptOrRequest();
