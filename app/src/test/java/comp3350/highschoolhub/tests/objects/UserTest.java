@@ -27,6 +27,25 @@ public class UserTest {
     }
 
     @Test
+    public void testUserCreateWithPassword() {
+        System.out.println("Starting testUserCreateWithPassword.");
+
+        User user = new User(0, "Test", "User", "Hello world!", "Single", "Password0");
+
+        assertEquals(user.getUserId(), 0);
+        assertEquals(user.getFirstName(), "Test");
+        assertEquals(user.getLastName(), "User");
+        assertEquals(user.getBio(), "Hello world!");
+        assertEquals(user.getMaritalStatus(), "Single");
+        assertNull(user.getHighSchool());
+        assertNotNull(user.getConnections());
+        assertTrue(user.getConnections().isEmpty());
+        assertEquals(user.getPassword(), "Password0");
+
+        System.out.println("Finished testUserCreateWithPassword.");
+    }
+
+    @Test
     public void testSetHighSchool() {
         System.out.println("Starting testSetHighSchool.");
 
