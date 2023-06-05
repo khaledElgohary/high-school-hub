@@ -17,10 +17,19 @@
         android:textStyle="bold"
         android:typeface="normal" />
 
+    <TextView
+        android:id="@+id/userOptionText"
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp" />
+
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
-        android:layout_height="194dp" />
+        android:layout_height="60dp" />
 
     <Button
         android:id="@+id/acceptRequestButton"
@@ -43,7 +52,7 @@
     <View
         android:id="@+id/divider6"
         android:layout_width="match_parent"
-        android:layout_height="455dp"
+        android:layout_height="439dp"
         android:layout_gravity="bottom" />
 
 </LinearLayout>
