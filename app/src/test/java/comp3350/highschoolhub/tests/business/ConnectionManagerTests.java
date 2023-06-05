@@ -30,7 +30,7 @@ public class ConnectionManagerTests {
     public void testNullAllUsersGetHighSchoolConnections() {
         ConnectionsManager connectionsManager = new ConnectionsManager();
 
-        User loggedIn = new User(0, "Test", "User", "Hello World", "Single");
+        User loggedIn = new User(0, "testUser", "Test", "User", "Hello World", "Single");
 
         List<User> testList = connectionsManager.getHighSchoolConnections(loggedIn, null);
 
@@ -43,14 +43,14 @@ public class ConnectionManagerTests {
         ConnectionsManager connectionsManager = new ConnectionsManager();
 
         HighSchool highSchool = new HighSchool("Central High School");
-        User loggedIn = new User(0, "Test", "User", "Hello World", "Single");
+        User loggedIn = new User(0, "testUser", "Test", "User", "Hello World", "Single");
         loggedIn.setHighSchool(highSchool);
         List<User> allUsers = new ArrayList<User>();
 
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
-        User user3 = new User(3, "Test4", "User44", "Hello World", "Single");
-        User user4 = new User(4, "Test5", "User77", "Hello World", "Single");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
+        User user3 = new User(3, "testUser44", "Test4", "User44", "Hello World", "Single");
+        User user4 = new User(4, "testUser77", "Test5", "User77", "Hello World", "Single");
 
         allUsers.add(user1);
         allUsers.add(user2);
@@ -74,7 +74,7 @@ public class ConnectionManagerTests {
 
     @Test
     public void testSetRecipient() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
 
         ConnectionsManager.setRecipientUser(user1);
 
@@ -90,8 +90,8 @@ public class ConnectionManagerTests {
 
     @Test
     public void testSetGetRequest() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
 
         ConnectionsManager.setRequest(newRequest);
@@ -108,8 +108,8 @@ public class ConnectionManagerTests {
 
     @Test
     public void testStringAcceptRequest() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
 
         ConnectionsManager.setRequest(newRequest);
@@ -126,8 +126,8 @@ public class ConnectionManagerTests {
 
     @Test
     public void testUpdateRequestWithNewRequest() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2,  "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
 
         ConnectionsManager connectionsManager = new ConnectionsManager();
         ConnectionsManager.setRecipientUser(user1);
@@ -141,8 +141,8 @@ public class ConnectionManagerTests {
 
     @Test
     public void testUpdateRequestWithExistingRequest() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
         ConnectionsManager connectionsManager = new ConnectionsManager();
 
@@ -158,10 +158,10 @@ public class ConnectionManagerTests {
 
     @Test
     public void testFindRequest() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
-        User user3 = new User(3, "Test4", "User44", "Hello World", "Single");
-        User user4 = new User(4, "Test5", "User77", "Hello World", "Single");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
+        User user3 = new User(3, "testUser44", "Test4", "User44", "Hello World", "Single");
+        User user4 = new User(4, "testUser77", "Test5", "User77", "Hello World", "Single");
 
         List<Request> allRequests = new ArrayList<Request>();
 
@@ -213,10 +213,10 @@ public class ConnectionManagerTests {
 
     @Test
     public void testFindRequestWithNull() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
-        User user3 = new User(3,  "Test4", "User44", "Hello World", "Single");
-        User user4 = new User(4, "Test5", "User77", "Hello World", "Single");
+        User user1 = new User(1, "testUser23", "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "testUser63", "Test3", "User63", "Hello World", "Married");
+        User user3 = new User(3, "testUser44", "Test4", "User44", "Hello World", "Single");
+        User user4 = new User(4, "testUser77", "Test5", "User77", "Hello World", "Single");
 
         List<Request> allRequests = new ArrayList<Request>();
 

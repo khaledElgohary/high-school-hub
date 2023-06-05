@@ -21,7 +21,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testSetLoggedInUser() {
-        User newUser = new User(0, "Test", "User", "Hello World", "Single");
+        User newUser = new User(0, "test", "Test", "User", "Hello World", "Single");
 
         assertEquals(newUser, AccessUsers.setLoggedInUser(newUser));
         assertEquals(newUser, AccessUsers.getLoggedInUser());
@@ -41,7 +41,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testGetProfileUser() {
-        User newUser = new User(0, "Test", "User", "Hello World", "Single");
+        User newUser = new User(0, "test", "Test", "User", "Hello World", "Single");
 
         assertEquals(newUser, AccessUsers.setProfileUser(newUser));
         assertEquals(newUser, AccessUsers.getProfileUser());
@@ -57,7 +57,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testInsertUser() {
-        User user = new User(0, "Test", "User", "Hello World", "Single");
+        User user = new User(0, "test", "Test", "User", "Hello World", "Single");
 
         assertEquals(user, accessUsers.insertUser(user));
     }
@@ -65,7 +65,7 @@ public class AccessUsersUnitTests {
     @Test
     public void testUpdateUser() {
         List<User> users;
-        User user = new User(0, "Test", "User", "Hello World", "Single");
+        User user = new User(0, "test", "Test", "User", "Hello World", "Single");
         accessUsers.insertUser(user);
 
         users = accessUsers.getUsers();

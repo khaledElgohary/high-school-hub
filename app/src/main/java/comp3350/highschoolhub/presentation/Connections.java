@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.content.Intent;
 
@@ -37,6 +38,15 @@ public class Connections extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_connections);
 
+        Button btn=findViewById(R.id.backToMyProfile);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProfile();
+            }
+        }
+        );
+
         accessUsers = new AccessUsers();
         accessRequests = new AccessRequests();
         connectionsManager = new ConnectionsManager();
@@ -46,10 +56,10 @@ public class Connections extends Activity {
 
 
         //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+        accessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
 
-        connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
+        connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try{
             connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList){
@@ -64,7 +74,7 @@ public class Connections extends Activity {
                     String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
 
                     text1.setText(fullName);
-                    text2.setText(connectionsList.get(position).getUserName());
+                    text2.setText(connectionsList.get(position).getUserId());
 
                     return view;
 
@@ -110,8 +120,8 @@ public class Connections extends Activity {
     public void selectUserAtPosition(int position)
     {
         User selected = connectionsArrayAdapter.getItem(position);
-        ConnectionsManager.setRecipientUser(selected);
-        Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+        connectionsManager.setRecipientUser(selected);
+        Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
         boolean showProfile = false;//Used to keep track if the logged in user can see the selected user's profile.
 
@@ -135,9 +145,8 @@ public class Connections extends Activity {
     }
 
     //This method is used to go back to a user's profile page when the button is clicked on.
-    public void backToLoginUserProfile(View v){
-        System.out.println("Button clicked.");
-        //Intent userProfileIntent = new Intent(Connections.this, Connections.class);
-        //Connections.this.startActivity(userProfileIntent);
+    private void showProfile(){
+        Intent profile=new Intent(this, MyProfile.class);
+        startActivity(profile);
     }
 }
