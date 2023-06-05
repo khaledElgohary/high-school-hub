@@ -12,8 +12,8 @@ public class RequestTest {
     public void testRequestCreate() {
         System.out.println("Starting testRequestCreate");
 
-        User user1 = new User(0,"testUser", "Test", "User", "Hello world!", "Single");
-        User user2 = new User(1,"summerSun", "Summer", "Sun", "It's hot outside!", "Single");
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        User user2 = new User(1, "Summer", "Sun", "It's hot outside!", "Single");
         Request request = new Request(user1, user2);
 
         assertEquals(request.getSender(), user1);
@@ -27,8 +27,8 @@ public class RequestTest {
     public void testSetAccepted() {
         System.out.println("Starting testSetAccepted");
 
-        User user1 = new User(0,"testUser", "Test", "User", "Hello world!", "Single");
-        User user2 = new User(1,"summerSun", "Summer", "Sun", "It's hot outside!", "Single");
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        User user2 = new User(1, "Summer", "Sun", "It's hot outside!", "Single");
         Request request = new Request(user1, user2);
         request.setAccepted(true);
 
