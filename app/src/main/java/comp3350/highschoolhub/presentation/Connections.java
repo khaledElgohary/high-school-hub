@@ -51,8 +51,8 @@ public class Connections extends Activity {
         accessRequests = new AccessRequests();
         connectionsManager = new ConnectionsManager();
 
-        new AccessHighSchools();//REMOVE THIS LINE ONCE THE START UI IS DETERMINED.
-        new AccessRequests();//REMOVE THIS LINE ONCE THE START UI IS DETERMINED.
+        new AccessHighSchools();
+        new AccessRequests();
 
 
         //Remove this line once the login feature is created.
