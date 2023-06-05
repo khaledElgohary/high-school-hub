@@ -28,11 +28,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".presentation.Socials">
+        </activity>
+        <activity
+            android:name=".presentation.SocialsAddLink">
+            </activity>
+            <activity
             android:name=".presentation.ConnectionsUserOptions"
             android:label="ConnectionUserOptions">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.highschoolhub.presentation.ConnectionsUserOptions" />
+
         </activity>
     </application>
 

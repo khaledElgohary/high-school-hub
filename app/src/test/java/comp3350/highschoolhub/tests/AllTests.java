@@ -9,6 +9,7 @@ import comp3350.highschoolhub.tests.business.AccessUsersUnitTests;
 import comp3350.highschoolhub.tests.objects.UserTest;
 import comp3350.highschoolhub.tests.objects.HighSchoolTest;
 import comp3350.highschoolhub.tests.objects.RequestTest;
+import comp3350.highschoolhub.tests.business.SocialsManagerTest;
 import comp3350.highschoolhub.tests.business.ConnectionManagerTests;
 
 @RunWith(Suite.class)
@@ -16,6 +17,7 @@ import comp3350.highschoolhub.tests.business.ConnectionManagerTests;
         HighSchoolTest.class,
         RequestTest.class,
         UserTest.class,
+        SocialsManagerTest.class,
         ConnectionManagerTests.class,
         AccessUsersUnitTests.class,
         AccessRequestsUnitTests.class,
