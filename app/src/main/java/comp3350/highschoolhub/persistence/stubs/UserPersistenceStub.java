@@ -10,7 +10,15 @@ public class UserPersistenceStub implements UserPersistence {
     private ArrayList<User> users;
 
     public UserPersistenceStub() {
-        this.users = new ArrayList<>();
+
+        this.users = new ArrayList<User>();
+        //Add in default users.
+        this.users.add(new User(0,"Sally", "Green", "Hello how are you today?", "Single"));
+        this.users.add(new User(1,"Test", "User", "Hello I am Test User.", "Married"));
+        this.users.add(new User(2,"Summer", "Fun", "Let's have some summer fun today.", "Single"));
+        this.users.add(new User(3,"Eric", "Smith", "How are you today?", "Married"));
+        this.users.add(new User(4,"Bob", "Hugh", "Hello how are you today?", "Married"));
+        this.users.add(new User(5,"Chris", "James", "Hello how are you today?", "Single"));
     }
 
     @Override

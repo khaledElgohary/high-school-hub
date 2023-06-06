@@ -26,4 +26,13 @@ public class Request {
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
     }
+
+    public boolean equals (Request request) {
+        boolean isEqual = request.sender.equals(this.sender);
+        if(isEqual) {
+            isEqual = request.recipient.equals(this.recipient);
+        }
+
+        return isEqual;
+    }
 }
