@@ -104,6 +104,12 @@
                     android:textColor="#000"
                     android:textSize="17dp"></TextView>
 
+                <Button
+                    android:id="@+id/editHighSchoolButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit" />
+
             </LinearLayout>
 
             <LinearLayout
