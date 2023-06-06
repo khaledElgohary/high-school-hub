@@ -18,7 +18,7 @@ import comp3350.highschoolhub.tests.business.ConnectionManagerTests;
         HighSchoolTest.class,
         RequestTest.class,
         UserTest.class,
-        PasswordManagerTest.class
+        PasswordManagerTest.class,
         UserTest.class,
         SocialsManagerTest.class,
         ConnectionManagerTests.class,
