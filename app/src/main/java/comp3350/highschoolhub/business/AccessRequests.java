@@ -18,9 +18,23 @@ public class AccessRequests {
         requests = null;
     }
 
+    //This constructor is used mostly for completing testing of this class.
+    public AccessRequests(final RequestPersistence requestPersistence) {
+        this();
+        this.requestPersistence = requestPersistence;
+    }
+
     public List<Request> getRequests(){
         requests = requestPersistence.getRequests();
         return Collections.unmodifiableList(requests);
+    }
+
+    public Request insertRequest(Request request){
+        return requestPersistence.insertRequest(request);
+    }
+
+    public Request updateRequest(Request request) {
+        return requestPersistence.updateRequest(request);
     }
 
 }
