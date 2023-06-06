@@ -30,8 +30,21 @@ public class RequestPersistenceStub implements RequestPersistence {
 
             this.requests.add(newRequest);
         }
-        Request myRequest = new Request(users.get(2), users.get(0));
-        this.requests.add(myRequest);
+
+        //Make sure there are some requests that have been sent to the logged in user.
+        if(users.size() > 6) {
+            Request myRequest = new Request(users.get(2), users.get(0));
+            this.requests.add(myRequest);
+
+            myRequest = new Request(users.get(3), users.get(0));
+            this.requests.add(myRequest);
+
+            myRequest = new Request(users.get(4), users.get(0));
+            this.requests.add(myRequest);
+
+            myRequest = new Request(users.get(5), users.get(0));
+            this.requests.add(myRequest);
+        }
     }
 
     @Override
