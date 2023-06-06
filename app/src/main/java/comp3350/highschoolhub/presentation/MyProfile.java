@@ -1,6 +1,5 @@
 package comp3350.highschoolhub.presentation;
 import comp3350.highschoolhub.R;
-import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.business.ConnectionsManager;
@@ -11,8 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class MyProfile extends Activity {
     //fetching the loggedin user
@@ -46,6 +43,13 @@ public class MyProfile extends Activity {
             @Override
             public void onClick(View v) { showSocials(); }
         });
+
+        Button highSchoolsButton = findViewById(R.id.editHighSchoolButton);
+        highSchoolsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { showHighSchools(); }
+        });
+
         //displaying the user name in the UI
         TextView textView=findViewById(R.id.user_name);
         textView.setText(name);
@@ -77,5 +81,10 @@ public class MyProfile extends Activity {
     private void showSocials(){
         Intent socials = new Intent(this, Socials.class);
         startActivity(socials);
+    }
+
+    private void showHighSchools(){
+        Intent highSchools = new Intent(this, HighSchoolList.class);
+        startActivity(highSchools);
     }
 }
