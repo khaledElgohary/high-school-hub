@@ -1,24 +1,24 @@
 package comp3350.highschoolhub.persistence.stubs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.persistence.UserPersistence;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class UserPersistenceStub implements UserPersistence {
     private ArrayList<User> users;
 
     public UserPersistenceStub() {
 
-        this.users = new ArrayList<User>();
+        this.users = new ArrayList<>();
         //Add in default users.
-        this.users.add(new User(0,"Purple", "Programmer", "We code in Purple.", "Single"));
-        this.users.add(new User(1,"Test", "User", "Hello I am Test User.", "Married"));
-        this.users.add(new User(2,"Summer", "Fun", "Let's have some summer fun today.", "Single"));
-        this.users.add(new User(3,"Eric", "Smith", "How are you today?", "Married"));
-        this.users.add(new User(4,"Bob", "Hugh", "Hello how are you today?", "Married"));
-        this.users.add(new User(5,"Chris", "James", "Hello how are you today?", "Single"));
+        this.users.add(new User(0, "Purple", "Programmer", "We code in Purple.", "Single"));
+        this.users.add(new User(1, "Test", "User", "Hello I am Test User.", "Married"));
+        this.users.add(new User(2, "Summer", "Fun", "Let's have some summer fun today.", "Single"));
+        this.users.add(new User(3, "Eric", "Smith", "How are you today?", "Married"));
+        this.users.add(new User(4, "Bob", "Hugh", "Hello how are you today?", "Married"));
+        this.users.add(new User(5, "Chris", "James", "Hello how are you today?", "Single"));
         this.users.add(new User(6, "Rob", "Bob", "Hello World", "Married"));
         this.users.add(new User(7, "Goose", "User", "Hello World", "Married"));
         this.users.add(new User(8, "Gordan", "Bruns", "Hello World", "Single"));

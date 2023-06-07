@@ -1,18 +1,20 @@
 package comp3350.highschoolhub.tests.business;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
-import comp3350.highschoolhub.business.ConnectionsManager;
-import comp3350.highschoolhub.presentation.Connections;
-
-import java.util.List;
-import java.util.ArrayList;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 
 public class ConnectionManagerTests {
@@ -25,7 +27,7 @@ public class ConnectionManagerTests {
         List<User> testList = connectionsManager.getHighSchoolConnections(null, null);
 
         assertNotNull(testList);
-        assertTrue(testList.size() == 0);
+        assertEquals(0, testList.size());
     }
 
     @Test
@@ -37,7 +39,7 @@ public class ConnectionManagerTests {
         List<User> testList = connectionsManager.getHighSchoolConnections(loggedIn, null);
 
         assertNotNull(testList);
-        assertTrue(testList.size() == 0);
+        assertEquals(0, testList.size());
     }
 
     @Test
@@ -47,7 +49,7 @@ public class ConnectionManagerTests {
         HighSchool highSchool = new HighSchool("Central High School");
         User loggedIn = new User(0, "Test", "User", "Hello World", "Single");
         loggedIn.setHighSchool(highSchool);
-        List<User> allUsers = new ArrayList<User>();
+        List<User> allUsers = new ArrayList<>();
 
         User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
         User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
@@ -59,15 +61,14 @@ public class ConnectionManagerTests {
         allUsers.add(user3);
         allUsers.add(user4);
 
-        for(int i = 0; i < allUsers.size(); i++)
-        {
+        for (int i = 0; i < allUsers.size(); i++) {
             allUsers.get(i).setHighSchool(highSchool);
         }
 
         List<User> getConnections = connectionsManager.getHighSchoolConnections(loggedIn, allUsers);
 
         assertNotNull(getConnections);
-        assertTrue(getConnections.size() == 4);
+        assertEquals(4, getConnections.size());
         assertTrue(getConnections.contains(user1));
         assertTrue(getConnections.contains(user2));
         assertTrue(getConnections.contains(user3));
@@ -171,7 +172,7 @@ public class ConnectionManagerTests {
     @Test
     public void testUpdateRequestWithNewRequest() {
         User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2,  "Test3", "User63", "Hello World", "Married");
+        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
 
         ConnectionsManager connectionsManager = new ConnectionsManager();
         ConnectionsManager.setRecipientUser(user1);
@@ -207,7 +208,7 @@ public class ConnectionManagerTests {
         User user3 = new User(3, "Test4", "User44", "Hello World", "Single");
         User user4 = new User(4, "Test5", "User77", "Hello World", "Single");
 
-        List<Request> allRequests = new ArrayList<Request>();
+        List<Request> allRequests = new ArrayList<>();
 
         ConnectionsManager connectionsManager = new ConnectionsManager();
 
@@ -259,10 +260,10 @@ public class ConnectionManagerTests {
     public void testFindRequestWithNull() {
         User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
         User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
-        User user3 = new User(3,  "Test4", "User44", "Hello World", "Single");
+        User user3 = new User(3, "Test4", "User44", "Hello World", "Single");
         User user4 = new User(4, "Test5", "User77", "Hello World", "Single");
 
-        List<Request> allRequests = new ArrayList<Request>();
+        List<Request> allRequests = new ArrayList<>();
 
         ConnectionsManager connectionsManager = new ConnectionsManager();
 

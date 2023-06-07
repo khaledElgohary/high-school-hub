@@ -1,28 +1,26 @@
 package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.content.Intent;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import comp3350.highschoolhub.business.AccessHighSchools;
-import comp3350.highschoolhub.business.AccessRequests;
-import comp3350.highschoolhub.business.ConnectionsManager;
-import comp3350.highschoolhub.objects.*;
-import comp3350.highschoolhub.business.AccessUsers;
 import java.util.List;
 
-
-
 import comp3350.highschoolhub.R;
+import comp3350.highschoolhub.business.AccessHighSchools;
+import comp3350.highschoolhub.business.AccessRequests;
+import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.objects.Request;
+import comp3350.highschoolhub.objects.User;
 
 public class Connections extends Activity {
 
@@ -34,17 +32,17 @@ public class Connections extends Activity {
     private int connectionsListPosition;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_connections);
 
-        Button btn=findViewById(R.id.backToMyProfile);
+        Button btn = findViewById(R.id.backToMyProfile);
         btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showProfile();
-            }
-        }
+                                   @Override
+                                   public void onClick(View v) {
+                                       showProfile();
+                                   }
+                               }
         );
 
         accessUsers = new AccessUsers();
@@ -61,15 +59,15 @@ public class Connections extends Activity {
 
         connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getLoggedInUser(), accessUsers.getUsers());
 
-        try{
-            connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList){
+        try {
+            connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList) {
 
                 @Override
-                public View getView(int position, View convertView, ViewGroup parent){
+                public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
 
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                    TextView text1 = view.findViewById(android.R.id.text1);
+                    TextView text2 = view.findViewById(android.R.id.text2);
 
                     String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
 
@@ -82,7 +80,7 @@ public class Connections extends Activity {
             };
 
             //Set up what happens when a list item is clicked on.
-            final ListView listView = (ListView)findViewById(R.id.userConnections);
+            final ListView listView = findViewById(R.id.userConnections);
             listView.setAdapter(connectionsArrayAdapter);
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -91,9 +89,8 @@ public class Connections extends Activity {
             });
 
             //Set up what happens when the my profile button is clicked on at the bottom of the screen.
-            final Button myProfileButton = (Button)findViewById(R.id.backToMyProfile);
-        }
-        catch(final Exception e){
+            final Button myProfileButton = findViewById(R.id.backToMyProfile);
+        } catch (final Exception e) {
             Messages.fatalError(this, e.getMessage());
         }
     }
@@ -117,12 +114,10 @@ public class Connections extends Activity {
     }
 
     //This method is used to navigate to a user's profile or provide a popup to send a request.
-    public void selectUserAtPosition(int position)
-    {
+    public void selectUserAtPosition(int position) {
         User selected = connectionsArrayAdapter.getItem(position);
         connectionsManager.setRecipientUser(selected);
         Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
-
 
 
         ConnectionsManager.setRecipientUser(selected);
@@ -132,12 +127,11 @@ public class Connections extends Activity {
         Connections.this.startActivity(connectionsUserOptions);
 
 
-
     }
 
     //This method is used to go back to a user's profile page when the button is clicked on.
-    private void showProfile(){
-        Intent profile=new Intent(this, MyProfile.class);
+    private void showProfile() {
+        Intent profile = new Intent(this, MyProfile.class);
         startActivity(profile);
     }
 }

@@ -2,8 +2,6 @@ package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import comp3350.highschoolhub.R;
 
 public class Messages {
     public static void fatalError(final Activity owner, String message) {
@@ -11,7 +9,9 @@ public class Messages {
 
         alertDialog.setTitle("Fatal Error");
         alertDialog.setMessage(message);
-        alertDialog.setOnCancelListener((dialog) -> {owner.finish(); });
+        alertDialog.setOnCancelListener((dialog) -> {
+            owner.finish();
+        });
 
         alertDialog.show();
     }
