@@ -31,11 +31,11 @@ public class HighSchoolList extends Activity {
     private int highSchoolListPosition;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.high_school_list);
 
-        Button btn=findViewById(R.id.backToMyProfile);
+        Button btn = findViewById(R.id.backToMyProfile);
         btn.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
@@ -55,14 +55,14 @@ public class HighSchoolList extends Activity {
 
         highSchoolsList = accessHighSchools.getHighSchools();
 
-        try{
-            highSchoolArrayAdapter = new ArrayAdapter<HighSchool>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, highSchoolsList){
+        try {
+            highSchoolArrayAdapter = new ArrayAdapter<HighSchool>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, highSchoolsList) {
 
                 @Override
-                public View getView(int position, View convertView, ViewGroup parent){
+                public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
 
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                    TextView text1 = view.findViewById(android.R.id.text1);
                     text1.setText(highSchoolsList.get(position).getName());
 
                     return view;
@@ -70,7 +70,7 @@ public class HighSchoolList extends Activity {
             };
 
             //Set up what happens when a list item is clicked on.
-            final ListView listView = (ListView)findViewById(R.id.highSchools);
+            final ListView listView = findViewById(R.id.highSchools);
             listView.setAdapter(highSchoolArrayAdapter);
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -79,9 +79,8 @@ public class HighSchoolList extends Activity {
             });
 
             //Set up what happens when the my profile button is clicked on at the bottom of the screen.
-            final Button myProfileButton = (Button)findViewById(R.id.backToMyProfile);
-        }
-        catch(final Exception e){
+            final Button myProfileButton = findViewById(R.id.backToMyProfile);
+        } catch (final Exception e) {
             Messages.fatalError(this, e.getMessage());
         }
     }
@@ -104,9 +103,7 @@ public class HighSchoolList extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //This method is used to navigate to a user's profile or provide a popup to send a request.
-    public void selectHighSchoolAtPosition(int position)
-    {
+    public void selectHighSchoolAtPosition(int position) {
         HighSchool selected = highSchoolArrayAdapter.getItem(position);
         User loggedInUser = AccessUsers.getLoggedInUser();
         loggedInUser.setHighSchool(selected);
@@ -115,9 +112,8 @@ public class HighSchoolList extends Activity {
         showProfile();
     }
 
-    //This method is used to go back to a user's profile page when the button is clicked on.
-    private void showProfile(){
-        Intent profile=new Intent(this, MyProfile.class);
+    private void showProfile() {
+        Intent profile = new Intent(this, MyProfile.class);
         startActivity(profile);
     }
 }

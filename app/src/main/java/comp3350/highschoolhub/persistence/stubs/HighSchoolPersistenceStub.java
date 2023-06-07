@@ -1,13 +1,13 @@
 package comp3350.highschoolhub.persistence.stubs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comp3350.highschoolhub.application.Services;
 import comp3350.highschoolhub.objects.HighSchool;
+import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.persistence.HighSchoolPersistence;
 import comp3350.highschoolhub.persistence.UserPersistence;
-import comp3350.highschoolhub.objects.User;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class HighSchoolPersistenceStub implements HighSchoolPersistence {
     private ArrayList<HighSchool> highSchools;
@@ -28,12 +28,11 @@ public class HighSchoolPersistenceStub implements HighSchoolPersistence {
         UserPersistence userPersistence = Services.getUserPersistence();
         List<User> users = userPersistence.getUsers();
 
-        for(int i = 0; i < users.size(); i++) {
+        for (int i = 0; i < users.size(); i++) {
 
-            if(i % 2 == 0){
+            if (i % 2 == 0) {
                 users.get(i).setHighSchool(highSchools.get(0));
-            }
-            else {
+            } else {
                 users.get(i).setHighSchool(highSchools.get(1));
             }
 

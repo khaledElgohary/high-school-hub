@@ -1,10 +1,11 @@
 package comp3350.highschoolhub.business;
 
-import comp3350.highschoolhub.application.Services;
-import comp3350.highschoolhub.persistence.RequestPersistence;
-import comp3350.highschoolhub.objects.Request;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
+
+import comp3350.highschoolhub.application.Services;
+import comp3350.highschoolhub.objects.Request;
+import comp3350.highschoolhub.persistence.RequestPersistence;
 
 //This class is used to access the Requests Persistence
 public class AccessRequests {
@@ -13,7 +14,7 @@ public class AccessRequests {
 
     private List<Request> requests;
 
-    public AccessRequests(){
+    public AccessRequests() {
         requestPersistence = Services.getRequestPersistence();
         requests = null;
     }
@@ -24,12 +25,12 @@ public class AccessRequests {
         this.requestPersistence = requestPersistence;
     }
 
-    public List<Request> getRequests(){
+    public List<Request> getRequests() {
         requests = requestPersistence.getRequests();
         return Collections.unmodifiableList(requests);
     }
 
-    public Request insertRequest(Request request){
+    public Request insertRequest(Request request) {
         return requestPersistence.insertRequest(request);
     }
 

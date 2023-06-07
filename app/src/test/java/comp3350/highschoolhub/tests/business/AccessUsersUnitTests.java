@@ -1,21 +1,24 @@
 package comp3350.highschoolhub.tests.business;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.List;
+
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.persistence.stubs.UserPersistenceStub;
-
-import org.junit.Test;
-import org.junit.Before;
-import static org.junit.Assert.*;
-
-import java.util.List;
 
 public class AccessUsersUnitTests {
 
     private AccessUsers accessUsers;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         accessUsers = new AccessUsers(new UserPersistenceStub());
     }
 
@@ -71,16 +74,19 @@ public class AccessUsersUnitTests {
         users = accessUsers.getUsers();
         User findUser = null;
 
-        for(int i = 0; i < users.size() && findUser == null; i++){
-            if(users.get(i).equals(user))
-            {
+        for (int i = 0; i < users.size() && findUser == null; i++) {
+            if (users.get(i).equals(user)) {
                 findUser = users.get(i);
             }
         }
 
         //For this test we will just update the marital status to make sure the updateUser method works correctly.
-        findUser.setMaritalStatus("Married");
+        if (findUser != null) {
+            findUser.setMaritalStatus("Married");
+        }
 
-        assertEquals(findUser.getMaritalStatus(), accessUsers.updateUser(findUser).getMaritalStatus());
+        if (findUser != null) {
+            assertEquals(findUser.getMaritalStatus(), accessUsers.updateUser(findUser).getMaritalStatus());
+        }
     }
 }

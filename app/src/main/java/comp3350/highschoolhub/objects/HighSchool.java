@@ -11,5 +11,7 @@ public class HighSchool {
         return name;
     }
 
-    public boolean equals(HighSchool highSchool) { return this.name.equals(highSchool.name); }
+    public boolean equals(HighSchool highSchool) {
+        return this.name.equals(highSchool.name);
+    }
 }

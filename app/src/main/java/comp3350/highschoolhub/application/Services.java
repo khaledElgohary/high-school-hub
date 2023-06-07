@@ -1,7 +1,11 @@
 package comp3350.highschoolhub.application;
 
-import comp3350.highschoolhub.persistence.*;
-import comp3350.highschoolhub.persistence.stubs.*;
+import comp3350.highschoolhub.persistence.HighSchoolPersistence;
+import comp3350.highschoolhub.persistence.RequestPersistence;
+import comp3350.highschoolhub.persistence.UserPersistence;
+import comp3350.highschoolhub.persistence.stubs.HighSchoolPersistenceStub;
+import comp3350.highschoolhub.persistence.stubs.RequestPersistenceStub;
+import comp3350.highschoolhub.persistence.stubs.UserPersistenceStub;
 
 //This class is used for keeping track of the persistence objects.
 public class Services {
@@ -13,7 +17,7 @@ public class Services {
     private static HighSchoolPersistence highSchoolPersistence = null;
 
     //Get the user persistence
-    public static synchronized UserPersistence getUserPersistence(){
+    public static synchronized UserPersistence getUserPersistence() {
 
         //If there is no UserPersistence set then we create a new one.
         if (userPersistence == null) {
@@ -24,10 +28,10 @@ public class Services {
     }
 
     //Get the request persistence
-    public static synchronized RequestPersistence getRequestPersistence(){
+    public static synchronized RequestPersistence getRequestPersistence() {
 
         //If there is no request persistence then create a new one.
-        if(requestPersistence == null){
+        if (requestPersistence == null) {
             requestPersistence = new RequestPersistenceStub();
         }
 
@@ -36,11 +40,10 @@ public class Services {
 
 
     //Get the high school persistence
-    public static synchronized HighSchoolPersistence getHighSchoolPersistence(){
+    public static synchronized HighSchoolPersistence getHighSchoolPersistence() {
 
         //If there is no request persistence then create a new one.
-        if(highSchoolPersistence == null)
-        {
+        if (highSchoolPersistence == null) {
             highSchoolPersistence = new HighSchoolPersistenceStub();
         }
 

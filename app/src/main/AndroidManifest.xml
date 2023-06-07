@@ -6,14 +6,13 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HighschoolHub"
-        tools:targetApi="31"
-        android:enableOnBackInvokedCallback="true">
+        android:theme="@style/Theme.HighschoolHub">
         <activity
             android:name=".presentation.MyProfile"
             android:exported="false" />
@@ -28,22 +27,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.Socials" />
+        <activity android:name=".presentation.SocialsAddLink" />
         <activity
-            android:name=".presentation.Socials">
-        </activity>
-        <activity
-            android:name=".presentation.SocialsAddLink">
-            </activity>
-            <activity
             android:name=".presentation.ConnectionsUserOptions"
             android:label="ConnectionUserOptions">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.highschoolhub.presentation.ConnectionsUserOptions" />
         </activity>
-        <activity
-            android:name=".presentation.HighSchoolList">
-        </activity>
+        <activity android:name=".presentation.HighSchoolList" />
     </application>
 
 </manifest>
