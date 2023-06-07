@@ -2,6 +2,8 @@
 
 ## Architecture Diagram
 ```mermaid
+%% Note: In case the diagram is not rendering properly, a backup can be found at https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/docs/mermaid-diagram-backup.png.
+
 flowchart LR
     %% Links between nodes of different subgraphs
     Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
