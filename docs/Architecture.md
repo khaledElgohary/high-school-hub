@@ -1,8 +1,51 @@
 # Architecure
 
 ## Architecture Diagram
+```mermaid
+flowchart LR
+    %% Links between nodes of different subgraphs
+    Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
+    ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
+    HighSchoolList <---> AccessUsers & AccessHighSchools
+    MyProfile <--> AccessUsers & ConnectionsManager
+    Socials <--> AccessUsers
+    SocialsAddLink <--> AccessUsers & SocialsManager
+
+    Services <--> HighSchoolPersistence & RequestPersistence & UserPersistence
+
+    subgraph Presentation
+    Connections <==> ConnectionsUserOptions
+    MyProfile <==> Connections
+    MyProfile <==> HighSchoolList
+    Socials <==> MyProfile
+    SocialsAddLink <==> Socials
+    Connections & HighSchoolList <==> Messages
+    end
+
+    subgraph Business
+    AccessHighSchools & AccessRequests & AccessUsers <==> Services
+    ConnectionsManager
+    SocialsManager
+    end
+
+    subgraph Persistence
+    HighSchoolPersistence
+    RequestPersistence
+    UserPersistence
+    end
+
+    subgraph DSOs
+    User
+    Request
+    HighSchool
+    end
+
+    %% Invisible link(s) to keep graphs together
+    DSOs ~~~ Presentation
+```
 
 ## [Presentation Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/presentation)
+The presentation layer is responsible for displaying and managing the UI of the app.
 
 ### [Connections](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java)
 `Connections` displays a list of other users that the current user can potentially connect with.
@@ -20,6 +63,7 @@
 `SocialsAddLink` provides a form that lets the current user add a social media link to their account.
 
 ## [Business Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/business)
+The business layer is responsible for handling the logic behind the app.
 
 ### [AccessHighSchools](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/AccessHighSchools.java)
 `AccessHighSchools` provides access to `HighSchoolPersistence`.
@@ -33,6 +77,12 @@
 ### [ConnectionsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionsManager.java)
 `ConnectionsManager` handles logic for the connections part of the UI.
 
+### [HighSchoolList](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/HighSchoolList.java)
+`HighSchoolList` presents a list of selectable high schools that a user can add to their account.
+
+### [Messages](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/Messages.java)
+`Messages` displays error messages in the app.
+
 ### [SocialsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/SocialsManager.java)
 `SocialsManager` handles logic for the social media part of the UI.
 
@@ -40,6 +90,7 @@
 `Services` handles any persistence objects.
 
 ## [Persistence Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/persistence)
+The persistence layer is responsible for storing data for the app.
 
 ### [HighSchoolPersistence](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/persistence/HighSchoolPersistence.java)
 `HighSchoolPersistence` is the interface for `HighSchool` objects in the database.
@@ -62,6 +113,7 @@
 `UserPersistenceStub` is the implementation of a stub database for `User` objects.
 
 ## [Domain Specific Objects](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/objects)
+Domain Specific Objects are passed between all layers of the app.
 
 ### [HighSchool](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/objects/HighSchool.java)
 A `HighSchool` object stores information about a high school.
