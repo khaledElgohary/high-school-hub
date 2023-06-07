@@ -124,4 +124,4 @@ A `HighSchool` object stores information about a high school.
 A `Request` object stores the details of a request sent between two users.
 
 ### [User](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/objects/User.java)
-A `User` object stores information of a user of the app.
+A `User` object stores information about a user of the app.
