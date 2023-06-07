@@ -1,4 +1,4 @@
-# Architecure
+# Architecture
 
 ## Architecture Diagram
 ```mermaid
