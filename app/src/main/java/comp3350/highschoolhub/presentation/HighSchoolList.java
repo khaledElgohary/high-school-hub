@@ -19,22 +19,21 @@ import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
-import comp3350.highschoolhub.objects.Request;
+import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.objects.User;
 
-public class Connections extends Activity {
+public class HighSchoolList extends Activity {
 
     private AccessUsers accessUsers;
-    private AccessRequests accessRequests;
-    private ConnectionsManager connectionsManager;
-    private List<User> connectionsList;
-    private ArrayAdapter<User> connectionsArrayAdapter;
-    private int connectionsListPosition;
+    private AccessHighSchools accessHighSchools;
+    private List<HighSchool> highSchoolsList;
+    private ArrayAdapter<HighSchool> highSchoolArrayAdapter;
+    private int highSchoolListPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_connections);
+        setContentView(R.layout.high_school_list);
 
         Button btn = findViewById(R.id.backToMyProfile);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -46,46 +45,37 @@ public class Connections extends Activity {
         );
 
         accessUsers = new AccessUsers();
-        accessRequests = new AccessRequests();
-        connectionsManager = new ConnectionsManager();
+        accessHighSchools = new AccessHighSchools();
 
-        new AccessHighSchools();
         new AccessRequests();
-
+        new ConnectionsManager();
 
         //Remove this line once the login feature is created.
-        accessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
-
-        connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getLoggedInUser(), accessUsers.getUsers());
+        highSchoolsList = accessHighSchools.getHighSchools();
 
         try {
-            connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList) {
+            highSchoolArrayAdapter = new ArrayAdapter<HighSchool>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, highSchoolsList) {
 
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
 
                     TextView text1 = view.findViewById(android.R.id.text1);
-                    TextView text2 = view.findViewById(android.R.id.text2);
-
-                    String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
-
-                    text1.setText(fullName);
-                    text2.setText(connectionsList.get(position).getUserName());
+                    text1.setText(highSchoolsList.get(position).getName());
 
                     return view;
-
                 }
             };
 
             //Set up what happens when a list item is clicked on.
-            final ListView listView = findViewById(R.id.userConnections);
-            listView.setAdapter(connectionsArrayAdapter);
+            final ListView listView = findViewById(R.id.highSchools);
+            listView.setAdapter(highSchoolArrayAdapter);
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
-                connectionsListPosition = position;
-                selectUserAtPosition(connectionsListPosition);
+                highSchoolListPosition = position;
+                selectHighSchoolAtPosition(highSchoolListPosition);
             });
 
             //Set up what happens when the my profile button is clicked on at the bottom of the screen.
@@ -113,23 +103,15 @@ public class Connections extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //This method is used to navigate to a user's profile or provide a popup to send a request.
-    public void selectUserAtPosition(int position) {
-        User selected = connectionsArrayAdapter.getItem(position);
-        connectionsManager.setRecipientUser(selected);
-        Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+    public void selectHighSchoolAtPosition(int position) {
+        HighSchool selected = highSchoolArrayAdapter.getItem(position);
+        User loggedInUser = AccessUsers.getLoggedInUser();
+        loggedInUser.setHighSchool(selected);
+        accessUsers.updateUser(loggedInUser);
 
-
-        ConnectionsManager.setRecipientUser(selected);
-        ConnectionsManager.setRequest(findRequest);
-
-        Intent connectionsUserOptions = new Intent(Connections.this, ConnectionsUserOptions.class);
-        Connections.this.startActivity(connectionsUserOptions);
-
-
+        showProfile();
     }
 
-    //This method is used to go back to a user's profile page when the button is clicked on.
     private void showProfile() {
         Intent profile = new Intent(this, MyProfile.class);
         startActivity(profile);

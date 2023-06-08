@@ -1,8 +1,9 @@
 package comp3350.highschoolhub.tests.business;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.persistence.stubs.HighSchoolPersistenceStub;

@@ -1,12 +1,12 @@
 package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.view.View;
-import android.content.Intent;
+import android.widget.Button;
 import android.widget.TextView;
 
 import comp3350.highschoolhub.R;
@@ -43,17 +43,17 @@ public class ConnectionsUserOptions extends Activity {
         user = connectionsManager.getRecipientUser();
         loggedIn = accessUsers.getLoggedInUser();
 
-        final TextView titleText = (TextView)findViewById(R.id.userOptionText);
+        final TextView titleText = findViewById(R.id.userOptionText);
         String showTitleText = connectionsManager.getTitleText();
         titleText.setText(showTitleText);
 
         //Set up accept or request button.
         String topButtonText = connectionsManager.acceptOrRequest();
 
-        final Button topButton = (Button)findViewById(R.id.acceptRequestButton);
+        final Button topButton = findViewById(R.id.acceptRequestButton);
         topButton.setText(topButtonText);
 
-        final Button bottomButton = (Button)findViewById(R.id.cancelButton);
+        final Button bottomButton = findViewById(R.id.cancelButton);
         bottomButton.setText("Cancel");
     }
 

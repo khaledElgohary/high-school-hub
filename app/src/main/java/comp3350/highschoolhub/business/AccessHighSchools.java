@@ -1,10 +1,11 @@
 package comp3350.highschoolhub.business;
 
 
-import comp3350.highschoolhub.application.Services;
-import comp3350.highschoolhub.persistence.HighSchoolPersistence;
-import comp3350.highschoolhub.objects.HighSchool;
 import java.util.List;
+
+import comp3350.highschoolhub.application.Services;
+import comp3350.highschoolhub.objects.HighSchool;
+import comp3350.highschoolhub.persistence.HighSchoolPersistence;
 
 //This class is used for accessing the high school persistence
 public class AccessHighSchools {
@@ -13,7 +14,7 @@ public class AccessHighSchools {
 
     private List<HighSchool> highSchools;
 
-    public AccessHighSchools(){
+    public AccessHighSchools() {
         highSchoolPersistence = Services.getHighSchoolPersistence();
         highSchools = null;
     }
@@ -24,7 +25,7 @@ public class AccessHighSchools {
         this.highSchoolPersistence = highSchoolPersistence;
     }
 
-    public List<HighSchool> getHighSchools(){
+    public List<HighSchool> getHighSchools() {
         highSchools = highSchoolPersistence.getHighSchools();
         return highSchools;
     }

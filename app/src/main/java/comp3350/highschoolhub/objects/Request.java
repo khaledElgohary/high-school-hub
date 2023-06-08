@@ -27,9 +27,9 @@ public class Request {
         this.accepted = accepted;
     }
 
-    public boolean equals (Request request) {
+    public boolean equals(Request request) {
         boolean isEqual = request.sender.equals(this.sender);
-        if(isEqual) {
+        if (isEqual) {
             isEqual = request.recipient.equals(this.recipient);
         }
 
