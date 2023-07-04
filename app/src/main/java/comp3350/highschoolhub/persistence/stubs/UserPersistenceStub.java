@@ -31,19 +31,20 @@ public class UserPersistenceStub implements UserPersistence {
     }
 
     @Override
-    public User insertUser(User user) {
-        users.add(user);
-        return user;
+    public boolean insertUser(User user) {
+        return users.add(user);
     }
 
     @Override
-    public User updateUser(User user) {
+    public boolean updateUser(User user) {
         int index = users.indexOf(user);
+        boolean updated = false;
 
         if (index >= 0) {
             users.set(index, user);
+            updated = true;
         }
 
-        return user;
+        return updated;
     }
 }
