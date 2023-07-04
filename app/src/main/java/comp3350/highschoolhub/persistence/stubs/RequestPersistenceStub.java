@@ -53,8 +53,8 @@ public class RequestPersistenceStub implements RequestPersistence {
     }
 
     @Override
-    public Request insertRequest(Request newRequest) {
-        Request returnedRequest = null;
+    public boolean insertRequest(Request newRequest) {
+        boolean inserted = false;
         //Make sure duplicates are not added.
         boolean found = false;
         int i = 0;
@@ -65,15 +65,15 @@ public class RequestPersistenceStub implements RequestPersistence {
 
         if (!found) {
             requests.add(newRequest);
-            returnedRequest = newRequest;
+            inserted = true;
         }
 
-        return returnedRequest;
+        return inserted;
     }
 
     @Override
-    public Request updateRequest(Request request) {
-        Request updatedRequest;
+    public boolean updateRequest(Request request) {
+        boolean updatedRequest;
         int index = requests.indexOf(request);
 
         if (index < 0) {
@@ -81,9 +81,9 @@ public class RequestPersistenceStub implements RequestPersistence {
         } else {
             requests.remove(index);
             requests.add(request);
-            updatedRequest = request;
+            updatedRequest = true;
         }
 
-        return request;
+        return updatedRequest;
     }
 }
