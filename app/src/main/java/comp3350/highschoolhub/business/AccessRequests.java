@@ -30,11 +30,11 @@ public class AccessRequests {
         return Collections.unmodifiableList(requests);
     }
 
-    public Request insertRequest(Request request) {
+    public boolean insertRequest(Request request) {
         return requestPersistence.insertRequest(request);
     }
 
-    public Request updateRequest(Request request) {
+    public boolean updateRequest(Request request) {
         return requestPersistence.updateRequest(request);
     }
 
