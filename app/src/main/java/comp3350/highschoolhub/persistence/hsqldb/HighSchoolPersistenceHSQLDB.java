@@ -38,6 +38,9 @@ public class HighSchoolPersistenceHSQLDB implements HighSchoolPersistence {
                 highSchools.add(highSchool);
             }
 
+            rs.close();
+            st.close();
+
             return highSchools;
         }
         catch (final SQLException e) {
