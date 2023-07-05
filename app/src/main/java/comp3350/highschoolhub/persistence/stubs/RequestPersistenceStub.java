@@ -16,7 +16,7 @@ public class RequestPersistenceStub implements RequestPersistence {
 
         this.requests = new ArrayList<>();
         //Set default data
-        UserPersistence userPersistence = Services.getUserPersistence();
+        UserPersistence userPersistence = new UserPersistenceStub();
         List<User> users = userPersistence.getUsers();
         int numUsers = users.size();
 
