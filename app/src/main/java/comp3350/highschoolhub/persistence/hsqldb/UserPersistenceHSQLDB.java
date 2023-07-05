@@ -34,8 +34,6 @@ public class UserPersistenceHSQLDB implements UserPersistence {
 
         User newUser = new User(userId, firstname, lastname, bio, maritalStatus);
         newUser.setHighSchool(highschool);
-        System.out.println(newUser.getUserId());
-        System.out.println(newUser.getHighSchool().getName());
         addSocialsToUser(newUser);
 
         return newUser;
