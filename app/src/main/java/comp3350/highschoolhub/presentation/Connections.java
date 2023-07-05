@@ -44,10 +44,10 @@ public class Connections extends Activity {
         setContentView(R.layout.user_connections);
 
         //MOVE THIS BLOCK OF CODE TO onCreate METHOD OF LOGIN PAGE ONCE IT IS CREATED
+        copyDatabaseToDevice();
         new AccessUsers();
         new AccessHighSchools();
         new AccessRequests();
-        copyDatabaseToDevice();
         //END OF BLOCK TO COPY
 
 
