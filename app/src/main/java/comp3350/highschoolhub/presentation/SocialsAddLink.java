@@ -19,10 +19,13 @@ public class SocialsAddLink extends Activity {
     private EditText platformNameInput;
     private EditText linkInput;
 
+    private AccessUsers accessUsers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_socials_add_link);
+        accessUsers = new AccessUsers();
 
         platformNameInput = findViewById(R.id.platformNameInput);
         linkInput = findViewById(R.id.linkInput);
@@ -62,6 +65,7 @@ public class SocialsAddLink extends Activity {
         } else {
             if (SocialsManager.addLink(AccessUsers.getLoggedInUser(),
                     platformNameInput.getText().toString(), linkInput.getText().toString())) {
+                accessUsers.updateUser(AccessUsers.getLoggedInUser());
                 Toast.makeText(this, "The link was successfully added.", Toast.LENGTH_SHORT).show();
                 goToSocials(new View(this));
             } else {
