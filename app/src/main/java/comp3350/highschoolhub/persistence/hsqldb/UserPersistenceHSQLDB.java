@@ -137,7 +137,6 @@ public class UserPersistenceHSQLDB implements UserPersistence {
 
     @Override
     public boolean updateUser(User user) {
-        System.out.println("Updating User");
         boolean updated = false;
 
         try(Connection c = connection()) {
