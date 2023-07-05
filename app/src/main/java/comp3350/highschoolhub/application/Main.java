@@ -6,7 +6,6 @@ public class Main {
 
     public static void setDBPathName(final String name) {
 
-        System.out.println(name);
         try {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
         } catch (InstantiationException e) {
@@ -16,7 +15,6 @@ public class Main {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(name);
         dbName = name;
     }
 
