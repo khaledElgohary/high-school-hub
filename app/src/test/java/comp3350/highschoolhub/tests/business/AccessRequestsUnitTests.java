@@ -1,8 +1,8 @@
 package comp3350.highschoolhub.tests.business;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,10 +32,10 @@ public class AccessRequestsUnitTests {
 
     @Test
     public void testInsertRequests() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(20, "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(21, "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
-        accessRequests.insertRequest(newRequest);
+        boolean inserted = accessRequests.insertRequest(newRequest);
 
         List<Request> requests = accessRequests.getRequests();
 
@@ -45,6 +45,7 @@ public class AccessRequestsUnitTests {
             requestFound = requests.get(i).equals(newRequest);
         }
 
+        assertTrue(inserted);
         assertTrue(requestFound);
     }
 
@@ -70,8 +71,8 @@ public class AccessRequestsUnitTests {
             requestFound.setAccepted(true);
         }
 
-        Request returned = accessRequests.updateRequest(requestFound);
+        boolean returned = accessRequests.updateRequest(requestFound);
 
-        assertEquals(returned, requestFound);
+        assertTrue(returned);
     }
 }

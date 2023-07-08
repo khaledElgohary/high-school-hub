@@ -3,6 +3,7 @@ package comp3350.highschoolhub.tests.business;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +63,7 @@ public class AccessUsersUnitTests {
     public void testInsertUser() {
         User user = new User(0, "Test", "User", "Hello World", "Single");
 
-        assertEquals(user, accessUsers.insertUser(user));
+        assertTrue(accessUsers.insertUser(user));
     }
 
     @Test
@@ -85,8 +86,8 @@ public class AccessUsersUnitTests {
             findUser.setMaritalStatus("Married");
         }
 
-        if (findUser != null) {
-            assertEquals(findUser.getMaritalStatus(), accessUsers.updateUser(findUser).getMaritalStatus());
-        }
+        boolean returned = accessUsers.updateUser(findUser);
+
+        assertTrue(returned);
     }
 }
