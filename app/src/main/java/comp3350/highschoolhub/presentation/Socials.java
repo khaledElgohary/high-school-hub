@@ -11,13 +11,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import comp3350.highschoolhub.R;
-import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.objects.User;
 
 public class Socials extends Activity {
     private SimpleAdapter simpleAdapter;

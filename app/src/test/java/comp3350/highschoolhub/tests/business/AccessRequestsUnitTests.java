@@ -1,22 +1,25 @@
 package comp3350.highschoolhub.tests.business;
 
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 import org.junit.Before;
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.util.List;
 
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.objects.Request;
-import comp3350.highschoolhub.persistence.stubs.RequestPersistenceStub;
 import comp3350.highschoolhub.objects.User;
+import comp3350.highschoolhub.persistence.stubs.RequestPersistenceStub;
 
 public class AccessRequestsUnitTests {
 
     private AccessRequests accessRequests;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         accessRequests = new AccessRequests(new RequestPersistenceStub());
     }
 
@@ -29,27 +32,27 @@ public class AccessRequestsUnitTests {
 
     @Test
     public void testInsertRequests() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(20, "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(21, "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
-        accessRequests.insertRequest(newRequest);
+        boolean inserted = accessRequests.insertRequest(newRequest);
 
         List<Request> requests = accessRequests.getRequests();
 
         boolean requestFound = false;
 
-        for(int i = 0; i < requests.size() && !requestFound; i++)
-        {
+        for (int i = 0; i < requests.size() && !requestFound; i++) {
             requestFound = requests.get(i).equals(newRequest);
         }
 
+        assertTrue(inserted);
         assertTrue(requestFound);
     }
 
     @Test
     public void testUpdateRequests() {
-        User user1 = new User(1,  "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2,  "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
         Request newRequest = new Request(user1, user2);
 
         accessRequests.insertRequest(newRequest);
@@ -58,17 +61,18 @@ public class AccessRequestsUnitTests {
 
         Request requestFound = null;
 
-        for(int i = 0; i < requests.size() && requestFound == null; i++)
-        {
-            if(requests.get(i).equals(newRequest)) {
+        for (int i = 0; i < requests.size() && requestFound == null; i++) {
+            if (requests.get(i).equals(newRequest)) {
                 requestFound = requests.get(i);
             }
         }
 
-        requestFound.setAccepted(true);
+        if (requestFound != null) {
+            requestFound.setAccepted(true);
+        }
 
-        Request returned = accessRequests.updateRequest(requestFound);
+        boolean returned = accessRequests.updateRequest(requestFound);
 
-        assertEquals(returned, requestFound);
+        assertTrue(returned);
     }
 }

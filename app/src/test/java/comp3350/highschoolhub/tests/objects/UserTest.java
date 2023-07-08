@@ -20,8 +20,6 @@ public class UserTest {
         assertEquals(user.getBio(), "Hello world!");
         assertEquals(user.getMaritalStatus(), "Single");
         assertNull(user.getHighSchool());
-        assertNotNull(user.getConnections());
-        assertTrue(user.getConnections().isEmpty());
         assertTrue(user.getSocials().isEmpty());
 
         System.out.println("Finished testUserCreate.");
@@ -57,21 +55,6 @@ public class UserTest {
         assertEquals(user.getHighSchool(), highSchool);
 
         System.out.println("Finished testSetHighSchool.");
-    }
-
-    @Test
-    public void testAddConnection() {
-        System.out.println("Starting testAddConnection.");
-
-        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
-        User user2 = new User(1, "Summer", "Sun", "It's hot outside!", "Single");
-        user1.addConnection(user2);
-
-        assertEquals(user1.getConnections().size(), 1);
-        assertTrue(user1.getConnections().contains(user2));
-        assertFalse(user2.getConnections().contains(user1));
-
-        System.out.println("Finished testAddConnection.");
     }
 
     @Test

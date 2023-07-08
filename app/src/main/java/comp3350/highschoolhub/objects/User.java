@@ -10,7 +10,6 @@ public class User {
     private String bio;
     private String maritalStatus;
     private HighSchool highSchool;
-    private ArrayList<User> connections;
     private HashMap<String, String> socials;
     private String password;
 
@@ -21,7 +20,6 @@ public class User {
         this.bio = bio;
         this.maritalStatus = maritalStatus;
         this.highSchool = null;
-        this.connections = new ArrayList<>();
         this.socials = new HashMap<>();
         this.password = null;
     }
@@ -34,7 +32,6 @@ public class User {
         this.bio = bio;
         this.maritalStatus = maritalStatus;
         this.highSchool = null;
-        this.connections = new ArrayList<>();
         this.password = password;
     }
 
@@ -42,7 +39,9 @@ public class User {
         return userId;
     }
 
-    public String getUserName() { return this.firstName + this.lastName; }
+    public String getUserName() {
+        return this.firstName + this.lastName;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -60,14 +59,12 @@ public class User {
         return maritalStatus;
     }
 
-    public void setMaritalStatus(String newStatus){ this.maritalStatus = newStatus; }
+    public void setMaritalStatus(String newStatus) {
+        this.maritalStatus = newStatus;
+    }
 
     public HighSchool getHighSchool() {
         return highSchool;
-    }
-
-    public ArrayList<User> getConnections() {
-        return connections;
     }
 
     public HashMap<String, String> getSocials() {
@@ -80,15 +77,13 @@ public class User {
         this.highSchool = highSchool;
     }
 
-    public void addConnection(User connection) {
-        connections.add(connection);
-    }
-
     public void setPassword(String password) { this.password = password; }
 
     public void addSocialMedia(String type, String link) {
         socials.put(type, link);
     }
 
-    public boolean equals(User user) { return this.userId == user.userId; }
+    public boolean equals(User user) {
+        return this.userId == user.userId;
+    }
 }

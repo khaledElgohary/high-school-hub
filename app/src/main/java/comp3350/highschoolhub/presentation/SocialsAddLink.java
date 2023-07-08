@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.lang.CharSequence;
-
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.SocialsManager;
@@ -21,10 +19,13 @@ public class SocialsAddLink extends Activity {
     private EditText platformNameInput;
     private EditText linkInput;
 
+    private AccessUsers accessUsers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_socials_add_link);
+        accessUsers = new AccessUsers();
 
         platformNameInput = findViewById(R.id.platformNameInput);
         linkInput = findViewById(R.id.linkInput);
@@ -58,16 +59,17 @@ public class SocialsAddLink extends Activity {
     //This method attempts to add the provided platform name and link to the user's socials
     private void submitSocials() {
         if (TextUtils.isEmpty(platformNameInput.getText())) {
-            Toast.makeText(this, (CharSequence) "Platform name cannot be empty.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Platform name cannot be empty.", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(linkInput.getText())) {
-            Toast.makeText(this, (CharSequence) "Link cannot be empty.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Link cannot be empty.", Toast.LENGTH_SHORT).show();
         } else {
             if (SocialsManager.addLink(AccessUsers.getLoggedInUser(),
                     platformNameInput.getText().toString(), linkInput.getText().toString())) {
-                Toast.makeText(this, (CharSequence) "The link was successfully added.", Toast.LENGTH_SHORT).show();
+                accessUsers.updateUser(AccessUsers.getLoggedInUser());
+                Toast.makeText(this, "The link was successfully added.", Toast.LENGTH_SHORT).show();
                 goToSocials(new View(this));
             } else {
-                Toast.makeText(this, (CharSequence) "Please enter a valid link.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter a valid link.", Toast.LENGTH_SHORT).show();
             }
         }
     }

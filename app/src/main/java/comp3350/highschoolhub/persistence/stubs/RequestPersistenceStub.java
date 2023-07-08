@@ -1,13 +1,13 @@
 package comp3350.highschoolhub.persistence.stubs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comp3350.highschoolhub.application.Services;
 import comp3350.highschoolhub.objects.Request;
+import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.persistence.RequestPersistence;
 import comp3350.highschoolhub.persistence.UserPersistence;
-import comp3350.highschoolhub.objects.User;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class RequestPersistenceStub implements RequestPersistence {
     private ArrayList<Request> requests;
@@ -16,22 +16,35 @@ public class RequestPersistenceStub implements RequestPersistence {
 
         this.requests = new ArrayList<>();
         //Set default data
-        UserPersistence userPersistence = Services.getUserPersistence();
+        UserPersistence userPersistence = new UserPersistenceStub();
         List<User> users = userPersistence.getUsers();
         int numUsers = users.size();
 
-        for(int i = 1; i < numUsers; i++) {
+        for (int i = 1; i < numUsers; i++) {
 
             Request newRequest = new Request(users.get(i - 1), users.get(i));
 
-            if(i % 2 == 0){
+            if (i % 2 == 0) {
                 newRequest.setAccepted(true);
             }
 
             this.requests.add(newRequest);
         }
-        Request myRequest = new Request(users.get(2), users.get(0));
-        this.requests.add(myRequest);
+
+        //Make sure there are some requests that have been sent to the logged in user.
+        if (users.size() > 6) {
+            Request myRequest = new Request(users.get(2), users.get(0));
+            this.requests.add(myRequest);
+
+            myRequest = new Request(users.get(3), users.get(0));
+            this.requests.add(myRequest);
+
+            myRequest = new Request(users.get(4), users.get(0));
+            this.requests.add(myRequest);
+
+            myRequest = new Request(users.get(5), users.get(0));
+            this.requests.add(myRequest);
+        }
     }
 
     @Override
@@ -40,41 +53,37 @@ public class RequestPersistenceStub implements RequestPersistence {
     }
 
     @Override
-    public Request insertRequest(Request newRequest) {
-        Request returnedRequest = null;
+    public boolean insertRequest(Request newRequest) {
+        boolean inserted = false;
         //Make sure duplicates are not added.
         boolean found = false;
         int i = 0;
-        while(i < requests.size() && !found)
-        {
+        while (i < requests.size() && !found) {
             found = newRequest.equals(requests.get(i));
             i++;
         }
 
-        if(!found) {
+        if (!found) {
             requests.add(newRequest);
-            returnedRequest = newRequest;
+            inserted = true;
         }
 
-        return returnedRequest;
+        return inserted;
     }
 
     @Override
-    public Request updateRequest(Request request) {
-        Request updatedRequest;
+    public boolean updateRequest(Request request) {
+        boolean updatedRequest;
         int index = requests.indexOf(request);
 
-        if(index < 0)
-        {
+        if (index < 0) {
             updatedRequest = insertRequest(request);
-        }
-        else
-        {
+        } else {
             requests.remove(index);
             requests.add(request);
-            updatedRequest = request;
+            updatedRequest = true;
         }
 
-        return request;
+        return updatedRequest;
     }
 }

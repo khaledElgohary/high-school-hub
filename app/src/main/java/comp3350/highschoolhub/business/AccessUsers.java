@@ -1,10 +1,11 @@
 package comp3350.highschoolhub.business;
 
-import comp3350.highschoolhub.application.Services;
-import comp3350.highschoolhub.persistence.UserPersistence;
-import comp3350.highschoolhub.objects.User;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
+
+import comp3350.highschoolhub.application.Services;
+import comp3350.highschoolhub.objects.User;
+import comp3350.highschoolhub.persistence.UserPersistence;
 
 //This class is used to provide access to the user persistence, and the user currently logged into the system
 public class AccessUsers {
@@ -21,7 +22,7 @@ public class AccessUsers {
 
     private static User seeUserProfile = null;//Keeps track of which user profile to look at.
 
-    public AccessUsers(){
+    public AccessUsers() {
         userPersistence = Services.getUserPersistence();
         users = null;
         user = null;
@@ -35,36 +36,36 @@ public class AccessUsers {
     }
 
     //Gets the list of users from the persistence.
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         users = userPersistence.getUsers();
         return Collections.unmodifiableList(users);
     }
 
     //Used to update a user in the persistence
-    public User updateUser(User user){
-        user = userPersistence.updateUser(user);
-        return user;
+    public boolean updateUser(User user) {
+        return userPersistence.updateUser(user);
     }
 
     //Used to insert a new user into the persistence
-    public User insertUser(User user){
-        user = userPersistence.insertUser(user);
-        return user;
+    public boolean insertUser(User user) {
+        return userPersistence.insertUser(user);
     }
 
     //Get the user that is logged in.
-    public static User getLoggedInUser(){
+    public static User getLoggedInUser() {
         return loggedIn;
     }
 
     //Set the user that is logged in.
-    public static User setLoggedInUser(User login){
+    public static User setLoggedInUser(User login) {
         loggedIn = login;
         return loggedIn;
     }
 
     //Get the user in which to look at their profile.
-    public static User getProfileUser() { return seeUserProfile; }
+    public static User getProfileUser() {
+        return seeUserProfile;
+    }
 
     //Set the user to look at their profile.
     public static User setProfileUser(User setUser) {
