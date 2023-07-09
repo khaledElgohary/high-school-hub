@@ -28,11 +28,7 @@ public class Request {
     }
 
     public boolean equals(Request request) {
-        boolean isEqual = request.sender.equals(this.sender);
-        if (isEqual) {
-            isEqual = request.recipient.equals(this.recipient);
-        }
-
-        return isEqual;
+        return (request.sender.equals(this.sender) &&
+                request.recipient.equals(this.recipient));
     }
 }
