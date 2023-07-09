@@ -14,16 +14,16 @@ public class AccessHighSchools {
 
     private List<HighSchool> highSchools;
 
-    public AccessHighSchools() {
-        highSchoolPersistence = Services.getHighSchoolPersistence();
+    //This constructor is used mostly for testing this class.
+    public AccessHighSchools(final HighSchoolPersistence highSchoolPersistence) {
+        this.highSchoolPersistence = highSchoolPersistence;
         highSchools = null;
     }
 
-    //This constructor is used mostly for testing this class.
-    public AccessHighSchools(final HighSchoolPersistence highSchoolPersistence) {
-        this();
-        this.highSchoolPersistence = highSchoolPersistence;
+    public AccessHighSchools() {
+        new AccessHighSchools(Services.getHighSchoolPersistence());
     }
+
 
     public List<HighSchool> getHighSchools() {
         highSchools = highSchoolPersistence.getHighSchools();
