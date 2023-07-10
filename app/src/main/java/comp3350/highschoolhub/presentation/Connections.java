@@ -26,6 +26,7 @@ import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
@@ -33,7 +34,7 @@ import comp3350.highschoolhub.objects.User;
 public class Connections extends Activity {
 
     private IAccessUsers accessUsers;
-    private AccessRequests accessRequests;
+    private IAccessRequests accessRequests;
     private ConnectionsManager connectionsManager;
     private List<User> connectionsList;
     private ArrayAdapter<User> connectionsArrayAdapter;
