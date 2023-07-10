@@ -21,7 +21,7 @@ public class AccessHighSchools implements IAccessHighSchools{
     }
 
     public AccessHighSchools() {
-        new AccessHighSchools(Services.getHighSchoolPersistence());
+        this(Services.getHighSchoolPersistence());
     }
 
 
