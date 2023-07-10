@@ -19,13 +19,14 @@ import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.IAccessHighSchools;
 import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.objects.User;
 
 public class HighSchoolList extends Activity {
 
     private AccessUsers accessUsers;
-    private AccessHighSchools accessHighSchools;
+    private IAccessHighSchools accessHighSchools;
     private List<HighSchool> highSchoolsList;
     private ArrayAdapter<HighSchool> highSchoolArrayAdapter;
     private int highSchoolListPosition;

@@ -8,7 +8,7 @@ import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.persistence.HighSchoolPersistence;
 
 //This class is used for accessing the high school persistence
-public class AccessHighSchools {
+public class AccessHighSchools implements IAccessHighSchools{
 
     private HighSchoolPersistence highSchoolPersistence;
 
