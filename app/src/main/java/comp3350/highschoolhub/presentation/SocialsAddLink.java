@@ -14,6 +14,7 @@ import android.widget.Toast;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.ISocialsManager;
 import comp3350.highschoolhub.business.InvalidLinkException;
 import comp3350.highschoolhub.business.InvalidPlatformException;
 import comp3350.highschoolhub.business.SocialsManager;
@@ -24,11 +25,14 @@ public class SocialsAddLink extends Activity {
 
     private IAccessUsers accessUsers;
 
+    private ISocialsManager socialsManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_socials_add_link);
         accessUsers = new AccessUsers();
+        socialsManager = new SocialsManager();
 
         platformNameInput = findViewById(R.id.platformNameInput);
         linkInput = findViewById(R.id.linkInput);
@@ -64,7 +68,7 @@ public class SocialsAddLink extends Activity {
         try{
 
             //this method can throw 2 exceptions (InvalidLink, InvalidPlatform)
-            if(SocialsManager.addLink(AccessUsers.getLoggedInUser(), platformNameInput.getText().toString(),
+            if(socialsManager.addLink(AccessUsers.getLoggedInUser(), platformNameInput.getText().toString(),
                     linkInput.getText().toString())){
                 Toast.makeText(this, "The link was successfully added.", Toast.LENGTH_SHORT).show();
                 goToSocials(new View(this));
