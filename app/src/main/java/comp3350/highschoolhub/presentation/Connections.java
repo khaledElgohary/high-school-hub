@@ -28,6 +28,7 @@ import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
@@ -35,7 +36,7 @@ public class Connections extends Activity {
 
     private IAccessUsers accessUsers;
     private IAccessRequests accessRequests;
-    private ConnectionsManager connectionsManager;
+    private IConnectionsManager connectionsManager;
     private List<User> connectionsList;
     private ArrayAdapter<User> connectionsArrayAdapter;
     private int connectionsListPosition;
@@ -132,7 +133,7 @@ public class Connections extends Activity {
     //This method is used to navigate to a user's profile or provide a popup to send a request.
     public void selectUserAtPosition(int position) {
         User selected = connectionsArrayAdapter.getItem(position);
-        connectionsManager.setRecipientUser(selected);
+        ConnectionsManager.setRecipientUser(selected);
         Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
 
