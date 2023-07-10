@@ -42,9 +42,7 @@ public class AccessUsers {
     }
 
     //Used to update a user in the persistence
-    public boolean updateUser(User user) {
-        return userPersistence.updateUser(user);
-    }
+    public boolean updateUser(User user) {return userPersistence.updateUser(user);}
 
     //Used to insert a new user into the persistence
     public boolean insertUser(User user) {

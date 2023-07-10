@@ -3,10 +3,17 @@ package comp3350.highschoolhub.tests.business;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+
+import net.bytebuddy.implementation.bytecode.Throw;
 
 import org.junit.Test;
 
+import java.lang.reflect.Executable;
+
+import comp3350.highschoolhub.business.InvalidLinkException;
+import comp3350.highschoolhub.business.InvalidPlatformException;
 import comp3350.highschoolhub.business.SocialsManager;
 import comp3350.highschoolhub.objects.User;
 
@@ -52,7 +59,7 @@ public class SocialsManagerTest {
     }
 
     @Test
-    public void testAddLink() {
+    public void testAddLink() throws InvalidLinkException, InvalidPlatformException {
         System.out.println("Starting testAddLink.");
 
         User testUser = new User(0, "Test", "User", "Hello world!", "Single");
@@ -61,10 +68,10 @@ public class SocialsManagerTest {
         String invalidLink = "facebook.com";
 
         assertFalse(SocialsManager.addLink(null, testPlatform, testLink));
-        assertFalse(SocialsManager.addLink(testUser, null, testLink));
-        assertFalse(SocialsManager.addLink(testUser, testPlatform, null));
-        assertFalse(SocialsManager.addLink(testUser, testPlatform, invalidLink));
         assertTrue(SocialsManager.addLink(testUser, testPlatform, testLink));
+        assertThrows(InvalidPlatformException.class, () -> {SocialsManager.addLink(testUser, null, testLink);});
+        assertThrows(InvalidLinkException.class, () -> {SocialsManager.addLink(testUser, testPlatform, null);});
+        assertThrows(InvalidLinkException.class, () -> {SocialsManager.addLink(testUser, testPlatform, invalidLink);});
 
         System.out.println("Finished testAddLink.");
     }
