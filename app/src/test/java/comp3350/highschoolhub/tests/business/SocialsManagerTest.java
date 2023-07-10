@@ -66,12 +66,12 @@ public class SocialsManagerTest {
         String testPlatform = "Facebook";
         String testLink = "facebook.com/my.name";
         String invalidLink = "facebook.com";
-
-        assertFalse(SocialsManager.addLink(null, testPlatform, testLink));
-        assertTrue(SocialsManager.addLink(testUser, testPlatform, testLink));
-        assertThrows(InvalidPlatformException.class, () -> {SocialsManager.addLink(testUser, null, testLink);});
-        assertThrows(InvalidLinkException.class, () -> {SocialsManager.addLink(testUser, testPlatform, null);});
-        assertThrows(InvalidLinkException.class, () -> {SocialsManager.addLink(testUser, testPlatform, invalidLink);});
+        SocialsManager socialsManager = new SocialsManager();
+        assertFalse(socialsManager.addLink(null, testPlatform, testLink));
+        assertTrue(socialsManager.addLink(testUser, testPlatform, testLink));
+        assertThrows(InvalidPlatformException.class, () -> {socialsManager.addLink(testUser, null, testLink);});
+        assertThrows(InvalidLinkException.class, () -> {socialsManager.addLink(testUser, testPlatform, null);});
+        assertThrows(InvalidLinkException.class, () -> {socialsManager.addLink(testUser, testPlatform, invalidLink);});
 
         System.out.println("Finished testAddLink.");
     }

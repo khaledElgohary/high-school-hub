@@ -4,9 +4,9 @@ import java.util.regex.Pattern;
 
 import comp3350.highschoolhub.objects.User;
 
-public class SocialsManager {
+public class SocialsManager implements ISocialsManager{
     //This method adds a new social media link to a user's account
-    public static boolean addLink(User loggedIn, String platform, String link)
+    public boolean addLink(User loggedIn, String platform, String link)
             throws InvalidLinkException, InvalidPlatformException{
 
         boolean success = false;
