@@ -13,6 +13,7 @@ import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
@@ -27,7 +28,7 @@ public class ConnectionsUserOptions extends Activity {
 
     private AccessRequests accessRequests;
 
-    private AccessUsers accessUsers;
+    private IAccessUsers accessUsers;
 
     private ConnectionsManager connectionsManager;
 
@@ -41,7 +42,7 @@ public class ConnectionsUserOptions extends Activity {
         connectionsManager = new ConnectionsManager();
         request = connectionsManager.getRequest();
         user = connectionsManager.getRecipientUser();
-        loggedIn = accessUsers.getLoggedInUser();
+        loggedIn = AccessUsers.getLoggedInUser();
 
         final TextView titleText = findViewById(R.id.userOptionText);
         String showTitleText = connectionsManager.getTitleText();

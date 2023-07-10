@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.InvalidLinkException;
 import comp3350.highschoolhub.business.InvalidPlatformException;
 import comp3350.highschoolhub.business.SocialsManager;
@@ -21,7 +22,7 @@ public class SocialsAddLink extends Activity {
     private EditText platformNameInput;
     private EditText linkInput;
 
-    private AccessUsers accessUsers;
+    private IAccessUsers accessUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
