@@ -114,6 +114,20 @@ The persistence layer is responsible for storing data for the app.
 #### [UserPersistenceStub](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/persistence/stubs/UserPersistenceStub.java)
 `UserPersistenceStub` is the implementation of a stub database for `User` objects.
 
+### [HSQLDB](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb)
+
+#### [HighSchoolPersistenceHSQLDB](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/HighSchoolPersistenceHSQLDB.java)
+`HighSchoolPersistenceHSQLDB` is the implementation of an HSQLDB database for `HighSchool` objects.
+
+#### [RequestPersistenceHSQLDB](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/RequestPersistenceHSQLDB.java)
+`RequestPersistenceHSQLDB` is the implementation of an HSQLDB database for `Request` objects.
+
+#### [UserPersistenceHSQLDB](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/UserPersistenceHSQLDB.java)
+`UserPersistenceHSQLDB` is the implementation of an HSQLDB database for `User` objects.
+
+#### [PersistenceException](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/PersistenceException.java)
+`PersistenceException` is used for catching persistence exceptions.
+
 ## [Domain Specific Objects](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/objects)
 Domain Specific Objects are passed between all layers of the app.
 
