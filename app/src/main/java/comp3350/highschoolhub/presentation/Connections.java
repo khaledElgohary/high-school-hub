@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -161,14 +163,18 @@ public class Connections extends Activity {
         ConnectionsManager.setRecipientUser(selected);
         Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
-
         ConnectionsManager.setRecipientUser(selected);
         ConnectionsManager.setRequest(findRequest);
 
-        Intent connectionsUserOptions = new Intent(Connections.this, ConnectionsUserOptions.class);
-        Connections.this.startActivity(connectionsUserOptions);
-
-
+        if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
+            //Send a request instead of navigating to the profile or popup when request mode is on
+            Request updated = connectionsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
+            accessRequests.updateRequest(updated);
+            Toast.makeText(this, "A connection request has been sent.", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent connectionsUserOptions = new Intent(Connections.this, ConnectionsUserOptions.class);
+            Connections.this.startActivity(connectionsUserOptions);
+        }
     }
 
     //This method is used to go back to a user's profile page when the button is clicked on.
