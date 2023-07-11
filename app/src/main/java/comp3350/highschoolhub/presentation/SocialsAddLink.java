@@ -70,6 +70,7 @@ public class SocialsAddLink extends Activity {
             //this method can throw 2 exceptions (InvalidLink, InvalidPlatform)
             if(socialsManager.addLink(AccessUsers.getLoggedInUser(), platformNameInput.getText().toString(),
                     linkInput.getText().toString())){
+                accessUsers.updateUser(AccessUsers.getLoggedInUser());
                 Toast.makeText(this, "The link was successfully added.", Toast.LENGTH_SHORT).show();
                 goToSocials(new View(this));
             }
