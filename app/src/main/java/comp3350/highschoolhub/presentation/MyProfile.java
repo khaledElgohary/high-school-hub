@@ -95,4 +95,9 @@ public class MyProfile extends Activity {
         Intent highSchools = new Intent(this, HighSchoolList.class);
         startActivity(highSchools);
     }
+
+    public void showHighSchoolExplore(View view) {
+        Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
+        startActivity(highSchoolExplore);
+    }
 }
