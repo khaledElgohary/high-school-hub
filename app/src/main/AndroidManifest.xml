@@ -38,6 +38,7 @@
         </activity>
         <activity android:name=".presentation.HighSchoolList" />
         <activity android:name=".presentation.HighSchoolExplore" />
+        <activity android:name=".presentation.PrivacyInfo" />
     </application>
 
 </manifest>

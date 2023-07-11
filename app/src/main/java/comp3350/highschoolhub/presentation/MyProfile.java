@@ -58,6 +58,12 @@ public class MyProfile extends Activity {
             }
         });
 
+        Button privacyButton = findViewById(R.id.privacyInfoButton);
+        privacyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { showPrivacyInfo(); }
+        });
+
         //displaying the user name in the UI
         TextView textView = findViewById(R.id.user_name);
         textView.setText(name);
@@ -99,5 +105,10 @@ public class MyProfile extends Activity {
     public void showHighSchoolExplore(View view) {
         Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
         startActivity(highSchoolExplore);
+
+
+    private void showPrivacyInfo() {
+        Intent privacy = new Intent(this, PrivacyInfo.class);
+        startActivity(privacy);
     }
 }
