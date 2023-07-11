@@ -12,23 +12,33 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.List;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessHighSchools;
+import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.business.HighSchoolsManager;
 import comp3350.highschoolhub.business.IAccessHighSchools;
+import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.business.IHighSchoolsManager;
 import comp3350.highschoolhub.objects.HighSchool;
+import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
 public class HighSchoolExplore extends Activity {
     private IAccessUsers accessUsers;
     private IAccessHighSchools accessHighSchools;
+    private IAccessRequests accessRequests;
     private IHighSchoolsManager highSchoolsManager;
+    private IConnectionsManager connectionsManager;
+    private ArrayAdapter<User> userArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,9 @@ public class HighSchoolExplore extends Activity {
 
         accessUsers = new AccessUsers();
         accessHighSchools = new AccessHighSchools();
+        accessRequests = new AccessRequests();
         highSchoolsManager = new HighSchoolsManager();
+        connectionsManager = new ConnectionsManager();
 
         //Set up dropdown menu for high schools
         Spinner spinner = (Spinner) findViewById(R.id.highSchoolDropdown);
@@ -104,7 +116,7 @@ public class HighSchoolExplore extends Activity {
 
     //This displays all the given users in a list in the UI
     public void displayUsers(List<User> displayList) {
-        ArrayAdapter<User> userArrayAdapter = new ArrayAdapter<User>(
+        userArrayAdapter = new ArrayAdapter<User>(
                 this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, displayList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -120,16 +132,34 @@ public class HighSchoolExplore extends Activity {
 
                 return view;
             }
-
-            //Remove this method once redirects are implemented for non-connection users
-            @Override
-            public boolean isEnabled(int position) {
-                return false;
-            }
         };
 
         final ListView listView = findViewById(R.id.usersList);
         listView.setAdapter(userArrayAdapter);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            selectUserAtPosition(position);
+        });
+    }
+
+    //This method is used to navigate to a user's profile or provide a popup to send a request.
+    private void selectUserAtPosition(int position) {
+        User selected = userArrayAdapter.getItem(position);
+        ConnectionsManager.setRecipientUser(selected);
+        Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+
+        ConnectionsManager.setRecipientUser(selected);
+        ConnectionsManager.setRequest(findRequest);
+
+        if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
+            //Send a request instead of navigating to the profile or popup when request mode is on
+            Request updated = connectionsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
+            accessRequests.updateRequest(updated);
+            Toast.makeText(this, "A connection request has been sent.", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent connectionsUserOptions = new Intent(this, ConnectionsUserOptions.class);
+            this.startActivity(connectionsUserOptions);
+        }
     }
 
     //This method is used to go back to a user's profile page when the button is clicked on.

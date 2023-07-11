@@ -105,7 +105,7 @@ public class MyProfile extends Activity {
     public void showHighSchoolExplore(View view) {
         Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
         startActivity(highSchoolExplore);
-
+    }
 
     private void showPrivacyInfo() {
         Intent privacy = new Intent(this, PrivacyInfo.class);
