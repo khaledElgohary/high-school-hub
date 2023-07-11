@@ -35,7 +35,7 @@
         <ListView
             android:id="@+id/socialsListView"
             android:layout_width="match_parent"
-            android:layout_height="571dp"
+            android:layout_height="match_parent"
             android:layout_gravity="top"
             android:layout_weight="2"
             android:background="#5103A9F4"
@@ -52,13 +52,21 @@
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="4dp"
             android:background="?android:attr/listDivider" />
+
+        <Switch
+            android:id="@+id/removeLinkSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:text="Remove Links"
+            android:textAlignment="viewStart"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/addLinkButton"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="55dp"
             android:background="#4CAF50"
             android:text="Add Link"
             android:textSize="20sp" />
@@ -66,7 +74,7 @@
         <Button
             android:id="@+id/goToProfileButton"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
+            android:layout_height="63dp"
             android:layout_gravity="bottom"
             android:text="My Profile"
             android:textSize="20sp"
