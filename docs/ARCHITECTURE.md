@@ -10,7 +10,7 @@ flowchart LR
     ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
     HighSchoolList <---> AccessUsers & AccessHighSchools
     MyProfile <--> AccessUsers & ConnectionsManager
-    Socials <--> AccessUsers
+    Socials <--> AccessUsers & SocialsManager
     SocialsAddLink <--> AccessUsers & SocialsManager
 
     Services <--> HighSchoolPersistence & RequestPersistence & UserPersistence
