@@ -8,7 +8,7 @@ import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.persistence.RequestPersistence;
 
 //This class is used to access the Requests Persistence
-public class AccessRequests {
+public class AccessRequests implements IAccessRequests{
 
     private RequestPersistence requestPersistence;
 
@@ -30,11 +30,11 @@ public class AccessRequests {
         return Collections.unmodifiableList(requests);
     }
 
-    public Request insertRequest(Request request) {
+    public boolean insertRequest(Request request) {
         return requestPersistence.insertRequest(request);
     }
 
-    public Request updateRequest(Request request) {
+    public boolean updateRequest(Request request) {
         return requestPersistence.updateRequest(request);
     }
 

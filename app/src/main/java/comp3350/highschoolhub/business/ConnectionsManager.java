@@ -7,7 +7,7 @@ import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
 //This class is used for managing the Connections UI.
-public class ConnectionsManager {
+public class ConnectionsManager implements IConnectionsManager{
 
     private static User recipient;
 
@@ -36,6 +36,27 @@ public class ConnectionsManager {
 
         //Note that if there are no high school connections then just an empty list will be returned.
         return highSchoolConnections;
+    }
+
+    //This method finds users with names matching the given input (case insensitive)
+    public List<User> getMatchingConnections(User loggedIn, String search, List<User> allUsers) {
+        List<User> matchingUsers = new ArrayList<>();
+
+        if (loggedIn != null && search != null && allUsers != null) {
+            String searchToLower = search.toLowerCase();
+
+            for (int i = 0; i < allUsers.size(); i++) {
+                if (!allUsers.get(i).equals(loggedIn)) {
+                    if (allUsers.get(i).getUserName().toLowerCase().contains(searchToLower)
+                            || allUsers.get(i).getFirstName().toLowerCase().contains(searchToLower)
+                            || allUsers.get(i).getLastName().toLowerCase().contains(searchToLower)) {
+                        matchingUsers.add(allUsers.get(i));
+                    }
+                }
+            }
+        }
+
+        return matchingUsers;
     }
 
     public static User getRecipientUser() {

@@ -7,7 +7,7 @@ import comp3350.highschoolhub.objects.Request;
 public interface RequestPersistence {
     List<Request> getRequests();
 
-    Request insertRequest(Request newRequest);
+    boolean insertRequest(Request newRequest);
 
-    Request updateRequest(Request updatedRequest);
+    boolean updateRequest(Request updatedRequest);
 }
