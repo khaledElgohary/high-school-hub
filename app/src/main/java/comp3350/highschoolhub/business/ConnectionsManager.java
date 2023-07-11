@@ -7,7 +7,7 @@ import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
 //This class is used for managing the Connections UI.
-public class ConnectionsManager {
+public class ConnectionsManager implements IConnectionsManager{
 
     private static User recipient;
 

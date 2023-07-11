@@ -8,7 +8,7 @@ import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.persistence.RequestPersistence;
 
 //This class is used to access the Requests Persistence
-public class AccessRequests {
+public class AccessRequests implements IAccessRequests{
 
     private RequestPersistence requestPersistence;
 

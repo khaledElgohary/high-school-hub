@@ -26,14 +26,17 @@ import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.IAccessRequests;
+import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
 public class Connections extends Activity {
 
-    private AccessUsers accessUsers;
-    private AccessRequests accessRequests;
-    private ConnectionsManager connectionsManager;
+    private IAccessUsers accessUsers;
+    private IAccessRequests accessRequests;
+    private IConnectionsManager connectionsManager;
     private List<User> connectionsList;
     private ArrayAdapter<User> connectionsArrayAdapter;
     private int connectionsListPosition;
@@ -68,10 +71,10 @@ public class Connections extends Activity {
 
 
         //Remove this line once the login feature is created.
-        accessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
 
-        connectionsList = connectionsManager.getHighSchoolConnections(accessUsers.getLoggedInUser(), accessUsers.getUsers());
+        connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try {
             connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList) {
@@ -130,8 +133,8 @@ public class Connections extends Activity {
     //This method is used to navigate to a user's profile or provide a popup to send a request.
     public void selectUserAtPosition(int position) {
         User selected = connectionsArrayAdapter.getItem(position);
-        connectionsManager.setRecipientUser(selected);
-        Request findRequest = connectionsManager.findRequest(accessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+        ConnectionsManager.setRecipientUser(selected);
+        Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
 
         ConnectionsManager.setRecipientUser(selected);

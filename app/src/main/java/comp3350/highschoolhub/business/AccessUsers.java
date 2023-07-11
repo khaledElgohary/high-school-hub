@@ -8,7 +8,7 @@ import comp3350.highschoolhub.objects.User;
 import comp3350.highschoolhub.persistence.UserPersistence;
 
 //This class is used to provide access to the user persistence, and the user currently logged into the system
-public class AccessUsers {
+public class AccessUsers implements IAccessUsers{
 
     private UserPersistence userPersistence;
 
@@ -42,9 +42,7 @@ public class AccessUsers {
     }
 
     //Used to update a user in the persistence
-    public boolean updateUser(User user) {
-        return userPersistence.updateUser(user);
-    }
+    public boolean updateUser(User user) {return userPersistence.updateUser(user);}
 
     //Used to insert a new user into the persistence
     public boolean insertUser(User user) {
