@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.io.File;
@@ -77,36 +78,23 @@ public class Connections extends Activity {
         connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try {
-            connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList) {
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-
-                    TextView text1 = view.findViewById(android.R.id.text1);
-                    TextView text2 = view.findViewById(android.R.id.text2);
-
-                    String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
-
-                    text1.setText(fullName);
-                    text2.setText(connectionsList.get(position).getUserName());
-
-                    return view;
-
-                }
-            };
-
-            //Set up what happens when a list item is clicked on.
-            final ListView listView = findViewById(R.id.userConnections);
-            listView.setAdapter(connectionsArrayAdapter);
-
-            listView.setOnItemClickListener((parent, view, position, id) -> {
-                connectionsListPosition = position;
-                selectUserAtPosition(connectionsListPosition);
-            });
+            displayConnections(connectionsList);
 
             //Set up what happens when the my profile button is clicked on at the bottom of the screen.
             final Button myProfileButton = findViewById(R.id.backToMyProfile);
+
+            //Set up the search button
+            Button searchButton = findViewById(R.id.searchConnectionsButton);
+            searchButton.setOnClickListener(v -> searchConnections());
+
+            //Set up the reset button
+            Button resetSearchButton = findViewById(R.id.resetSearchButton);
+            resetSearchButton.setOnClickListener(v -> {
+                //Reset the list display and search bar contents to default
+                //when this button is clicked
+                ((SearchView) findViewById(R.id.searchBar)).setQuery("", false);
+                displayConnections(connectionsList);
+            });
         } catch (final Exception e) {
             Messages.fatalError(this, e.getMessage());
         }
@@ -128,6 +116,43 @@ public class Connections extends Activity {
         int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //This method displays the provided list of connections in the UI
+    public void displayConnections(List<User> displayList) {
+        connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, displayList) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView text1 = view.findViewById(android.R.id.text1);
+                TextView text2 = view.findViewById(android.R.id.text2);
+
+                String fullName = displayList.get(position).getFirstName() + " " + displayList.get(position).getLastName();
+
+                text1.setText(fullName);
+                text2.setText(displayList.get(position).getUserName());
+
+                return view;
+
+            }
+        };
+
+        //Set up what happens when a list item is clicked on.
+        final ListView listView = findViewById(R.id.userConnections);
+        listView.setAdapter(connectionsArrayAdapter);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            connectionsListPosition = position;
+            selectUserAtPosition(connectionsListPosition);
+        });
+    }
+
+    //This method updates the display of the connections list when the user clicks the search button
+    public void searchConnections() {
+        String input = ((SearchView) findViewById(R.id.searchBar)).getQuery().toString();
+        displayConnections(connectionsManager.getMatchingConnections(AccessUsers.getLoggedInUser(), input, connectionsList));
     }
 
     //This method is used to navigate to a user's profile or provide a popup to send a request.
