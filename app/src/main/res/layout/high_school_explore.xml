@@ -38,6 +38,15 @@
             android:text="Search" />
     </LinearLayout>
 
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:text="ToggleButton"
+        android:textOff="Request Mode Off"
+        android:textOn="Request Mode On"
+        android:textSize="20sp" />
+
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
