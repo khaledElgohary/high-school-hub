@@ -91,6 +91,12 @@ The business layer is responsible for handling the logic behind the app.
 ### [Services](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Services.java)
 `Services` handles any persistence objects.
 
+### [InvalidLinkException](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/InvalidLinkException.java)
+`InvalidLinkException` is thrown for invalid link formats for social media links.
+
+### [InvalidPlatformException](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/InvalidPlatformException.java)
+`InvalidPlatformException` is thrown for invalid platform formats for social media links.
+
 ## [Persistence Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/persistence)
 The persistence layer is responsible for storing data for the app.
 
