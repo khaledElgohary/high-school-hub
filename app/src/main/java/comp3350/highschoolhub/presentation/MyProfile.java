@@ -102,6 +102,11 @@ public class MyProfile extends Activity {
         startActivity(highSchools);
     }
 
+    public void showHighSchoolExplore(View view) {
+        Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
+        startActivity(highSchoolExplore);
+    }
+
     private void showPrivacyInfo() {
         Intent privacy = new Intent(this, PrivacyInfo.class);
         startActivity(privacy);
