@@ -3,6 +3,9 @@ package comp3350.highschoolhub.application;
 import comp3350.highschoolhub.persistence.HighSchoolPersistence;
 import comp3350.highschoolhub.persistence.RequestPersistence;
 import comp3350.highschoolhub.persistence.UserPersistence;
+import comp3350.highschoolhub.persistence.hsqldb.HighSchoolPersistenceHSQLDB;
+import comp3350.highschoolhub.persistence.hsqldb.RequestPersistenceHSQLDB;
+import comp3350.highschoolhub.persistence.hsqldb.UserPersistenceHSQLDB;
 import comp3350.highschoolhub.persistence.stubs.HighSchoolPersistenceStub;
 import comp3350.highschoolhub.persistence.stubs.RequestPersistenceStub;
 import comp3350.highschoolhub.persistence.stubs.UserPersistenceStub;
@@ -21,7 +24,7 @@ public class Services {
 
         //If there is no UserPersistence set then we create a new one.
         if (userPersistence == null) {
-            userPersistence = new UserPersistenceStub();
+            userPersistence = new UserPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return userPersistence;
@@ -32,7 +35,7 @@ public class Services {
 
         //If there is no request persistence then create a new one.
         if (requestPersistence == null) {
-            requestPersistence = new RequestPersistenceStub();
+            requestPersistence = new RequestPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return requestPersistence;
@@ -44,7 +47,7 @@ public class Services {
 
         //If there is no request persistence then create a new one.
         if (highSchoolPersistence == null) {
-            highSchoolPersistence = new HighSchoolPersistenceStub();
+            highSchoolPersistence = new HighSchoolPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return highSchoolPersistence;

@@ -37,6 +37,8 @@
                 android:value="comp3350.highschoolhub.presentation.ConnectionsUserOptions" />
         </activity>
         <activity android:name=".presentation.HighSchoolList" />
+        <activity android:name=".presentation.HighSchoolExplore" />
+        <activity android:name=".presentation.PrivacyInfo" />
     </application>
 
 </manifest>
