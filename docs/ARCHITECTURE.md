@@ -14,6 +14,8 @@
     PrivacyInfo <--> PrivacyManager
     Socials <--> AccessUsers & SocialsManager
     SocialsAddLink <--> AccessUsers & SocialsManager
+    ViewConnectedUserProfile <--> ConnectionsConfirmer
+
 
     Services <--> HighSchoolPersistence & RequestPersistence & UserPersistence
 
@@ -26,11 +28,13 @@
     Socials <==> MyProfile
     SocialsAddLink <==> Socials
     Connections & HighSchoolList <==> Messages
+    ViewConnectedUserProfile <==> HighSchoolExplore
     end
 
     subgraph Business
     AccessHighSchools & AccessRequests & AccessUsers <==> Services
     ConnectionsManager
+    AccessHighSchools & ConnectionsManager<==> ConnectionsConfirmer 
     HighSchoolsManager
     PrivacyManager
     SocialsManager
@@ -82,6 +86,9 @@ The presentation layer is responsible for displaying and managing the UI of the 
 ### [SocialsAddLink](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/SocialsAddLink.java)
 `SocialsAddLink` provides a form that lets the current user add a social media link to their account.
 
+### [ViewConnectedUserProfile](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/ViewConnectedUserProfile.java)
+`ViewConnectedUserProfile` provides a page to view another user's profile.
+
 ## [Business Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/business)
 The business layer is responsible for handling the logic behind the app.
 
@@ -93,6 +100,9 @@ The business layer is responsible for handling the logic behind the app.
 
 ### [AccessUsers](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/AccessUsers.java)
 `AccessUsers` provides access to `UserPersistence`.
+
+### [ConnectionConfirmer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionConfirmer.java)
+`ConnectionConfirmer` handles logic for `ViewConnectedUserProfile`
 
 ### [ConnectionsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionsManager.java)
 `ConnectionsManager` handles logic for the connections part of the UI.
