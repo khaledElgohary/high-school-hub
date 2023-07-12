@@ -1,6 +1,5 @@
 package comp3350.highschoolhub.objects;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
@@ -32,6 +31,7 @@ public class User {
         this.bio = bio;
         this.maritalStatus = maritalStatus;
         this.highSchool = null;
+        this.socials = new HashMap<>();
         this.password = password;
     }
 
