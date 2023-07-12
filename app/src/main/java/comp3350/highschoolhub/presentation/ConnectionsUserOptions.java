@@ -13,6 +13,9 @@ import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.IAccessRequests;
+import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
@@ -25,11 +28,11 @@ public class ConnectionsUserOptions extends Activity {
 
     private User loggedIn;
 
-    private AccessRequests accessRequests;
+    private IAccessRequests accessRequests;
 
-    private AccessUsers accessUsers;
+    private IAccessUsers accessUsers;
 
-    private ConnectionsManager connectionsManager;
+    private IConnectionsManager connectionsManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,16 +42,16 @@ public class ConnectionsUserOptions extends Activity {
         accessUsers = new AccessUsers();
         accessRequests = new AccessRequests();
         connectionsManager = new ConnectionsManager();
-        request = connectionsManager.getRequest();
-        user = connectionsManager.getRecipientUser();
-        loggedIn = accessUsers.getLoggedInUser();
+        request = ConnectionsManager.getRequest();
+        user = ConnectionsManager.getRecipientUser();
+        loggedIn = AccessUsers.getLoggedInUser();
 
         final TextView titleText = findViewById(R.id.userOptionText);
-        String showTitleText = connectionsManager.getTitleText();
+        String showTitleText = ConnectionsManager.getTitleText();
         titleText.setText(showTitleText);
 
         //Set up accept or request button.
-        String topButtonText = connectionsManager.acceptOrRequest();
+        String topButtonText = ConnectionsManager.acceptOrRequest();
 
         final Button topButton = findViewById(R.id.acceptRequestButton);
         topButton.setText(topButtonText);

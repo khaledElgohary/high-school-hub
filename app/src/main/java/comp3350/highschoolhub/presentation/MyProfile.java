@@ -10,15 +10,17 @@ import android.widget.TextView;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.User;
 
 public class MyProfile extends Activity {
     //fetching the loggedin user
     private final User loggedIn = AccessUsers.getLoggedInUser();
 
-    private final ConnectionsManager connectionsManager = new ConnectionsManager();
+    private final IConnectionsManager connectionsManager = new ConnectionsManager();
 
-    private final AccessUsers accessUsers = new AccessUsers();
+    private final IAccessUsers accessUsers = new AccessUsers();
     //creating a string which is easier since both names will be combined and placed in a placeholder
     String name = loggedIn.getFirstName() + " " + loggedIn.getLastName();
 
@@ -54,6 +56,12 @@ public class MyProfile extends Activity {
             public void onClick(View v) {
                 showHighSchools();
             }
+        });
+
+        Button privacyButton = findViewById(R.id.privacyInfoButton);
+        privacyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { showPrivacyInfo(); }
         });
 
         //displaying the user name in the UI
@@ -92,5 +100,15 @@ public class MyProfile extends Activity {
     private void showHighSchools() {
         Intent highSchools = new Intent(this, HighSchoolList.class);
         startActivity(highSchools);
+    }
+
+    public void showHighSchoolExplore(View view) {
+        Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
+        startActivity(highSchoolExplore);
+    }
+
+    private void showPrivacyInfo() {
+        Intent privacy = new Intent(this, PrivacyInfo.class);
+        startActivity(privacy);
     }
 }

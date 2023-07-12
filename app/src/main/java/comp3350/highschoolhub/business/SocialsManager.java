@@ -4,18 +4,35 @@ import java.util.regex.Pattern;
 
 import comp3350.highschoolhub.objects.User;
 
-public class SocialsManager {
+public class SocialsManager implements ISocialsManager{
     //This method adds a new social media link to a user's account
-    public static boolean addLink(User loggedIn, String platform, String link) {
+    public boolean addLink(User loggedIn, String platform, String link)
+            throws InvalidLinkException, InvalidPlatformException{
+
         boolean success = false;
         String linkWithHttps = prependHttpsToLink(link);
 
-        if (loggedIn != null && platform != null && validLink(linkWithHttps)) {
+        if(link == null || link.length() == 0 || !validLink(linkWithHttps)) {
+            throw new InvalidLinkException("Invalid Social Link");
+        }
+
+        if(platform == null || platform.length() == 0) {
+            throw new InvalidPlatformException("Invalid Social Platform");
+        }
+
+        if (loggedIn != null) {
             loggedIn.addSocialMedia(platform.toLowerCase(), linkWithHttps);
             success = true;
         }
 
         return success;
+    }
+
+    public void removeLink(User loggedIn, String platform, String link) {
+
+        if(loggedIn != null && platform != null && link != null) {
+            loggedIn.removeSocialMedia(platform, link);
+        }
     }
 
     //This method checks if a link is in the right format

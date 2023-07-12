@@ -13,19 +13,26 @@ import android.widget.Toast;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.ISocialsManager;
+import comp3350.highschoolhub.business.InvalidLinkException;
+import comp3350.highschoolhub.business.InvalidPlatformException;
 import comp3350.highschoolhub.business.SocialsManager;
 
 public class SocialsAddLink extends Activity {
     private EditText platformNameInput;
     private EditText linkInput;
 
-    private AccessUsers accessUsers;
+    private IAccessUsers accessUsers;
+
+    private ISocialsManager socialsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_socials_add_link);
         accessUsers = new AccessUsers();
+        socialsManager = new SocialsManager();
 
         platformNameInput = findViewById(R.id.platformNameInput);
         linkInput = findViewById(R.id.linkInput);
@@ -58,19 +65,24 @@ public class SocialsAddLink extends Activity {
 
     //This method attempts to add the provided platform name and link to the user's socials
     private void submitSocials() {
-        if (TextUtils.isEmpty(platformNameInput.getText())) {
-            Toast.makeText(this, "Platform name cannot be empty.", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(linkInput.getText())) {
-            Toast.makeText(this, "Link cannot be empty.", Toast.LENGTH_SHORT).show();
-        } else {
-            if (SocialsManager.addLink(AccessUsers.getLoggedInUser(),
-                    platformNameInput.getText().toString(), linkInput.getText().toString())) {
+        try{
+
+            //this method can throw 2 exceptions (InvalidLink, InvalidPlatform)
+            if(socialsManager.addLink(AccessUsers.getLoggedInUser(), platformNameInput.getText().toString(),
+                    linkInput.getText().toString())){
                 accessUsers.updateUser(AccessUsers.getLoggedInUser());
                 Toast.makeText(this, "The link was successfully added.", Toast.LENGTH_SHORT).show();
                 goToSocials(new View(this));
-            } else {
-                Toast.makeText(this, "Please enter a valid link.", Toast.LENGTH_SHORT).show();
             }
+            else {
+                Toast.makeText(this, "Link was not added.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (InvalidLinkException invLinkEx) {
+            Toast.makeText(this, invLinkEx.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        catch (InvalidPlatformException invPlatEx) {
+            Toast.makeText(this, invPlatEx.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

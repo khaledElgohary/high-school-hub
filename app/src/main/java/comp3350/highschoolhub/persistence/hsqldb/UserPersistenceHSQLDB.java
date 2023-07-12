@@ -42,12 +42,13 @@ public class UserPersistenceHSQLDB implements UserPersistence {
     private void addSocialsToUser(User user) {
 
         try(final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("SELECT * FROM SOCIALS WHERE USER = ?");
-            st.setInt(1, user.getUserId());
+            final Statement st = c.createStatement();
 
-            final ResultSet rs = st.executeQuery();
+            final ResultSet rs = st.executeQuery("SELECT * FROM SOCIALS");
             while(rs.next()) {
-                user.addSocialMedia(rs.getString("type"), rs.getString("link"));
+                if(rs.getInt("userid") == user.getUserId()) {
+                    user.addSocialMedia(rs.getString("type"), rs.getString("link"));
+                }
             }
 
             rs.close();
@@ -142,10 +143,10 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         try(Connection c = connection()) {
             updated = true;
             //First delete all the social links.
-            final PreparedStatement delete = c.prepareStatement("DELETE FROM SOCIALS WHERE USER = ?");
+            final PreparedStatement delete = c.prepareStatement("DELETE FROM SOCIALS WHERE USERID = ?");
             delete.setInt(1, user.getUserId());
 
-            delete.execute();
+            delete.executeUpdate();
 
             delete.close();
 
@@ -162,6 +163,7 @@ public class UserPersistenceHSQLDB implements UserPersistence {
 
             update.close();
 
+
             //Add social links back in just in case they changed.
             HashMap<String, String> links = user.getSocials();
 
@@ -169,15 +171,17 @@ public class UserPersistenceHSQLDB implements UserPersistence {
                 String type = entry.getKey();
                 String link = entry.getValue();
 
-                final PreparedStatement insert = c.prepareStatement("INSERT INTO SOCIALS (USER, TYPE, LINK) VALUES(?, ?, ?)");
+                final PreparedStatement insert = c.prepareStatement("INSERT INTO SOCIALS (USERID, TYPE, LINK) VALUES(?, ?, ?)");
                 insert.setInt(1, user.getUserId());
                 insert.setString(2, type);
                 insert.setString(3, link);
+
 
                 insert.executeUpdate();
 
                 insert.close();
             }
+
 
 
         } catch(SQLException e) {
