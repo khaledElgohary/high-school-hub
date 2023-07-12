@@ -42,9 +42,9 @@ https://code.cs.umanitoba.ca/3350-summer2023/sample-project/-/blob/8e38ae9c3084d
 </blockquote>
 <p>The first piece of technical debt that we paid off was replacing our stub database with a real one. This was technical debt
 becuase every time you would restart the app, all the data would reset back to its defaults. Here is an example of the User persistence before the debt was paid off: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/d3210164e2fc73c1b798a37038ba4826fd1ea0c3/app/src/main/java/comp3350/highschoolhub/persistence/stubs/UserPersistenceStub.java#L12 Notice
-that all the users are just being stored in an ArrayList which of course gets deleted after the app exits. Here is what we have now for the User persistence: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/d3210164e2fc73c1b798a37038ba4826fd1ea0c3/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/UserPersistenceHSQLDB.java#L19 Which now just has
+that all the users are just being stored in an ArrayList which of course gets deleted after the app exits. Here is what we have now for the User persistence: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/d3210164e2fc73c1b798a37038ba4826fd1ea0c3/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/UserPersistenceHSQLDB.java#L19 The User persistence now just has
 an instance variable for a String giving a path to the real database. This technical debt is classified as being Deliberate and Prudent. We purposely made the choice to use a fake database
-to begin with so that we could implement more features for our first Iteration 1 release of our application. Hence, we knew we would have to deal with the consequences later.</p>
+to begin with so that we could implement more features for our Iteration 1 release of our application. Hence, we knew we would have to deal with the consequences later.</p>
 <p>The second piece of technical debt that we paid off was tightly coupling our business layer objects to the presentation layer objects. This is technical debt because it makes it more difficult to switch objects out for each other if a new version of a class gets created. Here is an example of what was happening in the presentation layer before using interfaces: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/6c466ec0d6eb9fcdc47d861e784c73930b81a31c/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L29
 Notice that the Connections.java class was tightly coupled to ConnectionsManager.java. Now Connections.java can use any class that implements the IConnectionsManager interface: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/worksheet/documents/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L42 
 This technical debt is classified as Reckless and Deliberate. We all knew that we should not have tightly coupled our classes together; however, we tightly coupled everything together because we were under a time constraint.</p>
@@ -59,6 +59,7 @@ provide a link to that issue. Be sure your links in the issues are to
 <p>Provide a link to the issue you created here.</p>
 </blockquote>
 <p>Here is a link to the issue we created for Group 6: https://code.cs.umanitoba.ca/3350-summer2023/lakers-6/-/issues/56
+
 Here is the description of the issue (This is also stated in the issue itself):
 <blockquote>
 Violation Type: Single Responsibility Principle
@@ -114,7 +115,7 @@ additions.</p>
 </blockquote>
 <p>We had no issues opened by the grader so we demonstrate on how we are being prudent with our new additions. In the ConnectionConfirmer class
 we have a method which tells us whether two given users are connected. Right now, users accepting requests is not fully implemented; however, we still return false
-so that all of our code that relies on that logic can know how to handle false being returned and we do not run into any issues where exceptions are thrown because our
+so that all of our code that relies on that logic knows how to handle false being returned and we do not run into any issues where exceptions are thrown because our
 existing code did not take that value into account. Here is the link to the method in that class: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/26a93b464d6d8c10a823ccdcf2ff52fb0ade1591/app/src/main/java/comp3350/highschoolhub/business/ConnectionConfirmer.java#L15-28</p>
 </body>
 </html>
