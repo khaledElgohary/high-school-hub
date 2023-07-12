@@ -51,6 +51,18 @@ provide a link to that issue. Be sure your links in the issues are to
 project. Is there evidence of the change in estimating/committing/peer
 review/timelines/testing? Provide those links and evidence here - or
 explain why there is not evidence.</p>
+<p>The retrospective has improved the way that we create branches. In Iteration 1 we hardly 
+ever pushed to main. The issue with this was that no one really knew which branch had
+the most recent version of our application so everytime someone needed to create a new branch
+we would have to determine which branch had the most recent version. In Iteration 2 we improved on this issue
+by agreeing to push to main whenever all code in a branch is functional. This greatly improved our workflow
+as whenever someone needed a new branch they could just branch from main because they new that main always had the
+most recent copy of the fully working application.</p>
+<p>This link: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/network/Iteration1Release
+shows how we were creating branched in Iteration 1. Notice that even as we got closer to the end of the sprint hardly any
+merges were being made to main. The main branch is the one closest to the right side of the graph. Then looking at July 7-11 of the current 
+branching graph for main: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/network/main
+You can see that more merges to main have been made compared to Iteration 1.</p>
 <h2 id="design-patterns">Design patterns</h2>
 <p>Show links to your project where you use a well-known design pattern.
 Which pattern is it? Provide links to the design pattern that you
