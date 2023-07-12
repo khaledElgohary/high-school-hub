@@ -97,5 +97,9 @@ the commits where you fixed the issue.</p>
 <p>No issues? Show 1 more piece of technical debt being paid off. Or
 demonstrate how you are not adding debt by being prudent in your new
 additions.</p>
+<p>We had no issues opened by the grader so we demonstrate on how we are being proudent with our new additions. In the ConnectionConfirmer class
+we have a method which tells us whether two given users are connected. However, right now users accepting requests is not fully implemented however we still return false
+so that all of our code that relies on that logic can knows how to handle false being returned and we do not run into any issues where exceptions are thrown because our
+existing code did not take that value into account. Here is the link to the method in that class: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/26a93b464d6d8c10a823ccdcf2ff52fb0ade1591/app/src/main/java/comp3350/highschoolhub/business/ConnectionConfirmer.java#L15-28</p>
 </body>
 </html>
