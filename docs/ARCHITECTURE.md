@@ -8,19 +8,18 @@
     %% Links between nodes of different subgraphs
     Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
     ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
-    HighSchoolExplore <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager & HighSchoolsManager
-    HighSchoolList <---> AccessUsers & AccessHighSchools
+    HighSchoolExplore <---> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager & HighSchoolsManager
+    HighSchoolList <--> AccessUsers & AccessHighSchools
     MyProfile <--> AccessUsers & ConnectionsManager
     PrivacyInfo <--> PrivacyManager
     Socials <--> AccessUsers & SocialsManager
     SocialsAddLink <--> AccessUsers & SocialsManager
-    ViewConnectedUserProfile <--> ConnectionsConfirmer
-
+    ViewConnectedUserProfile <--> AccessUsers & ConnectionConfirmer & ConnectionsManager
 
     Services <--> HighSchoolPersistence & RequestPersistence & UserPersistence
 
     subgraph Presentation
-    Connections <==> ConnectionsUserOptions
+    Connections <===> ConnectionsUserOptions
     MyProfile <==> Connections
     MyProfile <==> HighSchoolExplore
     MyProfile <==> HighSchoolList
@@ -33,8 +32,8 @@
 
     subgraph Business
     AccessHighSchools & AccessRequests & AccessUsers <==> Services
-    ConnectionsManager
-    AccessHighSchools & ConnectionsManager<==> ConnectionsConfirmer 
+    ConnectionConfirmer <==> AccessHighSchools & AccessRequests
+    ConnectionsManager <==> ConnectionConfirmer
     HighSchoolsManager
     PrivacyManager
     SocialsManager
