@@ -8,7 +8,7 @@
     %% Links between nodes of different subgraphs
     Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
     ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
-    HighSchoolExplore <---> AccessHighSchools & AccessUsers & HighSchoolsManager
+    HighSchoolExplore <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager & HighSchoolsManager
     HighSchoolList <---> AccessUsers & AccessHighSchools
     MyProfile <--> AccessUsers & ConnectionsManager
     PrivacyInfo <--> PrivacyManager
