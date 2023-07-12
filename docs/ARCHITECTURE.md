@@ -4,10 +4,11 @@
 ```mermaid
 %% Note: In case the diagram is not rendering properly, a backup can be found at https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/docs/mermaid-diagram-backup.png.
 
- flowchart LR
+  flowchart LR
     %% Links between nodes of different subgraphs
     Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
     ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
+    HighSchoolExplore <---> AccessHighSchools & AccessUsers & HighSchoolsManager
     HighSchoolList <---> AccessUsers & AccessHighSchools
     MyProfile <--> AccessUsers & ConnectionsManager
     PrivacyInfo <--> PrivacyManager
@@ -19,6 +20,7 @@
     subgraph Presentation
     Connections <==> ConnectionsUserOptions
     MyProfile <==> Connections
+    MyProfile <==> HighSchoolExplore
     MyProfile <==> HighSchoolList
     MyProfile <==> PrivacyInfo
     Socials <==> MyProfile
@@ -29,6 +31,7 @@
     subgraph Business
     AccessHighSchools & AccessRequests & AccessUsers <==> Services
     ConnectionsManager
+    HighSchoolsManager
     PrivacyManager
     SocialsManager
     end
@@ -57,6 +60,9 @@ The presentation layer is responsible for displaying and managing the UI of the 
 
 ### [ConnectionsUserOptions](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/ConnectionsUserOptions.java)
 `ConnectionsUserOptions` provides options for managing a connection request with another user. The current user can send the other user a request or accept an existing request from the other user.
+
+### [HighSchoolExplore](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/HighSchoolExplore.java)
+`HighSchoolExplore` lets the current user see and interact with other users associated with a selected high school.
 
 ### [HighSchoolList](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/HighSchoolList.java)
 `HighSchoolList` presents a list of selectable high schools that a user can add to their account.
@@ -90,6 +96,9 @@ The business layer is responsible for handling the logic behind the app.
 
 ### [ConnectionsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionsManager.java)
 `ConnectionsManager` handles logic for the connections part of the UI.
+
+### [HighSchoolsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/HighSchoolsManager.java)
+`HighSchoolsManager` handles logic for the high schools part of the UI.
 
 ### [PrivacyManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/PrivacyManager.java)
 `PrivacyManager` handles logic for the privacy info part of the UI.
