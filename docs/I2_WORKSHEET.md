@@ -67,6 +67,12 @@ You can see that more merges to main have been made compared to Iteration 1.</p>
 <p>Show links to your project where you use a well-known design pattern.
 Which pattern is it? Provide links to the design pattern that you
 used.</p>
+<p>A well known design pattern that we are using in our project is the Singleton design pattern. The User, Request, and HighSchool Persistence 
+objects are used in multiple different places in the application but only one instance of each exists for the entire project. Here is a link
+to where the only instance of these objects are located: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/worksheet/documents/app/src/main/java/comp3350/highschoolhub/application/Services.java?ref_type=heads#L26-51.</p>
+<p>Here are a few more links to where these objects are being accessed: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/20293c1c57ffa569532da919e8afa66a33fb53a3/app/src/main/java/comp3350/highschoolhub/business/AccessHighSchools.java#L24 That one is from the AccessHighSchools class.
+This one is from the AccessRequests class: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/20293c1c57ffa569532da919e8afa66a33fb53a3/app/src/main/java/comp3350/highschoolhub/business/AccessRequests.java#L18 and finally one from the AccessUsers class: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/worksheet/documents/app/src/main/java/comp3350/highschoolhub/business/AccessUsers.java#L26. All of these object are in the logic layer but
+whenever the logic layer object is created it is using one instance of the persistence object throughout all the entire project.</p>
 <p><strong>Note</strong>: Though Dependency Injection is a programming
 pattern, we would like to see a programming pattern other than
 Dependency Injection.</p>
