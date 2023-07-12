@@ -38,6 +38,14 @@ then, click the margin to choose a line:
 https://code.cs.umanitoba.ca/3350-summer2023/sample-project/-/blob/8e38ae9c3084d62adc4ac5fafa3b87d7d862dc26/.gitignore#L7</p>
 <p>Make sure the path it not to <code>main</code> or their
 <code>develop</code> (or similar) branch, as those rapidly change.</p>
+<p>The first peice of technical debt that we paid off was replacing our stub database with a real one. This was technical debt
+becuase every time you would restart the app, all the data would reset back to its defaults. Here is an example of the User persistence before the debt was paid off: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/d3210164e2fc73c1b798a37038ba4826fd1ea0c3/app/src/main/java/comp3350/highschoolhub/persistence/stubs/UserPersistenceStub.java#L12 Notice
+that all the users are just being stored in an ArrayList which of course gets deleted after the app exits. Here is what we have now for the User persistence: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/d3210164e2fc73c1b798a37038ba4826fd1ea0c3/app/src/main/java/comp3350/highschoolhub/persistence/hsqldb/UserPersistenceHSQLDB.java#L19 Which now just has
+an instance variable for a String giving a path to the real database. This technical debt is classified as being Deliberate and Prudent. We purposely made the choice to use a fake database
+to begin with so that we could implement more features for our first Iteration 1 release of our application. Hence, we knew we would have to deal with the consequences later.</p>
+<p>The second piece of technical debt that we paid off was tightly coupling our buisness layer obhects to the presentation layer objects. This is technical debt because it makes it more diffcult to switch objects out for each other if a new version of a class gets created. Here is an example of what was happening in the presentation layer before using interfaces: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/6c466ec0d6eb9fcdc47d861e784c73930b81a31c/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L29
+Notice that the Connections.java class was tightly coupled to ConnectionsManager.java. Now Connections.java can use any class that implements the IConnectionsManager integerface: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/worksheet/documents/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L42 
+This technical debt is classified as Reckless and Deliberate. We all knew that we should not have tightly coupled our classes together however we tightly coupled everything together because we under a time constraint.</p>
 <h2 id="solid">SOLID</h2>
 <p>Find a SOLID violation in the project of group <code>n+1</code>
 (group 13 does group 1). Open an issue in their project with the
