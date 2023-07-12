@@ -28,6 +28,9 @@ import comp3350.highschoolhub.objects.User;
 public class Socials extends Activity {
     private SimpleAdapter simpleAdapter;
     private static final String[] MAP_KEYS = {"platform", "link"};
+    private IAccessUsers accessUsers = new AccessUsers();
+
+    private User loggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class Socials extends Activity {
 
 
         //Get data for displaying the user's social media links
-        User loggedIn = AccessUsers.getLoggedInUser();
+        loggedIn = AccessUsers.getLoggedInUser();
         Map<String, String> socialsList = loggedIn.getSocials();
 
         ListView listView = findViewById(R.id.socialsListView);
@@ -129,10 +132,10 @@ public class Socials extends Activity {
         ISocialsManager socialsManager = new SocialsManager();
         socialsManager.removeLink(loggedIn, plat, link);
 
-        IAccessUsers accessUsers = new AccessUsers();
+        accessUsers = new AccessUsers();
         accessUsers.updateUser(loggedIn);
 
-        Toast.makeText(this, "Successfully remove link:\n" + link, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Successfully removed link:\n" + link, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, Socials.class);
         startActivity(intent);
