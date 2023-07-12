@@ -18,6 +18,9 @@ import java.util.List;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.business.ConnectionConfirmer;
+import comp3350.highschoolhub.business.IConnectionConfirmer;
+import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.User;
 
 
@@ -26,8 +29,9 @@ public class ViewConnectedUserProfile extends Activity {
     private User loggedIn;
     private User toVisit;
     private boolean areConnected;
-
     private ArrayAdapter<String> arrayAdapter;
+
+    private IConnectionConfirmer connectionConfirmer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,8 @@ public class ViewConnectedUserProfile extends Activity {
         //getting user to visit
         toVisit = AccessUsers.getProfileUser();
 
-        System.out.println(toVisit == null);
-        //System.out.println(toVisit.getFirstName() == null);
-
-        areConnected = true;
+        connectionConfirmer = new ConnectionConfirmer();
+        areConnected = connectionConfirmer.areConnected(loggedIn, toVisit);
 
         //Set up listener for clicking the back button
         Button addLinksButton = findViewById(R.id.goToHSExplore);
