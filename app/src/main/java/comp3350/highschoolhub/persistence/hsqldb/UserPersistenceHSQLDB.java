@@ -46,7 +46,7 @@ public class UserPersistenceHSQLDB implements UserPersistence {
 
             final ResultSet rs = st.executeQuery("SELECT * FROM SOCIALS");
             while(rs.next()) {
-                if(rs.getInt("user") == user.getUserId()) {
+                if(rs.getInt("userid") == user.getUserId()) {
                     user.addSocialMedia(rs.getString("type"), rs.getString("link"));
                 }
             }
@@ -143,7 +143,7 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         try(Connection c = connection()) {
             updated = true;
             //First delete all the social links.
-            final PreparedStatement delete = c.prepareStatement("DELETE FROM SOCIALS WHERE USER = ?");
+            final PreparedStatement delete = c.prepareStatement("DELETE FROM SOCIALS WHERE USERID = ?");
             delete.setInt(1, user.getUserId());
 
             delete.executeUpdate();
@@ -171,7 +171,7 @@ public class UserPersistenceHSQLDB implements UserPersistence {
                 String type = entry.getKey();
                 String link = entry.getValue();
 
-                final PreparedStatement insert = c.prepareStatement("INSERT INTO SOCIALS (USER, TYPE, LINK) VALUES(?, ?, ?)");
+                final PreparedStatement insert = c.prepareStatement("INSERT INTO SOCIALS (USERID, TYPE, LINK) VALUES(?, ?, ?)");
                 insert.setInt(1, user.getUserId());
                 insert.setString(2, type);
                 insert.setString(3, link);
