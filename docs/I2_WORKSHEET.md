@@ -46,6 +46,11 @@ provide a link to that issue. Be sure your links in the issues are to
 <strong>specific commits</strong> (not to <code>main</code>, or
 <code>develop</code> as those will be changed).</p>
 <p>Provide a link to the issue you created here.</p>
+<p>Here is a link to the issue we created for Group 6: https://code.cs.umanitoba.ca/3350-summer2023/lakers-6/-/issues/56
+Here is the description of the issue (This is also stated in the issue itself): Violation Type: Single Responsibility Principle
+Description: UserHandler.java is handling password validation. This could be handled by its own class in the logic. UserHandler.java is mostly doing
+user persistence access and password validation does not tie in well with that.
+Link: https://code.cs.umanitoba.ca/3350-summer2023/lakers-6/-/blob/24f5c4f640bb1d618057edf6d32b6e6b707cf20d/app/src/main/java/comp3350/lakers/quizme/logic/UserHandler.java#L40</p>
 <h2 id="retrospective">Retrospective</h2>
 <p>Describe how the retrospective has changed the way you are doing your
 project. Is there evidence of the change in estimating/committing/peer
