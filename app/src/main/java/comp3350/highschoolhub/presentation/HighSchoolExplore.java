@@ -155,16 +155,12 @@ public class HighSchoolExplore extends Activity {
         ConnectionsManager.setRequest(findRequest);
 
         if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
-//            //Send a request instead of navigating to the profile or popup when request mode is on
-//            Request updated = connectionsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
-//            accessRequests.updateRequest(updated);
-//            Toast.makeText(this, "A connection request has been sent.", Toast.LENGTH_SHORT).show();
+            Intent connectionsUserOptions = new Intent(this, ConnectionsUserOptions.class);
+            this.startActivity(connectionsUserOptions);
+        } else {
             AccessUsers.setProfileUser(selected);
             Intent connected = new Intent(this, ViewConnectedUserProfile.class);
             startActivity(connected);
-        } else {
-            Intent connectionsUserOptions = new Intent(this, ConnectionsUserOptions.class);
-            this.startActivity(connectionsUserOptions);
         }
     }
 
