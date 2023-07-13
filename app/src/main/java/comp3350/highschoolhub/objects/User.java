@@ -83,4 +83,9 @@ public class User {
         this.maritalStatus=newStatus;
     }
     public void removeSocialMedia(String type, String link) { socials.remove(type, link); }
+
+    public boolean equals(User user) {
+        return this.userId == user.userId;
+    }
+    
 }

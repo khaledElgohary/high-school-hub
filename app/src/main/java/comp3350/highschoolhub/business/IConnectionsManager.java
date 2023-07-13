@@ -15,4 +15,6 @@ public interface IConnectionsManager {
 
     Request findRequest(User loggedIn, User selected, List<Request> allRequests);
 
+
+
 }
