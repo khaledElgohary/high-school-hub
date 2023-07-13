@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -74,85 +73,6 @@ public class ConnectionManagerTests {
         assertTrue(getConnections.contains(user2));
         assertTrue(getConnections.contains(user3));
         assertTrue(getConnections.contains(user4));
-    }
-
-    @Test
-    public void testGetMatchingConnections() {
-        ConnectionsManager connectionsManager = new ConnectionsManager();
-
-        User loggedIn = new User(0, "Test0", "User0", "Test User", "Single");
-        User user1 = new User(1, "Test1", "User1", "Hello", "Married");
-        User user2 = new User(2, "User2", "Test2", "Goodbye", "Single");
-        User user3 = new User(3, "3Te", "st3", "Hi", "Married");
-        User otherUser = new User(4, "FirstName", "LastName", "Good Morning", "Single");
-        String search = "Test";
-
-        List<User> userList = new ArrayList<>();
-        userList.add(loggedIn);
-        userList.add(user1);
-        userList.add(user2);
-        userList.add(user3);
-        userList.add(otherUser);
-
-        List<User> matchingList = connectionsManager.getMatchingConnections(loggedIn, search, userList);
-        assertNotNull(matchingList);
-        assertEquals(3, matchingList.size());
-        assertTrue(matchingList.contains(user1));
-        assertTrue(matchingList.contains(user2));
-        assertTrue(matchingList.contains(user3));
-        assertFalse(matchingList.contains(loggedIn));
-        assertFalse(matchingList.contains(otherUser));
-    }
-
-    @Test
-    public void testNullInputGetMatchingConnections() {
-        ConnectionsManager connectionsManager = new ConnectionsManager();
-
-        List<User> matchingList = connectionsManager.getMatchingConnections(null, null, null);
-        assertNotNull(matchingList);
-        assertEquals(0, matchingList.size());
-    }
-
-    @Test
-    public void testEmptyListGetMatchingConnections() {
-        ConnectionsManager connectionsManager = new ConnectionsManager();
-
-        User loggedIn = new User(0, "Test0", "User0", "Test User", "Single");
-        String search = "Test";
-        List<User> userList = new ArrayList<>();
-
-        List<User> matchingList = connectionsManager.getMatchingConnections(loggedIn, search, userList);
-
-        assertNotNull(matchingList);
-        assertEquals(0, matchingList.size());
-    }
-
-    @Test
-    public void testCaseInsensitiveGetMatchingConnections() {
-        ConnectionsManager connectionsManager = new ConnectionsManager();
-
-        User loggedIn = new User(0, "Logged", "In", "Logged In User", "Single");
-        User user1 = new User(1, "Test1", "User1", "Testing1", "Married");
-        User user2 = new User(2, "Test2", "User2", "Testing2", "Single");
-        User user3 = new User(3, "Test3", "User3", "Testing3", "Married");
-        String search1 = "test";
-        String search2 = "tEsT";
-        String search3 = "TEST";
-
-        List<User> userList = new ArrayList<>();
-        userList.add(loggedIn);
-        userList.add(user1);
-        userList.add(user2);
-        userList.add(user3);
-
-        List<User> matchingList1 = connectionsManager.getMatchingConnections(loggedIn, search1, userList);
-        assertEquals(3, matchingList1.size());
-
-        List<User> matchingList2 = connectionsManager.getMatchingConnections(loggedIn, search2, userList);
-        assertEquals(3, matchingList2.size());
-
-        List<User> matchingList3 = connectionsManager.getMatchingConnections(loggedIn, search3, userList);
-        assertEquals(3, matchingList3.size());
     }
 
     @Test

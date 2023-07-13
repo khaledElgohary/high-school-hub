@@ -75,7 +75,7 @@ public class SocialsAddLink extends Activity {
                 goToSocials(new View(this));
             }
             else {
-                Toast.makeText(this, "Link was not added.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter a valid link.", Toast.LENGTH_SHORT).show();
             }
         }
         catch (InvalidLinkException invLinkEx) {

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="comp3350.highschoolhub">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -37,9 +36,6 @@
                 android:value="comp3350.highschoolhub.presentation.ConnectionsUserOptions" />
         </activity>
         <activity android:name=".presentation.HighSchoolList" />
-        <activity android:name=".presentation.HighSchoolExplore" />
-        <activity android:name=".presentation.PrivacyInfo" />
-        <activity android:name=".presentation.ViewConnectedUserProfile" />
     </application>
 
 </manifest>

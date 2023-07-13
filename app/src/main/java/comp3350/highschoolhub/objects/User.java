@@ -27,8 +27,7 @@ public class User {
     }
 
     public String getUserName() {
-
-        return this.firstName + this.lastName;
+        return this.firstName +" "+ this.lastName;
     }
 
     public String getFirstName() {
@@ -67,7 +66,6 @@ public class User {
         socials.put(type, link);
     }
 
-
     public boolean equals(User user) {
         return this.userId == user.userId;
     }
@@ -84,8 +82,4 @@ public class User {
     public void changeStatus(String newStatus){
         this.maritalStatus=newStatus;
     }
-
-    public void removeSocialMedia(String type, String link) { socials.remove(type, link); }
-
-
 }

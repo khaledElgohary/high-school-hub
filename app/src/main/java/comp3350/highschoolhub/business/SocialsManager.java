@@ -28,13 +28,6 @@ public class SocialsManager implements ISocialsManager{
         return success;
     }
 
-    public void removeLink(User loggedIn, String platform, String link) {
-
-        if(loggedIn != null && platform != null && link != null) {
-            loggedIn.removeSocialMedia(platform, link);
-        }
-    }
-
     //This method checks if a link is in the right format
     public static boolean validLink(String link) {
         //Checks for either 2 periods or a period and a slash in the link

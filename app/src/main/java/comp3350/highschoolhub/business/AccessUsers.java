@@ -54,7 +54,6 @@ public class AccessUsers implements IAccessUsers{
         return loggedIn;
     }
 
-
     //Set the user that is logged in.
     public static User setLoggedInUser(User login) {
         loggedIn = login;
