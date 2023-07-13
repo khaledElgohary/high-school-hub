@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="fill_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/addSocialsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="#673AB7"
+        android:text="Add Social Media"
+        android:textAlignment="center"
+        android:textColor="#F0F7F8"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="0"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="675dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15sp"
+            android:layout_marginTop="25sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/platformNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/platformNameInput"
+                android:text="Social Media Platform"
+                android:textColor="#673AB7"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/platformNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusedByDefault="true"
+                android:hint="facebook"
+                android:inputType="text"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15sp"
+            android:layout_marginTop="25sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/linkLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Link"
+                android:textColor="#673AB7"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/linkInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="https://facebook.com/my.name"
+                android:inputType="text"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <Button
+            android:id="@+id/submitSocialsButton"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="#4CAF50"
+            android:text="Submit"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/goToSocialsButton"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_gravity="bottom"
+            android:text="Cancel"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>
