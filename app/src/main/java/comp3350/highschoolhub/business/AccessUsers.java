@@ -60,6 +60,10 @@ public class AccessUsers implements IAccessUsers{
         return loggedIn;
     }
 
+    public static void clearLoggedInUser() {
+        loggedIn = null;
+    }
+
     //Get the user in which to look at their profile.
     public static User getProfileUser() {
         return seeUserProfile;
