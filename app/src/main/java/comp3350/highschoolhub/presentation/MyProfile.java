@@ -2,6 +2,7 @@ package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,11 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
@@ -42,9 +48,15 @@ public class MyProfile extends Activity {
 
     private final User loggedIn=AccessUsers.getLoggedInUser();
 
+
     private final IConnectionsManager connectionsManager = new ConnectionsManager();
 
     private final IAccessUsers accessUsers = new AccessUsers();
+
+
+    //creating a string which is easier since both names will be combined and placed in a placeholder
+    String name = loggedIn.getFirstName() + " " + loggedIn.getLastName();
+
 
     String numberOfConnections = connectionsManager.getHighSchoolConnections(loggedIn, accessUsers.getUsers()).size() + "";
 
@@ -79,6 +91,7 @@ public class MyProfile extends Activity {
                 showHighSchools();
             }
         });
+
 
         ImageButton editImage=findViewById(R.id.edit_photo);
         editImage.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +147,17 @@ public class MyProfile extends Activity {
 
 
 
+        Button privacyButton = findViewById(R.id.privacyInfoButton);
+        privacyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { showPrivacyInfo(); }
+        });
+
+        //displaying the user name in the UI
+        TextView textView = findViewById(R.id.user_name);
+        textView.setText(name);
+
+
         //displaying the number of connections a user have in the UI
         TextView textView1 = findViewById(R.id.number_of_connections);
         textView1.setText(numberOfConnections);
@@ -141,6 +165,7 @@ public class MyProfile extends Activity {
         //displaying the highschool name the user was in the UI
         TextView textView2 = findViewById(R.id.highschool_name);
         textView2.setText(highSchoolName);
+
     }
 
     @Override
@@ -152,6 +177,17 @@ public class MyProfile extends Activity {
             imageView.setImageURI(selectedImage);
         }
     }
+
+
+        //Displaying the marital status of the user in the UI
+        TextView textView4 = findViewById(R.id.marital_status);
+        textView4.setText(loggedIn.getMaritalStatus());
+
+        //displaying the bio of the user in the UI
+        TextView textView3 = findViewById(R.id.Bio);
+        textView3.setText(loggedIn.getBio());
+    }
+
     //this method is used to return to the connections page when the button is pressed
     private void showConnections() {
         Intent connections = new Intent(this, Connections.class);
@@ -168,6 +204,7 @@ public class MyProfile extends Activity {
         Intent highSchools = new Intent(this, HighSchoolList.class);
         startActivity(highSchools);
     }
+
 
     private void initializeNameEdit(){
         //displaying the user name in the UI
@@ -231,5 +268,15 @@ public class MyProfile extends Activity {
                 }
             }
         });
+
+    public void showHighSchoolExplore(View view) {
+        Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
+        startActivity(highSchoolExplore);
+    }
+
+    private void showPrivacyInfo() {
+        Intent privacy = new Intent(this, PrivacyInfo.class);
+        startActivity(privacy);
+
     }
 }
