@@ -103,7 +103,7 @@ The business layer is responsible for handling the logic behind the app.
 `AccessUsers` provides access to `UserPersistence`.
 
 ### [ConnectionConfirmer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionConfirmer.java)
-`ConnectionConfirmer` handles logic for `ViewConnectedUserProfile`
+`ConnectionConfirmer` handles logic for `ViewConnectedUserProfile`.
 
 ### [ConnectionsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionsManager.java)
 `ConnectionsManager` handles logic for the connections part of the UI.
@@ -119,6 +119,9 @@ The business layer is responsible for handling the logic behind the app.
 
 ### [Services](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Services.java)
 `Services` handles any persistence objects.
+
+### [Main](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Main.java)
+`Main` manages the database path for setting up the database.
 
 ### [InvalidLinkException](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/InvalidLinkException.java)
 `InvalidLinkException` is thrown for invalid link formats for social media links.
