@@ -8,7 +8,8 @@
     %% Links between nodes of different subgraphs
     Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
     ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
-    HighSchoolExplore <---> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager & HighSchoolsManager
+    HighSchoolExplore <--> AccessHighSchools & AccessRequests & AccessUsers
+    HighSchoolExplore <--> ConnectionsManager & HighSchoolsManager
     HighSchoolList <--> AccessUsers & AccessHighSchools
     MyProfile <--> AccessUsers & ConnectionsManager
     PrivacyInfo <--> PrivacyManager
@@ -53,6 +54,7 @@
 
     %% Invisible link(s) to keep graphs together
     DSOs ~~~ Presentation
+
 ```
 
 ## [Presentation Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/presentation)
