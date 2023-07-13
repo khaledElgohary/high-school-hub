@@ -57,6 +57,15 @@
 
 ```
 
+## [Application Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/application)
+The application layer provides a bridge between the business layer and the persistence layer.
+
+### [Main](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Main.java)
+`Main` manages the database path for setting up the database.
+
+### [Services](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Services.java)
+`Services` handles any persistence objects.
+
 ## [Presentation Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/presentation)
 The presentation layer is responsible for displaying and managing the UI of the app.
 
@@ -116,12 +125,6 @@ The business layer is responsible for handling the logic behind the app.
 
 ### [SocialsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/SocialsManager.java)
 `SocialsManager` handles logic for the social media part of the UI.
-
-### [Services](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Services.java)
-`Services` handles any persistence objects.
-
-### [Main](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/application/Main.java)
-`Main` manages the database path for setting up the database.
 
 ### [InvalidLinkException](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/InvalidLinkException.java)
 `InvalidLinkException` is thrown for invalid link formats for social media links.
