@@ -27,6 +27,7 @@ public class User {
     }
 
     public String getUserName() {
+
         return this.firstName + this.lastName;
     }
 
@@ -66,9 +67,25 @@ public class User {
         socials.put(type, link);
     }
 
-    public void removeSocialMedia(String type, String link) { socials.remove(type, link); }
 
     public boolean equals(User user) {
         return this.userId == user.userId;
     }
+
+    public void changeName(String newFirst,String newLast){
+        this.firstName=newFirst;
+        this.lastName=newLast;
+    }
+
+    public void changeBio(String newBio){
+        this.bio=newBio;
+    }
+
+    public void changeStatus(String newStatus){
+        this.maritalStatus=newStatus;
+    }
+
+    public void removeSocialMedia(String type, String link) { socials.remove(type, link); }
+
+
 }
