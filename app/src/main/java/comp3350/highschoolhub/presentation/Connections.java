@@ -80,37 +80,10 @@ public class Connections extends Activity {
         connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try {
-            connectionsArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, connectionsList) {
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-
-                    TextView text1 = view.findViewById(android.R.id.text1);
-                    TextView text2 = view.findViewById(android.R.id.text2);
-
-                    String fullName = connectionsList.get(position).getFirstName() + " " + connectionsList.get(position).getLastName();
-
-                    text1.setText(fullName);
-                    text2.setText(connectionsList.get(position).getUserName());
-
-                    return view;
-
-                }
-            };
-
-            //Set up what happens when a list item is clicked on.
-            final ListView listView = findViewById(R.id.userConnections);
-            listView.setAdapter(connectionsArrayAdapter);
-
-            listView.setOnItemClickListener((parent, view, position, id) -> {
-                connectionsListPosition = position;
-                selectUserAtPosition(connectionsListPosition);
-            });
+            displayConnections(connectionsList);
 
             //Set up what happens when the my profile button is clicked on at the bottom of the screen.
             final Button myProfileButton = findViewById(R.id.backToMyProfile);
-            displayConnections(connectionsList);
 
             //Set up the search button
             Button searchButton = findViewById(R.id.searchConnectionsButton);
