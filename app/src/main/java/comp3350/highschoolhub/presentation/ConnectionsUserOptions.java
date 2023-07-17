@@ -83,12 +83,10 @@ public class ConnectionsUserOptions extends Activity {
 
         accessRequests.updateRequest(updated);
 
-        Intent connectionsIntent = new Intent(ConnectionsUserOptions.this, Connections.class);
-        ConnectionsUserOptions.this.startActivity(connectionsIntent);
+        finish();
     }
 
     public void goBackOnCancel(View v) {
-        Intent connectionsIntent = new Intent(ConnectionsUserOptions.this, Connections.class);
-        ConnectionsUserOptions.this.startActivity(connectionsIntent);
+        finish();
     }
 }

@@ -36,13 +36,14 @@
         android:id="@+id/backToConnections"
         android:layout_width="300dp"
         android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="My Connections"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintTop_toBottomOf="@+id/socialLinksButton" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -79,7 +80,7 @@
         android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="250dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/backToConnections"
@@ -167,6 +168,8 @@
         android:id="@+id/Bio"
         android:layout_width="319dp"
         android:layout_height="120dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif"
         android:text="Hello"
@@ -180,15 +183,14 @@
 
     <Button
         android:id="@+id/socialLinksButton"
-        android:layout_width="293dp"
-        android:layout_height="57dp"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
         android:text="My Social Links"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/privacyInfoButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/edit_photo"
@@ -204,17 +206,18 @@
         app:layout_constraintTop_toTopOf="@+id/profile_image"
         app:layout_constraintVertical_bias="1.0" />
 
+
     <ImageButton
         android:id="@+id/edit_name"
         android:layout_width="39dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="132dp"
         android:src="@android:drawable/ic_menu_edit"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="@+id/profile_image" />
 
     <ImageButton
@@ -229,31 +232,27 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/Bio"
         app:layout_constraintTop_toTopOf="@+id/Bio"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.462" />
 
     <Button
         android:id="@+id/privacyInfoButton"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="8dp"
         android:text="Privacy Info"
-        app:layout_constraintBottom_toBottomOf="@+id/backToConnections"
+        app:layout_constraintBottom_toTopOf="@+id/backToConnections"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
+        android:layout_width="201dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="113dp"
         android:onClick="showHighSchoolExplore"
         android:text="Explore High Schools"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
