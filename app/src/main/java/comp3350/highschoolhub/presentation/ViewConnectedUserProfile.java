@@ -2,11 +2,9 @@ package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -34,7 +32,6 @@ public class ViewConnectedUserProfile extends Activity {
     private ArrayAdapter<String> arrayAdapter;
 
     private IConnectionConfirmer connectionConfirmer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +78,20 @@ public class ViewConnectedUserProfile extends Activity {
 
         }
 
+
     }
 
     private void goBack(View v) {
         AccessUsers.setProfileUser(null);
-        Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
-        startActivity(highSchoolExplore);
+        if (!AccessUsers.goBackToConnections()) {
+            Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
+            startActivity(highSchoolExplore);
+        }
+        else {
+            AccessUsers.setGoBackToConnections(false);
+            Intent connections = new Intent(this, Connections.class);
+            startActivity(connections);
+        }
     }
 
     public void displayLinks(ArrayList<String> links) {
@@ -104,23 +109,7 @@ public class ViewConnectedUserProfile extends Activity {
 
         final ListView listView = findViewById(R.id.userLinks);
         listView.setAdapter(arrayAdapter);
-        setSocialListListener(listView);
     }
 
-    public void setSocialListListener(ListView lv) {
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                goToLinkAtPos(position);
-            }
-        });
-    }
-
-    public void goToLinkAtPos(int pos) {
-        //arrayAdapter.getItem(pos);
-        Uri theLink = Uri.parse(arrayAdapter.getItem(pos));
-        Intent intent = new Intent(Intent.ACTION_VIEW, theLink);
-        startActivity(intent);
-    }
 
 }
