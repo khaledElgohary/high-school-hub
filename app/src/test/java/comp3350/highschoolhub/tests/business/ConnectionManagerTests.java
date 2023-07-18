@@ -370,4 +370,15 @@ public class ConnectionManagerTests {
         found = connectionsManager.findRequest(null, null, null);
         assertNull(found);
     }
+
+    @Test
+    public void testGetOtherUser() {
+        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
+        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        Request request = new Request(user1, user2);
+        ConnectionsManager connectionsManager = new ConnectionsManager();
+
+        assertEquals(connectionsManager.getOtherUser(user1, request), user2);
+        assertEquals(connectionsManager.getOtherUser(user2, request), user1);
+    }
 }
