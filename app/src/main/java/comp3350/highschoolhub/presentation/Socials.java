@@ -41,7 +41,6 @@ public class Socials extends Activity {
         Button goToProfileButton = findViewById(R.id.goToProfileButton);
         goToProfileButton.setOnClickListener(v -> goToProfile(v));
 
-        //removalMode = false;
 
         //Set up listener for clicking the Add Link button
         Button addLinksButton = findViewById(R.id.addLinkButton);
