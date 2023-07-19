@@ -2,6 +2,7 @@ package comp3350.highschoolhub.objects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class User {
     private int userId;
@@ -9,7 +10,7 @@ public class User {
     private String lastName;
     private String bio;
     private String maritalStatus;
-    private HighSchool highSchool;
+    private List<HighSchool> highSchools;
     private HashMap<String, String> socials;
 
     public User(int userId, String firstName, String lastName, String bio, String maritalStatus) {
@@ -18,7 +19,7 @@ public class User {
         this.lastName = lastName;
         this.bio = bio;
         this.maritalStatus = maritalStatus;
-        this.highSchool = null;
+        this.highSchools = new ArrayList<>();
         this.socials = new HashMap<>();
     }
 
@@ -50,16 +51,24 @@ public class User {
         this.maritalStatus = newStatus;
     }
 
-    public HighSchool getHighSchool() {
-        return highSchool;
+    public List<HighSchool> getHighSchools() {
+        return highSchools;
     }
 
     public HashMap<String, String> getSocials() {
         return socials;
     }
 
-    public void setHighSchool(HighSchool highSchool) {
-        this.highSchool = highSchool;
+    public void addHighSchool(HighSchool highSchool) {
+        highSchools.add(highSchool);
+    }
+
+    public void removeHighSchool(HighSchool highSchool) {
+        highSchools.remove(highSchool);
+    }
+
+    public void setHighSchools(List<HighSchool> highSchools) {
+        this.highSchools = highSchools;
     }
 
     public void addSocialMedia(String type, String link) {
