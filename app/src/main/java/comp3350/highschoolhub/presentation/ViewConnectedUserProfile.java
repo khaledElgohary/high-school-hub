@@ -81,12 +81,20 @@ public class ViewConnectedUserProfile extends Activity {
 
         }
 
+
     }
 
     private void goBack(View v) {
         AccessUsers.setProfileUser(null);
-        Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
-        startActivity(highSchoolExplore);
+        if (!AccessUsers.goBackToConnections()) {
+            Intent highSchoolExplore = new Intent(this, HighSchoolExplore.class);
+            startActivity(highSchoolExplore);
+        }
+        else {
+            AccessUsers.setGoBackToConnections(false);
+            Intent connections = new Intent(this, Connections.class);
+            startActivity(connections);
+        }
     }
 
     public void displayLinks(ArrayList<String> links) {

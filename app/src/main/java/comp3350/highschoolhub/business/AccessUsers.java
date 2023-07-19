@@ -22,6 +22,8 @@ public class AccessUsers implements IAccessUsers{
 
     private static User seeUserProfile = null;//Keeps track of which user profile to look at.
 
+    private static boolean goBackToConnections = false;//Keeps track if we should go back to the connections page upon leaving the user's profile.
+
     public AccessUsers() {
         userPersistence = Services.getUserPersistence();
         users = null;
@@ -70,5 +72,13 @@ public class AccessUsers implements IAccessUsers{
     public static User setProfileUser(User setUser) {
         seeUserProfile = setUser;
         return seeUserProfile;
+    }
+
+    public static boolean goBackToConnections(){
+        return goBackToConnections;
+    }
+
+    public static void setGoBackToConnections(boolean setBoolean) {
+        goBackToConnections = setBoolean;
     }
 }

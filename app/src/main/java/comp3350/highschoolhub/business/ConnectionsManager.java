@@ -131,4 +131,18 @@ public class ConnectionsManager implements IConnectionsManager{
 
         return foundRequest;
     }
+
+    //This method is used to return the other user from a reuqest that is not logged in.
+    public User getOtherUser(User loggedIn, Request request) {
+        User theUser = null;
+
+        if(request != null && request.getSender().equals(loggedIn)) {
+            theUser = request.getRecipient();
+        }
+        else if(request != null) {
+            theUser = request.getSender();
+        }
+
+        return theUser;
+    }
 }
