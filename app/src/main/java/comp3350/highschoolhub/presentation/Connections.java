@@ -166,7 +166,13 @@ public class Connections extends Activity {
         ConnectionsManager.setRecipientUser(selected);
         ConnectionsManager.setRequest(findRequest);
 
-        if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
+        if(findRequest != null && findRequest.getAccepted()) {
+            AccessUsers.setProfileUser(connectionsManager.getOtherUser(AccessUsers.getLoggedInUser(), findRequest));
+            AccessUsers.setGoBackToConnections(true);
+            Intent userProfile = new Intent(Connections.this, ViewConnectedUserProfile.class);
+            startActivity(userProfile);
+        }
+        else if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
             //Send a request instead of navigating to the profile or popup when request mode is on
             Request updated = connectionsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
             accessRequests.updateRequest(updated);

@@ -13,7 +13,7 @@ public class HighSchoolsManager implements IHighSchoolsManager {
 
         if (allUsers != null && loggedIn != null) {
             for (User user : allUsers) {
-                if (user != loggedIn && user.getHighSchool() != null
+                if (!user.equals(loggedIn) && user.getHighSchool() != null
                         && user.getHighSchool().equals(highSchool)) {
                     usersFromHighSchool.add(user);
                 }
