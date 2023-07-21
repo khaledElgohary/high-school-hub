@@ -1,18 +1,18 @@
 package comp3350.highschoolhub.persistence.hsqldb;
 
-import comp3350.highschoolhub.objects.HighSchool;
-import comp3350.highschoolhub.objects.User;
-import comp3350.highschoolhub.persistence.UserPersistence;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import comp3350.highschoolhub.objects.HighSchool;
+import comp3350.highschoolhub.objects.User;
+import comp3350.highschoolhub.persistence.UserPersistence;
 
 public class UserPersistenceHSQLDB implements UserPersistence {
 
@@ -182,12 +182,25 @@ public class UserPersistenceHSQLDB implements UserPersistence {
                 insert.close();
             }
 
-
-
         } catch(SQLException e) {
             throw new PersistenceException(e);
         }
 
         return updated;
+    }
+
+    @Override
+    public int countUsers() {
+        int num = -1;
+        try (Connection c = connection()) {
+            final PreparedStatement stmt = c.prepareStatement("SELECT COUNT(*) AS USERCOUNT FROM USERS");
+            ResultSet rs = stmt.executeQuery();
+            num = rs.getInt("USERCOUNT");
+            rs.close();
+        }
+        catch (SQLException e) {
+            throw new PersistenceException((e));
+        }
+        return num;
     }
 }

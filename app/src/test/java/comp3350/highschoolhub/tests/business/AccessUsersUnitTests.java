@@ -2,6 +2,7 @@ package comp3350.highschoolhub.tests.business;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -90,6 +91,13 @@ public class AccessUsersUnitTests {
         boolean returned = accessUsers.updateUser(findUser);
 
         assertTrue(returned);
+    }
+
+    @Test
+    public void testGetNumUsers() {
+        int count = accessUsers.getNumUsers();
+
+        assertNotEquals(-1, count);
     }
 
     @Test

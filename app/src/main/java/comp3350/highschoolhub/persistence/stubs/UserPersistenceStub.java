@@ -62,4 +62,9 @@ public class UserPersistenceStub implements UserPersistence {
 
         return updated;
     }
+
+    @Override
+    public int countUsers() {
+        return users.size();
+    }
 }
