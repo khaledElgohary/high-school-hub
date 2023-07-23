@@ -34,7 +34,10 @@ been cleaned up</h2>
 sentences that explain what debt was paid, and what its classification
 is.</p>
 <p>A piece of technical debt that has been paid off is moving the copy datebase code into its own class so that only one line of code needs to moved rather than
-having to copy two entire methods from one class to another if changing the startup activity. Here is a link to before cleaning it up: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/15d8504961e3880345a09a0c7dc0831c745df82a/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L53</p>
+having to copy two entire methods from one class to another if changing the startup activity. Here is a link to before cleaning it up: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/15d8504961e3880345a09a0c7dc0831c745df82a/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L53
+This technical debt was reckless and inadvertent as we blindly copied the the copy database code from the sample project to our own project without thinking about
+the structure of our project and SOLID design principles. Here is a link to after cleaning it up: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/91f3db90d195a40ff0494c137671b9f3a4db6b5a/app/src/main/java/comp3350/highschoolhub/presentation/Connections.java#L46 as well as a link to the new CopyDatabase class
+which eliminates the need to copy entire methods from one class to another if the startup activity gets changed: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/91f3db90d195a40ff0494c137671b9f3a4db6b5a/app/src/main/java/comp3350/highschoolhub/business/CopyDatabase.java#L15.</p>
 <h2 id="what-technical-debt-did-you-leave">What technical debt did you
 leave?</h2>
 <p>What one item would you like to fix, and can’t? Anything you write
