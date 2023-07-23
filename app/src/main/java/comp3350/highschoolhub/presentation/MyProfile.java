@@ -17,10 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
-
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
@@ -29,7 +27,8 @@ import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.User;
 
 public class MyProfile extends Activity {
-    //flag used to prevent spinner from choosing the first item
+    private static final int GALLERY_REQUEST_CODE = 123;
+    //Uri of selected profile picture
     boolean isFirstTime=true;
     //new name input
     EditText nameInput;
@@ -55,6 +54,7 @@ public class MyProfile extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ImageView imageView=findViewById(R.id.profile_image);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
@@ -88,7 +88,7 @@ public class MyProfile extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent,3);
+                startActivityForResult(intent,GALLERY_REQUEST_CODE);
             }
         });
 
@@ -161,16 +161,15 @@ public class MyProfile extends Activity {
         //displaying the bio of the user in the UI
         TextView textView3 = findViewById(R.id.Bio);
         textView3.setText(loggedIn.getBio());
+
     }
 
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode==RESULT_OK && data!=null){
-            Uri selectedImage= data.getData();
-            ImageView imageView=findViewById(R.id.profile_image);
-            imageView.setImageURI(selectedImage);
-        }
+        Uri selectedImage= data.getData();
+        ImageView imageView=findViewById(R.id.profile_image);
+        imageView.setImageURI(selectedImage);
     }
 
     //this method is used to return to the connections page when the button is pressed

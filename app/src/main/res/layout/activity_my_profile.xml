@@ -43,7 +43,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/socialLinksButton" />
+        app:layout_constraintTop_toBottomOf="@+id/socialLinksButton"
+        app:layout_constraintVertical_bias="0.901" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -179,7 +180,8 @@
         app:layout_constraintBottom_toTopOf="@+id/socialLinksButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/socialLinksButton"
@@ -190,11 +192,13 @@
         app:layout_constraintBottom_toTopOf="@+id/privacyInfoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/edit_photo"
-        android:layout_width="39dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -209,7 +213,7 @@
 
     <ImageButton
         android:id="@+id/edit_name"
-        android:layout_width="39dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -222,7 +226,7 @@
 
     <ImageButton
         android:id="@+id/edit_bio"
-        android:layout_width="39dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -238,23 +242,26 @@
         android:id="@+id/privacyInfoButton"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:text="Privacy Info"
         app:layout_constraintBottom_toTopOf="@+id/backToConnections"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="201dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="199dp"
+        android:layout_height="47dp"
         android:onClick="showHighSchoolExplore"
         android:text="Explore High Schools"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
