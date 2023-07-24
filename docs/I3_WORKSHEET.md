@@ -42,6 +42,10 @@ which eliminates the need to copy entire methods from one class to another if th
 leave?</h2>
 <p>What one item would you like to fix, and can’t? Anything you write
 will not be marked negatively. Classify this debt.</p>
+<p>One item that we would like to fix is to get rid of the static variables from the AccessUsers class: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/91f3db90d195a40ff0494c137671b9f3a4db6b5a/app/src/main/java/comp3350/highschoolhub/business/AccessUsers.java#L21-25 These variables make some of our classes tightly coupled
+which is not good in case if we ever want to replace AccessUsers with another class in the future. This technical debt is classified as reckless and deliberate as we know that this
+is not the best way to keep track of the logged user, profile user, etc. however we still made it like that as it was the easiest thing to do at the time and we have not had
+the time to figure out a better way that makes our code more loosely coupled from this class.</p>
 <h2 id="discuss-a-feature-or-user-story-that-was-cutre-prioritized">Discuss
 a Feature or User Story that was cut/re-prioritized</h2>
 <p>When did you change the priority of a Feature or User Story? Why was
