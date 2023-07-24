@@ -51,6 +51,7 @@ a Feature or User Story that was cut/re-prioritized</h2>
 <p>When did you change the priority of a Feature or User Story? Why was
 it re-prioritized? Provide a link to the Feature or User Story. This can
 be from any iteration.</p>
+<p>A feature that we re-prioritized is the ability for a user to add multiple photos to their profile, which can be found here: https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/issues/22. During a team meeting at the beginning of iteration 3, we noticed we had too many features left to implement, and it was unlikely that we would be able to complete them all before the iteration 3 deadline. To focus on the higher priority features that were more essential to the app, we decided to cut some of our planned lower priority features for iteration 3, which included this one. Being able to add one photo to a profile is sufficient for the time being, and adding multiple photos is not an important functionality we require for the app to reflect our original vision. Therefore, this feature is now in the Future milestone, to be included in a theoretical future iteration.</p>
 <h2 id="acceptance-testend-to-end">Acceptance test/end-to-end</h2>
 <p>Write a discussion about an end-to-end test that you wrote. What did
 you test, how did you set up the test so it was not flaky? Provide a
