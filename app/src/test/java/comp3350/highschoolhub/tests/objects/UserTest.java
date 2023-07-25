@@ -12,10 +12,10 @@ import java.util.List;
 
 public class UserTest {
     @Test
-    public void testUserCreate() {
-        System.out.println("Starting testUserCreate.");
+    public void testUserCreateWithPassword() {
+        System.out.println("Starting testUserCreateWithPassword.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0, "Test", "User", "Hello world!", "Single", "Password0");
 
         assertEquals(user.getUserId(), 0);
         assertEquals(user.getFirstName(), "Test");
@@ -23,16 +23,18 @@ public class UserTest {
         assertEquals(user.getBio(), "Hello world!");
         assertEquals(user.getMaritalStatus(), "Single");
         assertTrue(user.getHighSchools().isEmpty());
+        assertNotNull(user.getSocials());
         assertTrue(user.getSocials().isEmpty());
+        assertEquals(user.getPassword(), "Password0");
 
-        System.out.println("Finished testUserCreate.");
+        System.out.println("Finished testUserCreateWithPassword.");
     }
 
     @Test
     public void testAddHighSchool() {
         System.out.println("Starting testAddHighSchool.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         HighSchool highSchool = new HighSchool("Generic High School");
         user.addHighSchool(highSchool);
 
@@ -45,7 +47,7 @@ public class UserTest {
     public void testRemoveHighSchool() {
         System.out.println("Starting testRemoveHighSchool.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0, "Test", "User", "Hello world!", "Single, password0");
         HighSchool highSchool1 = new HighSchool("Generic High School");
         HighSchool highSchool2 = new HighSchool("Interesting High School");
 
@@ -67,7 +69,7 @@ public class UserTest {
     public void testSetHighSchools() {
         System.out.println("Starting testSetHighSchools.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0, "Test", "User", "Hello world!", "Single, password0");
         HighSchool highSchool1 = new HighSchool("Generic High School");
         HighSchool highSchool2 = new HighSchool("Interesting High School");
 
@@ -92,7 +94,7 @@ public class UserTest {
     public void testAddSocialMedia() {
         System.out.println("Starting testAddSocialMedia.");
 
-        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         user1.addSocialMedia("Facebook", "facebook.com/test.user");
 
         assertTrue(user1.getSocials().containsKey("Facebook"));
@@ -104,7 +106,7 @@ public class UserTest {
 
     @Test
     public void testGetUserName() {
-        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single", "password0");
 
         assertEquals(user1.getUserName(), "TestUser");
     }

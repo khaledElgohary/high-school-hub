@@ -1,18 +1,18 @@
 package comp3350.highschoolhub.persistence.hsqldb;
 
-import comp3350.highschoolhub.objects.HighSchool;
-import comp3350.highschoolhub.objects.User;
-import comp3350.highschoolhub.persistence.UserPersistence;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import comp3350.highschoolhub.objects.HighSchool;
+import comp3350.highschoolhub.objects.User;
+import comp3350.highschoolhub.persistence.UserPersistence;
 
 public class UserPersistenceHSQLDB implements UserPersistence {
 
@@ -30,8 +30,9 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         final String lastname = rs.getString("lastname");
         final String bio = rs.getString("bio");
         final String maritalStatus = rs.getString("maritalStatus");
+        final String password = rs.getString("password");
 
-        User newUser = new User(userId, firstname, lastname, bio, maritalStatus);
+        User newUser = new User(userId, firstname, lastname, bio, maritalStatus, password);
         addHighSchoolsToUser(newUser);
         addSocialsToUser(newUser);
 
@@ -115,12 +116,13 @@ public class UserPersistenceHSQLDB implements UserPersistence {
             inserted = true;
 
             try(final Connection c = connection()) {
-                final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?)");
+                final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?)");
                 st.setInt(1, user.getUserId());
                 st.setString(2, user.getFirstName());
                 st.setString(3, user.getLastName());
                 st.setString(4, user.getBio());
                 st.setString(5, user.getMaritalStatus());
+                st.setString(6, user.getPassword());
 
                 st.executeUpdate();
 
@@ -232,5 +234,43 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         }
 
         return updated;
+    }
+
+    @Override
+    public int countUsers() {
+        int num = -1;
+        try (Connection c = connection()) {
+            final PreparedStatement stmt = c.prepareStatement("SELECT COUNT(*) AS USERCOUNT FROM USERS");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                num = rs.getInt("USERCOUNT");
+            }
+            rs.close();
+        }
+        catch (SQLException e) {
+            throw new PersistenceException((e));
+        }
+        return num;
+    }
+
+    @Override
+    public User findUser(int userID, String password) {
+        User found = null;
+        try (Connection c = connection()) {
+            final PreparedStatement stmt = c.prepareStatement("SELECT * FROM USERS WHERE USERID = ? AND PASSWORD = ?");
+            stmt.setInt(1, userID);
+            stmt.setString(2, password);
+            final ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                found = fromResultSet(rs);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+        return found;
     }
 }

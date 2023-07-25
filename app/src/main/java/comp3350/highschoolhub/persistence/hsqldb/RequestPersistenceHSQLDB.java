@@ -30,8 +30,9 @@ public class RequestPersistenceHSQLDB implements RequestPersistence {
         final String lastname = rs.getString("lastname");
         final String bio = rs.getString("bio");
         final String maritalStatus = rs.getString("maritalStatus");
+        final String password = rs.getString("password");
 
-        User newUser = new User(userId, firstname, lastname, bio, maritalStatus);
+        User newUser = new User(userId, firstname, lastname, bio, maritalStatus, password);
         addHighSchoolsToUser(newUser);
         addSocialsToUser(newUser);
 
