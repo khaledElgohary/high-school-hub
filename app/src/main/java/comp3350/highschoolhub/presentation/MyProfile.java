@@ -38,7 +38,6 @@ public class MyProfile extends Activity {
     EditText bioInput;
     String[] items=new String[]{"Edit","Married","Single","Widowed","Divorced"};
     //fetching the loggedin user
-    private AccessUsers updater;
 
     private User loggedIn;
 
@@ -56,7 +55,6 @@ public class MyProfile extends Activity {
         setContentView(R.layout.activity_my_profile);
 
         accessUsers = new AccessUsers();
-        updater = new AccessUsers();
 
         loggedIn=AccessUsers.getLoggedInUser();
 
@@ -141,7 +139,7 @@ public class MyProfile extends Activity {
                     //change the martial status for the logged in user
                     loggedIn.changeStatus(dropdown.getSelectedItem().toString());
                     //update user in persistence
-                    updater.updateUser(loggedIn);
+                    accessUsers.updateUser(loggedIn);
                 }
             }
             @Override
@@ -204,7 +202,7 @@ public class MyProfile extends Activity {
         //displaying the user name in the UI
         nameInput = findViewById(R.id.user_name);
         //Displaying the user name
-        nameInput.setText(loggedIn.getUserName());
+        nameInput.setText(loggedIn.getFirstName() + " " + loggedIn.getLastName());
         //Disable the button to prevent user from editing name without the usage of edit button
         nameInput.setEnabled(false);
         //Disabled button color changed back to black instead of grey
@@ -242,13 +240,16 @@ public class MyProfile extends Activity {
                     text.setText(text.getText().toString());
                     //change the edit text box for the active user, depending on flag
                     //flag will determine whether or not we are editing the name or the bio
-                    if (flag) {
-                        loggedIn.changeName(text.getText().toString().split(" ")[0], text.getText().toString().split(" ")[1]);
+                    String[] splitText = text.getText().toString().split(" ");
+                    if (flag && splitText.length >= 2) {
+                        loggedIn.changeName(splitText[0], splitText[1]);
+                    } else if (flag) {
+                        initializeNameEdit();
                     } else {
                         loggedIn.changeBio(text.getText().toString());
                     }
                     //update the active user object in persistence
-                    updater.updateUser(loggedIn);
+                    accessUsers.updateUser(loggedIn);
                     //Disable the button ( second click to confirm end of editing)
                     text.setEnabled(false);
                     //Remove cursor showing the app is done allowing edits for editText
