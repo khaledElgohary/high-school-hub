@@ -197,7 +197,10 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         try (Connection c = connection()) {
             final PreparedStatement stmt = c.prepareStatement("SELECT COUNT(*) AS USERCOUNT FROM USERS");
             ResultSet rs = stmt.executeQuery();
-            num = rs.getInt("USERCOUNT");
+
+            while (rs.next()) {
+                num = rs.getInt("USERCOUNT");
+            }
             rs.close();
         }
         catch (SQLException e) {
@@ -218,6 +221,7 @@ public class UserPersistenceHSQLDB implements UserPersistence {
             while(rs.next()) {
                 found = fromResultSet(rs);
             }
+            rs.close();
 
         } catch (SQLException e) {
             throw new PersistenceException(e);

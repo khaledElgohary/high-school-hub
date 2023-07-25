@@ -44,10 +44,8 @@ public class PasswordManager {
         }
     }
 
-    public static boolean validateUser(String toValidate) {
-        boolean valid = false;
-
-        return valid;
+    public static boolean validateUser(String firstName, String lastName, String password) {
+        return validDatePassword(password) && !firstName.equals("") && !lastName.equals("");
     }
 
 }

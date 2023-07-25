@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,11 +27,9 @@ public class Registration extends Activity {
     private EditText firstName;
     private EditText lastName;
     private EditText bio;
-    private EditText maritalStatus;
+    private Spinner maritalStatus;
     private EditText password;
-    private Spinner highSchool;
-    private List<HighSchool> highSchoolsList;
-    private ArrayAdapter<HighSchool> highSchoolArrayAdapter;
+    private Spinner highSchoolDropdown;
 
     private IAccessUsers accessUsers;
     private IAccessHighSchools accessHighSchools;
@@ -45,29 +45,42 @@ public class Registration extends Activity {
         lastName = findViewById(R.id.editTextLastName);
         password = findViewById(R.id.editTextPassword);
         bio = findViewById(R.id.editTextBio);
-        maritalStatus = findViewById(R.id.editTextMaritalStatus);
-        highSchool = (Spinner) findViewById((R.id.highSchoolDropdown));
 
-        highSchoolsList = accessHighSchools.getHighSchools();
-        highSchoolArrayAdapter = new ArrayAdapter<HighSchool>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, highSchoolsList);
+        maritalStatus = findViewById(R.id.maritalStatusDropdown);
+        String[] maritalStatuses =new String[]{"Married","Single","Widowed","Divorced"};
+        ArrayAdapter<String> maritalStatusArrayAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, maritalStatuses);
+        maritalStatus.setAdapter(maritalStatusArrayAdapter);
+
+        highSchoolDropdown = findViewById(R.id.highSchoolDropdown);
+        List<HighSchool> highSchoolsList = accessHighSchools.getHighSchools();
+        ArrayAdapter<HighSchool> highSchoolArrayAdapter = new ArrayAdapter<HighSchool>(
+                this, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, highSchoolsList) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView text1 = view.findViewById(android.R.id.text1);
+                text1.setText(accessHighSchools.getHighSchools().get(position).getName());
+
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                TextView dropDownView = (TextView) super.getDropDownView(position, convertView, parent);
+                dropDownView.setText(highSchoolsList.get(position).getName());
+
+                return dropDownView;
+            }
+        };
+        highSchoolDropdown.setAdapter(highSchoolArrayAdapter);
 
         Button submit = findViewById(R.id.buttonSubmit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (PasswordManager.validDatePassword(password.toString())) {
-                    submitUser();
-                }
-            }
-        });
+        submit.setOnClickListener(view -> submitUser());
 
         Button login = findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToLogin();
-            }
-        });
+        login.setOnClickListener(view -> goToLoginPage());
     }
 
     @Override
@@ -77,18 +90,29 @@ public class Registration extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
 
     private void submitUser() {
-        int userID = accessUsers.getNumUsers() + 1;
-        User newUser = new User(userID, firstName.toString(), lastName.toString(), bio.toString(), maritalStatus.toString(), password.toString());
-        accessUsers.insertUser(newUser);
+        if (PasswordManager.validateUser(firstName.getText().toString(), lastName.getText().toString(),
+                password.getText().toString())) {
+            int userID = accessUsers.getNumUsers() + 1;
+            User newUser = new User(userID, firstName.getText().toString(),
+                    lastName.getText().toString(), bio.getText().toString(),
+                    maritalStatus.getSelectedItem().toString(), password.getText().toString());
+
+            HighSchool newHighSchool = (HighSchool) highSchoolDropdown.getSelectedItem();
+            newUser.setHighSchool(newHighSchool);
+
+            accessUsers.insertUser(newUser);
+
+            AccessUsers.setLoggedInUser(newUser);
+            Intent profile = new Intent(this, MyProfile.class);
+            startActivity(profile);
+        }
     }
 
-    private void goToLogin() {
+    private void goToLoginPage() {
         Intent login = new Intent(this, Login.class);
         startActivity(login);
     }

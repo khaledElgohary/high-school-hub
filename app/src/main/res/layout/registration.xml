@@ -29,7 +29,7 @@
             android:id="@+id/textViewFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="First name" />
+            android:text="First name" />
 
         <EditText
             android:id="@+id/editTextFirstName"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="" />
+            android:labelFor="@id/editTextFirstName" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,8 +51,7 @@
             android:id="@+id/textViewLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:text="Last name" />
+            android:text="Last name" />
 
         <EditText
             android:id="@+id/editTextLastName"
@@ -60,7 +59,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="" />
+            android:labelFor="@id/editTextLastName" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="Password" />
+            android:text="Password" />
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -82,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:labelFor="@id/editTextPassword" />
     </LinearLayout>
 
     <LinearLayout
@@ -96,8 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
-            tools:text="Bio" />
+            android:text="Bio" />
 
         <EditText
             android:id="@+id/editTextBio"
@@ -105,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:labelFor="@id/editTextBio" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,16 +117,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
-            tools:text="Marital Status" />
+            android:text="Marital Status" />
 
-        <EditText
-            android:id="@+id/editTextMaritalStatus"
+        <Spinner
+            android:id="@+id/maritalStatusDropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:ems="10" />
     </LinearLayout>
 
     <LinearLayout
@@ -142,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="High School" />
+            android:text="High School" />
 
         <Spinner
             android:id="@+id/highSchoolDropdown"
@@ -166,21 +162,19 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="18dp" />
+            android:layout_height="28dp" />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:text="Already have an account?" />
+            android:text="Already have an account?" />
 
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            tools:text="Login" />
+            android:text="Login" />
 
     </LinearLayout>
 
