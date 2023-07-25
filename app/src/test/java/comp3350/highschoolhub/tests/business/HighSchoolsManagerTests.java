@@ -58,7 +58,7 @@ public class HighSchoolsManagerTests {
     public void testGetHighSchoolNames() {
         HighSchoolsManager highSchoolsManager = new HighSchoolsManager();
 
-        User user = new User(0, "Test", "User", "Hello", "Single");
+        User user = new User(0, "Test", "User", "Hello", "Single", "password0");
         user.addHighSchool(new HighSchool("Summer High School"));
         user.addHighSchool(new HighSchool("Winter High School"));
         user.addHighSchool(new HighSchool("Autumn High School"));
@@ -70,7 +70,7 @@ public class HighSchoolsManagerTests {
     public void testOneGetHighSchoolNames() {
         HighSchoolsManager highSchoolsManager = new HighSchoolsManager();
 
-        User user = new User(0, "Test", "User", "Hello", "Single");
+        User user = new User(0, "Test", "User", "Hello", "Single", "password0");
         user.addHighSchool(new HighSchool("Summer High School"));
 
         assertEquals("Summer High School", highSchoolsManager.getHighSchoolNames(user));
@@ -80,7 +80,7 @@ public class HighSchoolsManagerTests {
     public void testEmptyGetHighSchoolNames() {
         HighSchoolsManager highSchoolsManager = new HighSchoolsManager();
 
-        User user = new User(0, "Test", "User", "Hello", "Single");
+        User user = new User(0, "Test", "User", "Hello", "Single", "password0");
 
         assertEquals("", highSchoolsManager.getHighSchoolNames(user));
     }

@@ -1,5 +1,6 @@
 package comp3350.highschoolhub.objects;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 

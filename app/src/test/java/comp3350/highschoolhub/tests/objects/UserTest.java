@@ -47,7 +47,7 @@ public class UserTest {
     public void testRemoveHighSchool() {
         System.out.println("Starting testRemoveHighSchool.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single, password0");
+        User user = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         HighSchool highSchool1 = new HighSchool("Generic High School");
         HighSchool highSchool2 = new HighSchool("Interesting High School");
 
@@ -69,7 +69,7 @@ public class UserTest {
     public void testSetHighSchools() {
         System.out.println("Starting testSetHighSchools.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single, password0");
+        User user = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         HighSchool highSchool1 = new HighSchool("Generic High School");
         HighSchool highSchool2 = new HighSchool("Interesting High School");
 
