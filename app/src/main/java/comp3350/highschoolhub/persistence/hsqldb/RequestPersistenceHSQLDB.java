@@ -41,7 +41,7 @@ public class RequestPersistenceHSQLDB implements RequestPersistence {
     private void addSocialsToUser(User user) {
 
         try(final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("SELECT * FROM SOCIALS WHERE USER = ?");
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM SOCIALS WHERE USERID = ?");
             st.setInt(1, user.getUserId());
 
             final ResultSet rs = st.executeQuery();
