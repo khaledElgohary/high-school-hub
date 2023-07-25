@@ -1,6 +1,7 @@
 package comp3350.highschoolhub.business;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import comp3350.highschoolhub.objects.Request;
@@ -21,12 +22,12 @@ public class ConnectionsManager implements IConnectionsManager{
 
         //Now go through the allUsers list and add those users who attend the same high school.
         //as long as the loggedIn user has a high school set.
-        if (loggedIn != null && allUsers != null && loggedIn.getHighSchool() != null) {
+        if (loggedIn != null && allUsers != null && loggedIn.getHighSchools() != null) {
 
             for (int i = 0; i < allUsers.size(); i++) {
-                if (allUsers.get(i).getHighSchool() != null) {
+                if (!allUsers.get(i).getHighSchools().isEmpty()) {
 
-                    if (!(allUsers.get(i).equals(loggedIn)) && allUsers.get(i).getHighSchool().equals(loggedIn.getHighSchool())) {
+                    if (!(allUsers.get(i).equals(loggedIn)) && !Collections.disjoint(allUsers.get(i).getHighSchools(), loggedIn.getHighSchools())) {
 
                         highSchoolConnections.add(allUsers.get(i));
                     }

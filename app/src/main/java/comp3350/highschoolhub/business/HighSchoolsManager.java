@@ -13,13 +13,47 @@ public class HighSchoolsManager implements IHighSchoolsManager {
 
         if (allUsers != null && loggedIn != null) {
             for (User user : allUsers) {
-                if (!user.equals(loggedIn) && user.getHighSchool() != null
-                        && user.getHighSchool().equals(highSchool)) {
+                if (!user.equals(loggedIn) && user.getHighSchools() != null
+                        && user.getHighSchools().contains(highSchool)) {
                     usersFromHighSchool.add(user);
                 }
             }
         }
-
         return usersFromHighSchool;
+    }
+
+    //This method converts the high schools of a user into a string for output
+    public String getHighSchoolNames(User user) {
+        StringBuilder highSchoolNames = new StringBuilder();
+
+        if (user != null) {
+            for (HighSchool highSchool : user.getHighSchools()) {
+                if (highSchoolNames.length() == 0) {
+                    highSchoolNames.append(highSchool.getName());
+                } else {
+                    highSchoolNames.append(", ").append(highSchool.getName());
+                }
+            }
+        }
+
+        return highSchoolNames.toString();
+    }
+
+    //This method either adds or removes a high school depending on whether the high school
+    //is already in the given list
+    public List<HighSchool> processNewHighSchool(HighSchool newHighSchool, List<HighSchool> highSchools) {
+        List<HighSchool> processedHighSchools = new ArrayList<>();
+
+        if (newHighSchool != null) {
+            processedHighSchools.addAll(highSchools);
+
+            if (highSchools.contains(newHighSchool)) {
+                processedHighSchools.remove(newHighSchool);
+            } else {
+                processedHighSchools.add(newHighSchool);
+            }
+        }
+
+        return processedHighSchools;
     }
 }

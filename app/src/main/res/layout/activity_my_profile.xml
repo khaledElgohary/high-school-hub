@@ -102,20 +102,11 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/highschool_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="HighSchool Name"
-                    android:textAlignment="center"
-                    android:textColor="#000"
-                    android:textSize="17dp" />
-
                 <Button
-                    android:id="@+id/editHighSchoolButton"
+                    android:id="@+id/highSchoolsButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Edit" />
+                    android:layout_height="55dp"
+                    android:text="High Schools" />
 
             </LinearLayout>
 

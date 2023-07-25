@@ -21,8 +21,10 @@ import java.util.List;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionConfirmer;
+import comp3350.highschoolhub.business.HighSchoolsManager;
 import comp3350.highschoolhub.business.IConnectionConfirmer;
 import comp3350.highschoolhub.business.IConnectionsManager;
+import comp3350.highschoolhub.business.IHighSchoolsManager;
 import comp3350.highschoolhub.objects.User;
 
 
@@ -34,7 +36,7 @@ public class ViewConnectedUserProfile extends Activity {
     private ArrayAdapter<String> arrayAdapter;
 
     private IConnectionConfirmer connectionConfirmer;
-
+    private IHighSchoolsManager highSchoolsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class ViewConnectedUserProfile extends Activity {
         connectionConfirmer = new ConnectionConfirmer();
         areConnected = connectionConfirmer.areConnected(loggedIn, toVisit);
 
+        highSchoolsManager = new HighSchoolsManager();
+
         //Set up listener for clicking the back button
         Button addLinksButton = findViewById(R.id.goToHSExplore);
         addLinksButton.setOnClickListener(v -> goBack(v));
@@ -62,7 +66,8 @@ public class ViewConnectedUserProfile extends Activity {
         lastName.setText(toVisit.getLastName());
 
         TextView highSchool = findViewById(R.id.userHighSchool);
-        highSchool.setText(toVisit.getHighSchool().getName());
+        highSchool.setText(highSchoolsManager.getHighSchoolNames(toVisit));
+        highSchool.setSelected(true);
 
         //only view private info if connected
         if(areConnected) {

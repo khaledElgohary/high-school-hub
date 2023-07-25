@@ -42,7 +42,7 @@ public class AccessUsersIntegrationTests {
     @Test
     public void testInsertUser(){
         User newUser = new User(50, "Integration", "Test", "Just testing the seams.", "Deciding");
-        newUser.setHighSchool(new HighSchool("Central High School"));
+        newUser.addHighSchool(new HighSchool("Central High School"));
 
         assertTrue(accessUsers.insertUser(newUser));
 

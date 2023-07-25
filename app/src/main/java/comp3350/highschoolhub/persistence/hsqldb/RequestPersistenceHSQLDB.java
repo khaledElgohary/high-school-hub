@@ -30,10 +30,9 @@ public class RequestPersistenceHSQLDB implements RequestPersistence {
         final String lastname = rs.getString("lastname");
         final String bio = rs.getString("bio");
         final String maritalStatus = rs.getString("maritalStatus");
-        HighSchool highschool = new HighSchool(rs.getString("highschoolname"));
 
         User newUser = new User(userId, firstname, lastname, bio, maritalStatus);
-        newUser.setHighSchool(highschool);
+        addHighSchoolsToUser(newUser);
         addSocialsToUser(newUser);
 
         return newUser;
@@ -53,6 +52,23 @@ public class RequestPersistenceHSQLDB implements RequestPersistence {
             rs.close();
             st.close();
 
+        } catch(final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    private void addHighSchoolsToUser(User user) {
+        try(final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM USERHIGHSCHOOLS WHERE USERID = ?");
+            st.setInt(1, user.getUserId());
+
+            final ResultSet rs = st.executeQuery();
+            while(rs.next()) {
+                user.addHighSchool(new HighSchool(rs.getString("highschoolname")));
+            }
+
+            rs.close();
+            st.close();
         } catch(final SQLException e) {
             throw new PersistenceException(e);
         }

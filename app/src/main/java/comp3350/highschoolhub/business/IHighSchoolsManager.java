@@ -6,5 +6,7 @@ import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.objects.User;
 
 public interface IHighSchoolsManager {
-    public List<User> getUsersFromHighSchool(User loggedIn, HighSchool highSchool, List<User> allUsers);
+    List<User> getUsersFromHighSchool(User loggedIn, HighSchool highSchool, List<User> allUsers);
+    String getHighSchoolNames(User user);
+    List<HighSchool> processNewHighSchool(HighSchool newHighSchool, List<HighSchool> highSchools);
 }

@@ -51,8 +51,6 @@ public class MyProfile extends Activity {
 
     String numberOfConnections;
 
-    String highSchoolName;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +88,7 @@ public class MyProfile extends Activity {
             }
         });
 
-        Button highSchoolsButton = findViewById(R.id.editHighSchoolButton);
+        Button highSchoolsButton = findViewById(R.id.highSchoolsButton);
         highSchoolsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,10 +163,6 @@ public class MyProfile extends Activity {
         TextView textView1 = findViewById(R.id.number_of_connections);
         textView1.setText(numberOfConnections);
 
-        //displaying the highschool name the user was in the UI
-        TextView textView2 = findViewById(R.id.highschool_name);
-        textView2.setText(highSchoolName);
-
         //Displaying the marital status of the user in the UI
         TextView textView4 = findViewById(R.id.marital_status);
         textView4.setText(loggedIn.getMaritalStatus());
@@ -201,7 +195,7 @@ public class MyProfile extends Activity {
     }
 
     private void showHighSchools() {
-        Intent highSchools = new Intent(this, HighSchoolList.class);
+        Intent highSchools = new Intent(this, HighSchools.class);
         startActivity(highSchools);
     }
 
