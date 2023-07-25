@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.CopyDatabase;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.User;
@@ -37,25 +38,40 @@ public class MyProfile extends Activity {
     //new Bio
     EditText bioInput;
     String[] items=new String[]{"Edit","Married","Single","Widowed","Divorced"};
-    //fetching the logged in user
-    private final AccessUsers updater=new AccessUsers();
+    //fetching the loggedin user
+    private AccessUsers updater;
 
-    private final User loggedIn=AccessUsers.getLoggedInUser();
+    private User loggedIn;
 
     private final IConnectionsManager connectionsManager = new ConnectionsManager();
 
-    private final IAccessUsers accessUsers = new AccessUsers();
+    private IAccessUsers accessUsers;
     //creating a string which is easier since both names will be combined and placed in a placeholder
-    String name = loggedIn.getFirstName() + " " + loggedIn.getLastName();
+    String name;
 
-    String numberOfConnections = connectionsManager.getHighSchoolConnections(loggedIn, accessUsers.getUsers()).size() + "";
+    String numberOfConnections;
 
-    String highSchoolName = loggedIn.getHighSchool().getName();
+    String highSchoolName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
+        CopyDatabase.copyDatabaseToDevice(this);
+
+        accessUsers = new AccessUsers();
+        updater = new AccessUsers();
+        //Remove this line once the login feature is created.
+        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+
+        loggedIn=AccessUsers.getLoggedInUser();
+
+        name = loggedIn.getFirstName() + " " + loggedIn.getLastName();
+
+        numberOfConnections = connectionsManager.getHighSchoolConnections(loggedIn, accessUsers.getUsers()).size() + "";
+
+        highSchoolName = loggedIn.getHighSchool().getName();
 
         Button button = findViewById(R.id.backToConnections);
 
@@ -117,7 +133,7 @@ public class MyProfile extends Activity {
         maritalInput.setEnabled(false);
         //create dropdown menu
         Spinner dropdown= findViewById(R.id.chooseStatus);
-        //Linking to the array of martial status
+        //Linking to the array of marital status
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,items);
         //Setting adapter
         dropdown.setAdapter(adapter);
@@ -240,13 +256,7 @@ public class MyProfile extends Activity {
                     //change the edit text box for the active user, depending on flag
                     //flag will determine whether or not we are editing the name or the bio
                     if (flag) {
-                        String[] fullName = text.getText().toString().split(" ");
-                        if (fullName.length > 1) {
-                            loggedIn.changeName(fullName[0], fullName[1]);
-                        }
-                        else {
-                            loggedIn.changeName(fullName[0], "");
-                        }
+                        loggedIn.changeName(text.getText().toString().split(" ")[0], text.getText().toString().split(" ")[1]);
                     } else {
                         loggedIn.changeBio(text.getText().toString());
                     }

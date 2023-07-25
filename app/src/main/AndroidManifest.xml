@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HighschoolHub">
         <activity
-            android:name=".presentation.MyProfile"
+            android:name=".presentation.Connections"
             android:exported="false" />
         <activity
-            android:name=".presentation.Connections"
+            android:name=".presentation.MyProfile"
             android:exported="true"
             android:theme="@style/Theme.HighschoolHub">
             <intent-filter>

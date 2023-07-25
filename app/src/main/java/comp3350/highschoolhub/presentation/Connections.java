@@ -42,10 +42,6 @@ public class Connections extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_connections);
 
-        //This line of code needs to be in the activity class of the startup activity.
-        CopyDatabase.copyDatabaseToDevice(this);
-
-
 
         Button btn = findViewById(R.id.backToMyProfile);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +57,6 @@ public class Connections extends Activity {
         connectionsManager = new ConnectionsManager();
 
 
-
-
-        //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
 
         connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
