@@ -102,11 +102,12 @@ public class AccessUsersIntegrationTests {
     @Test
     public void testFindUser() {
         User newUser = new User(accessUsers.getNumUsers()+1, "Test", "User", "Hello World", "Single", "password0");
+
         accessUsers.insertUser(newUser);
         User foundUser = accessUsers.findUser(newUser.getUserId(), newUser.getPassword());
 
         assertNotNull(foundUser);
-        assertEquals(newUser, foundUser);
+        assertTrue(newUser.equals(foundUser));
     }
 
     @After
