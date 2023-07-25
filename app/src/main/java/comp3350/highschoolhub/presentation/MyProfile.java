@@ -69,8 +69,6 @@ public class MyProfile extends Activity {
 
         numberOfConnections = connectionsManager.getHighSchoolConnections(loggedIn, accessUsers.getUsers()).size() + "";
 
-        highSchoolName = loggedIn.getHighSchool().getName();
-
         Button button = findViewById(R.id.backToConnections);
 
         button.setOnClickListener(new View.OnClickListener() {
