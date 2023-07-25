@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
+import comp3350.highschoolhub.business.CopyDatabase;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.PasswordManager;
 import comp3350.highschoolhub.objects.User;
@@ -23,6 +24,8 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        CopyDatabase.copyDatabaseToDevice(this);
 
         accessUsers = new AccessUsers();
         username = findViewById(R.id.editTextUsername);

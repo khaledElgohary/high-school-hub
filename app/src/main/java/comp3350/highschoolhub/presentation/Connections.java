@@ -21,7 +21,6 @@ import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
-import comp3350.highschoolhub.business.CopyDatabase;
 import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.IConnectionsManager;
@@ -42,7 +41,6 @@ public class Connections extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_connections);
 
-
         Button btn = findViewById(R.id.backToMyProfile);
         btn.setOnClickListener(new View.OnClickListener() {
                                    @Override
@@ -56,16 +54,10 @@ public class Connections extends Activity {
         accessRequests = new AccessRequests();
         connectionsManager = new ConnectionsManager();
 
-
-
-
         connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
 
         try {
             displayConnections(connectionsList);
-
-            //Set up what happens when the my profile button is clicked on at the bottom of the screen.
-            final Button myProfileButton = findViewById(R.id.backToMyProfile);
 
             //Set up the search button
             Button searchButton = findViewById(R.id.searchConnectionsButton);

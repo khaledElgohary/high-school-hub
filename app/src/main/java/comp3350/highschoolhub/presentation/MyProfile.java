@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,7 +23,6 @@ import androidx.core.view.WindowInsetsCompat;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
-import comp3350.highschoolhub.business.CopyDatabase;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.User;
@@ -58,12 +57,8 @@ public class MyProfile extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        CopyDatabase.copyDatabaseToDevice(this);
-
         accessUsers = new AccessUsers();
         updater = new AccessUsers();
-        //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
         loggedIn=AccessUsers.getLoggedInUser();
 
