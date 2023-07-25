@@ -30,4 +30,24 @@ public class PasswordManager {
         }
         return found;
     }
+
+    public static boolean validateLogin(String username, String password) {
+        boolean valid = false;
+        try {
+            Integer.parseInt(username);
+            if (!password.equals("")) {
+                valid = true;
+            }
+            return valid;
+        } catch (NumberFormatException e) {
+            return valid;
+        }
+    }
+
+    public static boolean validateUser(String toValidate) {
+        boolean valid = false;
+
+        return valid;
+    }
+
 }

@@ -55,6 +55,10 @@ public class AccessUsers implements IAccessUsers{
         return userPersistence.countUsers();
     }
 
+    public User findUser(int userID, String password) {
+        return userPersistence.findUser(userID, password);
+    }
+
     //Get the user that is logged in.
     public static User getLoggedInUser() {
         return loggedIn;

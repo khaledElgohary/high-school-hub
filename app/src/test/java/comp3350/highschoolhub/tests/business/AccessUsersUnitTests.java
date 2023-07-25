@@ -27,7 +27,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testSetLoggedInUser() {
-        User newUser = new User(0, "Test", "User", "Hello World", "Single");
+        User newUser = new User(0, "Test", "User", "Hello World", "Single", "password0");
 
         assertEquals(newUser, AccessUsers.setLoggedInUser(newUser));
         assertEquals(newUser, AccessUsers.getLoggedInUser());
@@ -47,7 +47,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testGetProfileUser() {
-        User newUser = new User(0, "Test", "User", "Hello World", "Single");
+        User newUser = new User(0, "Test", "User", "Hello World", "Single", "password0");
 
         assertEquals(newUser, AccessUsers.setProfileUser(newUser));
         assertEquals(newUser, AccessUsers.getProfileUser());
@@ -63,7 +63,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testInsertUser() {
-        User user = new User(0, "Test", "User", "Hello World", "Single");
+        User user = new User(0, "Test", "User", "Hello World", "Single", "password0");
 
         assertTrue(accessUsers.insertUser(user));
     }
@@ -71,7 +71,7 @@ public class AccessUsersUnitTests {
     @Test
     public void testUpdateUser() {
         List<User> users;
-        User user = new User(0, "Test", "User", "Hello World", "Single");
+        User user = new User(0, "Test", "User", "Hello World", "Single", "password0");
         accessUsers.insertUser(user);
 
         users = accessUsers.getUsers();
@@ -98,6 +98,16 @@ public class AccessUsersUnitTests {
         int count = accessUsers.getNumUsers();
 
         assertNotEquals(-1, count);
+    }
+
+    @Test
+    public void testFindUser() {
+        User newUser = new User(0, "Test", "User", "Hello World", "Single", "password0");
+        accessUsers.insertUser(newUser);
+        User foundUser = accessUsers.findUser(newUser.getUserId(), newUser.getPassword());
+
+        assertNotNull(foundUser);
+        assertEquals(newUser, foundUser);
     }
 
     @Test

@@ -32,12 +32,12 @@ public class MyProfile extends Activity {
     boolean isFirstTime=true;
     //new name input
     EditText nameInput;
-    //new Maritial status
-    EditText maritialInput;
+    //new Marital status
+    EditText maritalInput;
     //new Bio
     EditText bioInput;
     String[] items=new String[]{"Edit","Married","Single","Widowed","Divorced"};
-    //fetching the loggedin user
+    //fetching the logged in user
     private final AccessUsers updater=new AccessUsers();
 
     private final User loggedIn=AccessUsers.getLoggedInUser();
@@ -82,6 +82,14 @@ public class MyProfile extends Activity {
             }
         });
 
+        Button logoutButton = findViewById(R.id.logout);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
         ImageButton editImage=findViewById(R.id.edit_photo);
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,14 +110,14 @@ public class MyProfile extends Activity {
         buttonHandler(bioInput,bio,false);
 
 
-        maritialInput=findViewById(R.id.marital_status);
-        //Set original maritial status
-        maritialInput.setText(loggedIn.getMaritalStatus());
+        maritalInput = findViewById(R.id.marital_status);
+        //Set original martial status
+        maritalInput.setText(loggedIn.getMaritalStatus());
         //disable editing the editText
-        maritialInput.setEnabled(false);
+        maritalInput.setEnabled(false);
         //create dropdown menu
         Spinner dropdown= findViewById(R.id.chooseStatus);
-        //Linking to the array of maritial status
+        //Linking to the array of martial status
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,items);
         //Setting adapter
         dropdown.setAdapter(adapter);
@@ -122,8 +130,8 @@ public class MyProfile extends Activity {
                 }
                 else{
                     //Assign the text to the edittext
-                    maritialInput.setText(dropdown.getSelectedItem().toString());
-                    //change the maritial status for the logged in user
+                    maritalInput.setText(dropdown.getSelectedItem().toString());
+                    //change the martial status for the logged in user
                     loggedIn.changeStatus(dropdown.getSelectedItem().toString());
                     //update user in persistence
                     updater.updateUser(loggedIn);
@@ -154,7 +162,7 @@ public class MyProfile extends Activity {
         textView2.setText(highSchoolName);
 
         //Displaying the marital status of the user in the UI
-        TextView textView4 = findViewById(R.id.marital_status);
+        TextView textView4 = maritalInput;
         textView4.setText(loggedIn.getMaritalStatus());
 
         //displaying the bio of the user in the UI
@@ -232,7 +240,13 @@ public class MyProfile extends Activity {
                     //change the edit text box for the active user, depending on flag
                     //flag will determine whether or not we are editing the name or the bio
                     if (flag) {
-                        loggedIn.changeName(text.getText().toString().split(" ")[0], text.getText().toString().split(" ")[1]);
+                        String[] fullName = text.getText().toString().split(" ");
+                        if (fullName.length > 1) {
+                            loggedIn.changeName(fullName[0], fullName[1]);
+                        }
+                        else {
+                            loggedIn.changeName(fullName[0], "");
+                        }
                     } else {
                         loggedIn.changeBio(text.getText().toString());
                     }
@@ -261,5 +275,11 @@ public class MyProfile extends Activity {
     private void showPrivacyInfo() {
         Intent privacy = new Intent(this, PrivacyInfo.class);
         startActivity(privacy);
+    }
+
+    private void logout() {
+        AccessUsers.clearLoggedInUser();
+        Intent login = new Intent(this, Login.class);
+        startActivity(login);
     }
 }

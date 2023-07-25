@@ -9,23 +9,6 @@ import static org.junit.Assert.*;
 
 public class UserTest {
     @Test
-    public void testUserCreate() {
-        System.out.println("Starting testUserCreate.");
-
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
-
-        assertEquals(user.getUserId(), 0);
-        assertEquals(user.getFirstName(), "Test");
-        assertEquals(user.getLastName(), "User");
-        assertEquals(user.getBio(), "Hello world!");
-        assertEquals(user.getMaritalStatus(), "Single");
-        assertNull(user.getHighSchool());
-        assertTrue(user.getSocials().isEmpty());
-
-        System.out.println("Finished testUserCreate.");
-    }
-
-    @Test
     public void testUserCreateWithPassword() {
         System.out.println("Starting testUserCreateWithPassword.");
 
@@ -37,8 +20,8 @@ public class UserTest {
         assertEquals(user.getBio(), "Hello world!");
         assertEquals(user.getMaritalStatus(), "Single");
         assertNull(user.getHighSchool());
-        assertNotNull(user.getConnections());
-        assertTrue(user.getConnections().isEmpty());
+        assertNotNull(user.getSocials());
+        assertTrue(user.getSocials().isEmpty());
         assertEquals(user.getPassword(), "Password0");
 
         System.out.println("Finished testUserCreateWithPassword.");
@@ -48,7 +31,7 @@ public class UserTest {
     public void testSetHighSchool() {
         System.out.println("Starting testSetHighSchool.");
 
-        User user = new User(0, "Test", "User", "Hello world!", "Single");
+        User user = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         HighSchool highSchool = new HighSchool("Generic High School");
         user.setHighSchool(highSchool);
 
@@ -61,7 +44,7 @@ public class UserTest {
     public void testAddSocialMedia() {
         System.out.println("Starting testAddSocialMedia.");
 
-        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         user1.addSocialMedia("Facebook", "facebook.com/test.user");
 
         assertTrue(user1.getSocials().containsKey("Facebook"));
@@ -73,7 +56,7 @@ public class UserTest {
 
     @Test
     public void testGetUserName() {
-        User user1 = new User(0, "Test", "User", "Hello world!", "Single");
+        User user1 = new User(0, "Test", "User", "Hello world!", "Single", "password0");
 
         assertEquals(user1.getUserName(), "TestUser");
     }

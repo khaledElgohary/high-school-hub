@@ -12,17 +12,6 @@ public class User {
     private HashMap<String, String> socials;
     private String password;
 
-    public User(int userId, String firstName, String lastName, String bio, String maritalStatus) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bio = bio;
-        this.maritalStatus = maritalStatus;
-        this.highSchool = null;
-        this.socials = new HashMap<>();
-        this.password = null;
-    }
-
     public User(int userId, String firstName, String lastName, String bio, String maritalStatus,
                 String password) {
         this.userId = userId;

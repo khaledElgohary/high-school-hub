@@ -32,8 +32,8 @@ public class AccessRequestsUnitTests {
 
     @Test
     public void testInsertRequests() {
-        User user1 = new User(20, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(21, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(20, "Test2", "User23", "Hello World", "Married", "password20");
+        User user2 = new User(21, "Test3", "User63", "Hello World", "Married", "password21");
         Request newRequest = new Request(user1, user2);
         boolean inserted = accessRequests.insertRequest(newRequest);
 
@@ -51,8 +51,8 @@ public class AccessRequestsUnitTests {
 
     @Test
     public void testUpdateRequests() {
-        User user1 = new User(1, "Test2", "User23", "Hello World", "Married");
-        User user2 = new User(2, "Test3", "User63", "Hello World", "Married");
+        User user1 = new User(1, "Test2", "User23", "Hello World", "Married", "password1");
+        User user2 = new User(2, "Test3", "User63", "Hello World", "Married", "password2");
         Request newRequest = new Request(user1, user2);
 
         accessRequests.insertRequest(newRequest);

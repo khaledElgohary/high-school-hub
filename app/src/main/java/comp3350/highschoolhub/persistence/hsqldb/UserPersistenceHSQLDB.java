@@ -31,8 +31,9 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         final String bio = rs.getString("bio");
         final String maritalStatus = rs.getString("maritalStatus");
         HighSchool highschool = new HighSchool(rs.getString("highschoolname"));
+        final String password = rs.getString("password");
 
-        User newUser = new User(userId, firstname, lastname, bio, maritalStatus);
+        User newUser = new User(userId, firstname, lastname, bio, maritalStatus, password);
         newUser.setHighSchool(highschool);
         addSocialsToUser(newUser);
 
@@ -98,13 +99,14 @@ public class UserPersistenceHSQLDB implements UserPersistence {
             inserted = true;
 
             try(final Connection c = connection()) {
-                final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?,?, ?, ?, ?, ?)");
+                final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?,?, ?, ?, ?, ?, ?)");
                 st.setInt(1, user.getUserId());
                 st.setString(2, user.getFirstName());
                 st.setString(3, user.getLastName());
                 st.setString(4, user.getBio());
                 st.setString(5, user.getMaritalStatus());
                 st.setString(6, user.getHighSchool().getName());
+                st.setString(7, user.getPassword());
 
                 st.executeUpdate();
 
@@ -202,5 +204,24 @@ public class UserPersistenceHSQLDB implements UserPersistence {
             throw new PersistenceException((e));
         }
         return num;
+    }
+
+    @Override
+    public User findUser(int userID, String password) {
+        User found = null;
+        try (Connection c = connection()) {
+            final PreparedStatement stmt = c.prepareStatement("SELECT * FROM USERS WHERE USERID = ? AND PASSWORD = ?");
+            stmt.setInt(1, userID);
+            stmt.setString(2, password);
+            final ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                found = fromResultSet(rs);
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+        return found;
     }
 }
