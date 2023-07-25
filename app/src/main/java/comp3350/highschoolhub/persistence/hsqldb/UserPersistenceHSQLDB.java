@@ -105,7 +105,7 @@ public class UserPersistenceHSQLDB implements UserPersistence {
                 st.setString(3, user.getLastName());
                 st.setString(4, user.getBio());
                 st.setString(5, user.getMaritalStatus());
-                st.setString(6, user.getHighSchool().getName());
+                st.setString(6, user.getHighSchool() != null ? user.getHighSchool().getName() : null);
                 st.setString(7, user.getPassword());
 
                 st.executeUpdate();
