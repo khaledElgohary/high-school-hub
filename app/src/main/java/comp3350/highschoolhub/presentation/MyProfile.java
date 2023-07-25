@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,7 +23,6 @@ import androidx.core.view.WindowInsetsCompat;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
-import comp3350.highschoolhub.business.CopyDatabase;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.objects.User;
@@ -33,8 +32,8 @@ public class MyProfile extends Activity {
     boolean isFirstTime=true;
     //new name input
     EditText nameInput;
-    //new Maritial status
-    EditText maritialInput;
+    //new Marital status
+    EditText maritalInput;
     //new Bio
     EditText bioInput;
     String[] items=new String[]{"Edit","Married","Single","Widowed","Divorced"};
@@ -58,12 +57,8 @@ public class MyProfile extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        CopyDatabase.copyDatabaseToDevice(this);
-
         accessUsers = new AccessUsers();
         updater = new AccessUsers();
-        //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
 
         loggedIn=AccessUsers.getLoggedInUser();
 
@@ -98,6 +93,14 @@ public class MyProfile extends Activity {
             }
         });
 
+        Button logoutButton = findViewById(R.id.logout);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
         ImageButton editImage=findViewById(R.id.edit_photo);
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,14 +121,14 @@ public class MyProfile extends Activity {
         buttonHandler(bioInput,bio,false);
 
 
-        maritialInput=findViewById(R.id.marital_status);
-        //Set original maritial status
-        maritialInput.setText(loggedIn.getMaritalStatus());
+        maritalInput = findViewById(R.id.marital_status);
+        //Set original martial status
+        maritalInput.setText(loggedIn.getMaritalStatus());
         //disable editing the editText
-        maritialInput.setEnabled(false);
+        maritalInput.setEnabled(false);
         //create dropdown menu
         Spinner dropdown= findViewById(R.id.chooseStatus);
-        //Linking to the array of maritial status
+        //Linking to the array of marital status
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,items);
         //Setting adapter
         dropdown.setAdapter(adapter);
@@ -138,8 +141,8 @@ public class MyProfile extends Activity {
                 }
                 else{
                     //Assign the text to the edittext
-                    maritialInput.setText(dropdown.getSelectedItem().toString());
-                    //change the maritial status for the logged in user
+                    maritalInput.setText(dropdown.getSelectedItem().toString());
+                    //change the martial status for the logged in user
                     loggedIn.changeStatus(dropdown.getSelectedItem().toString());
                     //update user in persistence
                     updater.updateUser(loggedIn);
@@ -170,7 +173,7 @@ public class MyProfile extends Activity {
         textView2.setText(highSchoolName);
 
         //Displaying the marital status of the user in the UI
-        TextView textView4 = findViewById(R.id.marital_status);
+        TextView textView4 = maritalInput;
         textView4.setText(loggedIn.getMaritalStatus());
 
         //displaying the bio of the user in the UI
@@ -277,5 +280,11 @@ public class MyProfile extends Activity {
     private void showPrivacyInfo() {
         Intent privacy = new Intent(this, PrivacyInfo.class);
         startActivity(privacy);
+    }
+
+    private void logout() {
+        AccessUsers.clearLoggedInUser();
+        Intent login = new Intent(this, Login.class);
+        startActivity(login);
     }
 }

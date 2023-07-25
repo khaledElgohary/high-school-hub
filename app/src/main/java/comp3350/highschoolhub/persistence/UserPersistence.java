@@ -10,4 +10,8 @@ public interface UserPersistence {
     boolean insertUser(User user);
 
     boolean updateUser(User user);
+
+    int countUsers();
+
+    User findUser(int userID, String password);
 }

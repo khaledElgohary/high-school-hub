@@ -1,6 +1,5 @@
 package comp3350.highschoolhub.objects;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
@@ -11,8 +10,10 @@ public class User {
     private String maritalStatus;
     private HighSchool highSchool;
     private HashMap<String, String> socials;
+    private String password;
 
-    public User(int userId, String firstName, String lastName, String bio, String maritalStatus) {
+    public User(int userId, String firstName, String lastName, String bio, String maritalStatus,
+                String password) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,6 +21,7 @@ public class User {
         this.maritalStatus = maritalStatus;
         this.highSchool = null;
         this.socials = new HashMap<>();
+        this.password = password;
     }
 
     public int getUserId() {
@@ -58,9 +60,13 @@ public class User {
         return socials;
     }
 
+    public String getPassword() { return password; }
+
     public void setHighSchool(HighSchool highSchool) {
         this.highSchool = highSchool;
     }
+
+    public void setPassword(String password) { this.password = password; }
 
     public void addSocialMedia(String type, String link) {
         socials.put(type, link);

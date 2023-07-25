@@ -18,10 +18,10 @@ public class HighSchoolsManagerTests {
     public void testGetUsersFromHighSchool() {
         HighSchoolsManager highSchoolsManager = new HighSchoolsManager();
 
-        User loggedIn = new User(0, "Logged In", "User", "It's summer", "Married");
-        User user1 = new User(1, "User1", "Test1", "Testing", "Single");
-        User user2 = new User(2, "User2", "Test2", "Hello", "Single");
-        User user3 = new User(3, "User3", "Test3", "Hello world", "Married");
+        User loggedIn = new User(0, "Logged In", "User", "It's summer", "Married", "password0");
+        User user1 = new User(1, "User1", "Test1", "Testing", "Single", "password0");
+        User user2 = new User(2, "User2", "Test2", "Hello", "Single", "password0");
+        User user3 = new User(3, "User3", "Test3", "Hello world", "Married", "password0");
 
         HighSchool highSchool1 = new HighSchool("Central High School");
         HighSchool highSchool2 = new HighSchool("Summertime High School");
