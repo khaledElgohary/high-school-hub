@@ -79,4 +79,11 @@ public class PasswordManagerTest {
 
         System.out.println("Finished testFindUserInList");
     }
+
+    @Test
+    public void testValidateLogin() {
+        assertFalse(PasswordManager.validateLogin("invalidUsername", ""));
+        assertFalse(PasswordManager.validateLogin("0", ""));
+        assertTrue(PasswordManager.validateLogin("0", "validPass"));
+    }
 }

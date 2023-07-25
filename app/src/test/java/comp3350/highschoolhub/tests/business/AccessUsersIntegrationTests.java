@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -89,6 +90,23 @@ public class AccessUsersIntegrationTests {
 
         assertEquals(links1.get("Facebook"), links2.get("Facebook"));
 
+    }
+
+    @Test
+    public void testGetNumUsers() {
+        int count = accessUsers.getNumUsers();
+
+        assertNotEquals(-1, count);
+    }
+
+    @Test
+    public void testFindUser() {
+        User newUser = new User(accessUsers.getNumUsers()+1, "Test", "User", "Hello World", "Single", "password0");
+        accessUsers.insertUser(newUser);
+        User foundUser = accessUsers.findUser(newUser.getUserId(), newUser.getPassword());
+
+        assertNotNull(foundUser);
+        assertEquals(newUser, foundUser);
     }
 
     @After
