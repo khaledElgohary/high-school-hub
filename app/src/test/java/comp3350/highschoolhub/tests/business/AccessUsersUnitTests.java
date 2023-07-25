@@ -1,6 +1,7 @@
 package comp3350.highschoolhub.tests.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -89,5 +90,16 @@ public class AccessUsersUnitTests {
         boolean returned = accessUsers.updateUser(findUser);
 
         assertTrue(returned);
+    }
+
+    @Test
+    public void testGoBackToConnections() {
+        AccessUsers.setGoBackToConnections(false);
+
+        assertFalse(AccessUsers.goBackToConnections());
+
+        AccessUsers.setGoBackToConnections(true);
+
+        assertTrue(AccessUsers.goBackToConnections());
     }
 }

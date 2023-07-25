@@ -14,5 +14,7 @@ public interface IConnectionsManager {
     Request updateRequest(User selectedUser, Request request);
 
     Request findRequest(User loggedIn, User selected, List<Request> allRequests);
+
+    User getOtherUser(User loggedIn, Request request);
     
 }

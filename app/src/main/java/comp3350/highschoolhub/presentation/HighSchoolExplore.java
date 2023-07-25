@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,6 +86,7 @@ public class HighSchoolExplore extends Activity {
         //Set up listener for back button
         Button btn = findViewById(R.id.backToMyProfile);
         btn.setOnClickListener(v -> showProfile());
+
     }
 
     @Override
@@ -145,6 +147,7 @@ public class HighSchoolExplore extends Activity {
     //This method is used to navigate to a user's profile or provide a popup to send a request.
     private void selectUserAtPosition(int position) {
         User selected = userArrayAdapter.getItem(position);
+
         ConnectionsManager.setRecipientUser(selected);
         Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
@@ -152,13 +155,12 @@ public class HighSchoolExplore extends Activity {
         ConnectionsManager.setRequest(findRequest);
 
         if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
-            //Send a request instead of navigating to the profile or popup when request mode is on
-            Request updated = connectionsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
-            accessRequests.updateRequest(updated);
-            Toast.makeText(this, "A connection request has been sent.", Toast.LENGTH_SHORT).show();
-        } else {
             Intent connectionsUserOptions = new Intent(this, ConnectionsUserOptions.class);
             this.startActivity(connectionsUserOptions);
+        } else {
+            AccessUsers.setProfileUser(selected);
+            Intent connected = new Intent(this, ViewConnectedUserProfile.class);
+            startActivity(connected);
         }
     }
 
