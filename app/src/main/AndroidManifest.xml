@@ -28,6 +28,7 @@
         </activity>
         <activity android:name=".presentation.HighSchoolList" />
         <activity android:name=".presentation.HighSchoolExplore" />
+        <activity android:name=".presentation.HighSchools" />
         <activity android:name=".presentation.PrivacyInfo" />
         <activity android:name=".presentation.ViewConnectedUserProfile" />
         <activity android:name=".presentation.Login"

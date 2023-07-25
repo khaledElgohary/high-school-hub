@@ -49,7 +49,7 @@ public class ConnectionManagerTests {
 
         HighSchool highSchool = new HighSchool("Central High School");
         User loggedIn = new User(0, "Test", "User", "Hello World", "Single", "password0");
-        loggedIn.setHighSchool(highSchool);
+        loggedIn.addHighSchool(highSchool);
         List<User> allUsers = new ArrayList<>();
 
         User user1 = new User(1, "Test2", "User23", "Hello World", "Married", "password1");
@@ -63,7 +63,7 @@ public class ConnectionManagerTests {
         allUsers.add(user4);
 
         for (int i = 0; i < allUsers.size(); i++) {
-            allUsers.get(i).setHighSchool(highSchool);
+            allUsers.get(i).addHighSchool(highSchool);
         }
 
         List<User> getConnections = connectionsManager.getHighSchoolConnections(loggedIn, allUsers);

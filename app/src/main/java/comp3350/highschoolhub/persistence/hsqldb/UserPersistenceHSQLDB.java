@@ -30,11 +30,10 @@ public class UserPersistenceHSQLDB implements UserPersistence {
         final String lastname = rs.getString("lastname");
         final String bio = rs.getString("bio");
         final String maritalStatus = rs.getString("maritalStatus");
-        HighSchool highschool = new HighSchool(rs.getString("highschoolname"));
         final String password = rs.getString("password");
 
         User newUser = new User(userId, firstname, lastname, bio, maritalStatus, password);
-        newUser.setHighSchool(highschool);
+        addHighSchoolsToUser(newUser);
         addSocialsToUser(newUser);
 
         return newUser;
@@ -55,6 +54,24 @@ public class UserPersistenceHSQLDB implements UserPersistence {
             rs.close();
             st.close();
 
+        } catch(final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    private void addHighSchoolsToUser(User user) {
+        try(final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM USERHIGHSCHOOLS WHERE USERHIGHSCHOOLS.USERID = ?");
+            st.setInt(1, user.getUserId());
+
+            final ResultSet rs = st.executeQuery();
+
+            while(rs.next()) {
+                user.addHighSchool(new HighSchool(rs.getString("highschoolname")));
+            }
+
+            rs.close();
+            st.close();
         } catch(final SQLException e) {
             throw new PersistenceException(e);
         }
@@ -99,14 +116,13 @@ public class UserPersistenceHSQLDB implements UserPersistence {
             inserted = true;
 
             try(final Connection c = connection()) {
-                final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?,?, ?, ?, ?, ?, ?)");
+                final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?)");
                 st.setInt(1, user.getUserId());
                 st.setString(2, user.getFirstName());
                 st.setString(3, user.getLastName());
                 st.setString(4, user.getBio());
                 st.setString(5, user.getMaritalStatus());
-                st.setString(6, user.getHighSchool() != null ? user.getHighSchool().getName() : null);
-                st.setString(7, user.getPassword());
+                st.setString(6,user.getPassword());
 
                 st.executeUpdate();
 
@@ -129,6 +145,17 @@ public class UserPersistenceHSQLDB implements UserPersistence {
                     insert.close();
                 }
 
+                //Insert the high schools.
+                List<HighSchool> highSchools = user.getHighSchools();
+
+                for (HighSchool highSchool : highSchools) {
+                    final PreparedStatement insertHS = c.prepareStatement("INSERT INTO USERHIGHSCHOOLS (USERID, HIGHSCHOOLNAME) VALUES(?, ?)");
+                    insertHS.setInt(1, user.getUserId());
+                    insertHS.setString(2, highSchool.getName());
+
+                    insertHS.executeUpdate();
+                    insertHS.close();
+                }
             } catch (final SQLException e) {
                 throw new PersistenceException(e);
             }
@@ -152,14 +179,21 @@ public class UserPersistenceHSQLDB implements UserPersistence {
 
             delete.close();
 
+            //Delete all the high schools.
+            final PreparedStatement deleteHS = c.prepareStatement("DELETE FROM USERHIGHSCHOOLS WHERE USERID = ?");
+            deleteHS.setInt(1, user.getUserId());
+
+            deleteHS.execute();
+
+            deleteHS.close();
+
             //Now update the user.
-            final PreparedStatement update = c.prepareStatement("UPDATE USERS SET FIRSTNAME = ?, LASTNAME = ?, BIO = ?, MARITALSTATUS = ?, HIGHSCHOOLNAME = ? WHERE USERID = ?");
+            final PreparedStatement update = c.prepareStatement("UPDATE USERS SET FIRSTNAME = ?, LASTNAME = ?, BIO = ?, MARITALSTATUS = ? WHERE USERID = ?");
             update.setString(1, user.getFirstName());
             update.setString(2, user.getLastName());
             update.setString(3, user.getBio());
             update.setString(4, user.getMaritalStatus());
-            update.setString(5, user.getHighSchool().getName());
-            update.setInt(6, user.getUserId());
+            update.setInt(5, user.getUserId());
 
             update.executeUpdate();
 
@@ -184,6 +218,17 @@ public class UserPersistenceHSQLDB implements UserPersistence {
                 insert.close();
             }
 
+            //Insert the high schools again in case they changed.
+            List<HighSchool> highSchools = user.getHighSchools();
+
+            for (HighSchool highSchool : highSchools) {
+                final PreparedStatement insertHS = c.prepareStatement("INSERT INTO USERHIGHSCHOOLS (USERID, HIGHSCHOOLNAME) VALUES(?, ?)");
+                insertHS.setInt(1, user.getUserId());
+                insertHS.setString(2, highSchool.getName());
+
+                insertHS.executeUpdate();
+                insertHS.close();
+            }
         } catch(SQLException e) {
             throw new PersistenceException(e);
         }

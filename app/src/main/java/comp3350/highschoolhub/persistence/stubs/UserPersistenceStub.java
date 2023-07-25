@@ -32,9 +32,9 @@ public class UserPersistenceStub implements UserPersistence {
         for (int i = 0; i < users.size(); i++) {
 
             if (i % 2 == 0) {
-                users.get(i).setHighSchool(highSchools.get(0));
+                users.get(i).addHighSchool(highSchools.get(0));
             } else {
-                users.get(i).setHighSchool(highSchools.get(1));
+                users.get(i).addHighSchool(highSchools.get(1));
             }
 
         }

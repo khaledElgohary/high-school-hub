@@ -102,7 +102,7 @@ public class Registration extends Activity {
                     maritalStatus.getSelectedItem().toString(), password.getText().toString());
 
             HighSchool newHighSchool = (HighSchool) highSchoolDropdown.getSelectedItem();
-            newUser.setHighSchool(newHighSchool);
+            newUser.addHighSchool(newHighSchool);
 
             accessUsers.insertUser(newUser);
 
