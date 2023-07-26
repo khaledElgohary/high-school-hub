@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -61,7 +61,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.12'
     testImplementation group: 'com.google.guava', name: 'guava', version: '25.1-jre'
     implementation group: 'org.hsqldb', name: 'hsqldb', version: '2.4.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
@@ -75,4 +75,13 @@ dependencies {
     androidTestImplementation (group: 'com.android.support.test.espresso', name: 'espresso-core', version: '3.0.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    androidTestImplementation (group: 'com.android.support.test.espresso', name: 'espresso-core', version: '3.0.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation 'com.android.support:support-annotations:23.3.0'
+    androidTestImplementation ('com.android.support.test:rules:1.0.2'){
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 }
