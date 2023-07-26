@@ -69,6 +69,7 @@ public class UserPageTest {
         onView(withId(R.id.user_name)).check(matches(withText("John Edelman")));
         onView(withId(R.id.Bio)).check(matches(withText("Hello World !!!")));
         onView(withId(R.id.marital_status)).check(matches(withText("Married")));
+        onView(withId(R.id.profile_image)).check(matches(isDisplayed()));
         onView(withId(R.id.highSchoolsButton)).perform(click());
         onView(withText("Central High School")).check(matches(isDisplayed()));
         //logout
@@ -83,6 +84,7 @@ public class UserPageTest {
         onView(withId(R.id.user_name)).check(matches(withText("Michael Kors")));
         onView(withId(R.id.Bio)).check(matches(withText("Hello World Part 2 !!!")));
         onView(withId(R.id.marital_status)).check(matches(withText("Single")));
+        onView(withId(R.id.profile_image)).check(matches(isDisplayed()));
         onView(withId(R.id.highSchoolsButton)).perform(click());
         onView(withText("Central High School")).check(matches(isDisplayed()));
     }
