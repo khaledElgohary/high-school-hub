@@ -3,10 +3,10 @@
 ## Architecture Diagram
 ```mermaid
 %% Note: GitLab no longer automatically renders this diagram; it displays a
-performance issue warning, and you must now agree to display the diagram before
-it will render. If you would rather view a picture instead of rendering the
-diagram, a backup can be found at
-https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/docs/mermaid-diagram-backup.png.
+%% performance issue warning, and you must now agree to display the diagram before
+%% it will render. If you would rather view a picture instead of rendering the
+%% diagram, a backup can be found at
+%% https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/docs/mermaid-diagram-backup.png.
 
   flowchart LR
     %% Links between nodes of different subgraphs
