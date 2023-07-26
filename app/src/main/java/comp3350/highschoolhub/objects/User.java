@@ -1,7 +1,4 @@
 package comp3350.highschoolhub.objects;
-
-import android.net.Uri;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +12,6 @@ public class User {
     private List<HighSchool> highSchools;
     private HashMap<String, String> socials;
     private String password;
-
 
     public User(int userId, String firstName, String lastName, String bio, String maritalStatus,
                 String password) {
