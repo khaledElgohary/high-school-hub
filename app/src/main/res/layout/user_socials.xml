@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="fill_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/addSocialsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="#673AB7"
+        android:text="My Social Media"
+        android:textAlignment="center"
+        android:textColor="#F0F7F8"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/socialsListView"
+            android:layout_width="match_parent"
+            android:layout_height="524dp"
+            android:layout_gravity="top"
+            android:layout_weight="2"
+            android:background="#5103A9F4"
+            android:contextClickable="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="?android:attr/listDivider" />
+
+        <Switch
+            android:id="@+id/removeLinkSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:text="Remove Links"
+            android:textAlignment="viewStart"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/addLinkButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#4CAF50"
+            android:text="Add Link"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/goToProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_gravity="bottom"
+            android:text="My Profile"
+            android:textSize="20sp"
+            tools:layout_gravity="bottom" />
+    </LinearLayout>
+
+</LinearLayout>
