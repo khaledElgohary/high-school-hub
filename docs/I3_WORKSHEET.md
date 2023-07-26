@@ -60,6 +60,7 @@ difficult or impossible to test?</p>
 <h2 id="velocityteamwork">Velocity/teamwork</h2>
 <p>Did your estimates get better or worse through the course? Show some
 evidence of the estimates/actuals from tasks.</p>
+<p>Here, we will compare estimated time vs. actual time for Iteration 1 and 2. The estimated times for each feature in a given Iteration are added to get the total estimated time for that Iteration. The actual time spent on an Iteration is taken from time tracking widget in the Milestones tab. Total time estimated for Iteration 1 was 7 days, and the actual time was 2 weeks and 3 hours. For Iteration 2, estimated time was 5 days and the actual time was 1 week, 7 hours and 30 minutes. Clearly our estimates got much better from Iteration 1 to Iteration 2. However, there is still room for improvement.</p>
 </body>
 </html>
 
