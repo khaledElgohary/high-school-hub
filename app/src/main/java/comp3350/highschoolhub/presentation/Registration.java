@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.List;
 
@@ -107,8 +109,18 @@ public class Registration extends Activity {
             accessUsers.insertUser(newUser);
 
             AccessUsers.setLoggedInUser(newUser);
+            Toast.makeText(this, "UserID: " + newUser.getUserId() +
+                    ". See privacy info for more.", Toast.LENGTH_LONG).show();
             Intent profile = new Intent(this, MyProfile.class);
             startActivity(profile);
+        }
+        else if(PasswordManager.validDatePassword(password.getText().toString())){
+            Toast.makeText(this, "Please enter a valid first and last name.",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Password (length: 8-30). Alphanumeric with 1 uppercase.",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
