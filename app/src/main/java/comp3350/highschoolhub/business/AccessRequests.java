@@ -35,6 +35,21 @@ public class AccessRequests implements IAccessRequests{
     }
 
     public boolean updateRequest(Request request) {
+        List<Request> requests = getRequests();
+        boolean found = false;
+
+        for(int i = 0; i < requests.size() && !found; i++) {
+            found = request.equals(requests.get(i));
+
+            if(!found) {
+                found = request.getRecipient().equals(requests.get(i).getSender()) && request.getSender().equals(requests.get(i).getRecipient());
+            }
+        }
+
+        if(!found) {
+            return requestPersistence.insertRequest(request);
+        }
+
         return requestPersistence.updateRequest(request);
     }
 
