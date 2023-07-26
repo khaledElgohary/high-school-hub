@@ -119,7 +119,7 @@ public class Registration extends Activity {
                     Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(this, "Password (8-30 characters) needs 1 number, 1 lowercase and 1 uppercase",
+            Toast.makeText(this, "Password (length: 8-30). Alphanumeric with 1 uppercase.",
                     Toast.LENGTH_LONG).show();
         }
     }
