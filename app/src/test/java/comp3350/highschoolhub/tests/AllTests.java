@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import comp3350.highschoolhub.business.PrivacyManager;
+import comp3350.highschoolhub.tests.business.PasswordManagerTest;
 import comp3350.highschoolhub.tests.business.AccessHighSchoolsUnitTests;
 import comp3350.highschoolhub.tests.business.AccessRequestsUnitTests;
 import comp3350.highschoolhub.tests.business.AccessUsersUnitTests;
@@ -19,6 +20,8 @@ import comp3350.highschoolhub.tests.objects.UserTest;
 @Suite.SuiteClasses({
         HighSchoolTest.class,
         RequestTest.class,
+        UserTest.class,
+        PasswordManagerTest.class,
         UserTest.class,
         SocialsManagerTest.class,
         ConnectionManagerTests.class,

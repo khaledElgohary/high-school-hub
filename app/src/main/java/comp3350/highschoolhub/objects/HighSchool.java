@@ -11,7 +11,8 @@ public class HighSchool {
         return name;
     }
 
-    public boolean equals(HighSchool highSchool) {
-        return this.name.equals(highSchool.name);
+    public boolean equals(Object highSchool) {
+        return highSchool instanceof HighSchool
+                && this.name.equals(((HighSchool) highSchool).getName());
     }
 }

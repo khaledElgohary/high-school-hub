@@ -11,4 +11,8 @@ public interface IAccessUsers {
     boolean updateUser(User user);
 
     boolean insertUser(User user);
+
+    int getNumUsers();
+
+    User findUser(int userID, String password);
 }

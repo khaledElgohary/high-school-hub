@@ -51,16 +51,27 @@ public class AccessUsers implements IAccessUsers{
         return userPersistence.insertUser(user);
     }
 
+    public int getNumUsers() {
+        return userPersistence.countUsers();
+    }
+
+    public User findUser(int userID, String password) {
+        return userPersistence.findUser(userID, password);
+    }
+
     //Get the user that is logged in.
     public static User getLoggedInUser() {
         return loggedIn;
     }
 
-
     //Set the user that is logged in.
     public static User setLoggedInUser(User login) {
         loggedIn = login;
         return loggedIn;
+    }
+
+    public static void clearLoggedInUser() {
+        loggedIn = null;
     }
 
     //Get the user in which to look at their profile.

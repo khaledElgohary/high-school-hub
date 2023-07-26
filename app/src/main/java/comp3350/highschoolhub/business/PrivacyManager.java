@@ -6,7 +6,9 @@ import comp3350.highschoolhub.objects.User;
 public class PrivacyManager implements IPrivacyManager{
     private final String publicInfo = "First name\nLast name\nHigh School";
 
-    private final String privateInfo = "UserID\nBio\nMarital Status\nSocial Links";
+    private final String privateInfo = "UserID: " + AccessUsers.getLoggedInUser().getUserId() +
+            "\nPassword: " + AccessUsers.getLoggedInUser().getPassword() +
+            "\nBio\nMarital Status\nSocial Links";
 
     @Override
     public String getPublicInfoString() {
@@ -14,7 +16,5 @@ public class PrivacyManager implements IPrivacyManager{
     }
 
     @Override
-    public String getPrivateInfoString() {
-        return privateInfo;
-    }
+    public String getPrivateInfoString() { return privateInfo; }
 }

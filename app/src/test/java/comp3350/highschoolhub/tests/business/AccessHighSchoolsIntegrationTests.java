@@ -36,6 +36,11 @@ public class AccessHighSchoolsIntegrationTests {
     public void testGetHighSchools(){
         final List<HighSchool> highSchools = accessHighSchools.getHighSchools();
         assertEquals(7, highSchools.size());
+    }
+
+    @Test
+    public void testHighSchoolInList(){
+        final List<HighSchool> highSchools = accessHighSchools.getHighSchools();
         assertEquals("Central High School", highSchools.get(0).getName());
         assertEquals("Summertime High School", highSchools.get(6).getName());
     }

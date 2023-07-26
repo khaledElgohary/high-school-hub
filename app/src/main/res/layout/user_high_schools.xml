@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:conext="comp3350.highschoolhub.presentation.Connections">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/highSchoolsTitle"
+        android:id="@+id/myHighSchoolsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#673AB7"
-        android:text="High Schools"
+        android:text="My High Schools"
         android:textAlignment="center"
         android:textColor="#F0F7F8"
         android:textSize="34sp"
@@ -25,14 +24,16 @@
         android:background="?android:attr/listDivider" />
 
     <ListView
-        android:id="@+id/highSchools"
+        android:id="@+id/userHighSchools"
         android:layout_width="wrap_content"
         android:layout_height="631dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="#5103A9F4"
-        android:choiceMode="multipleChoice"
-        android:clickable="false" />
+        android:choiceMode="none"
+        android:clickable="false" >
+
+    </ListView>
 
     <View
         android:id="@+id/divider"
@@ -41,20 +42,20 @@
         android:background="?android:attr/listDivider" />
 
     <Button
-        android:id="@+id/submitHighSchools"
+        android:id="@+id/editHighSchoolsButton"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
+        android:layout_height="55dp"
         android:background="#4CAF50"
-        android:enabled="false"
-        android:text="Submit"
+        android:text="Edit"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/backToHighSchools"
+        android:id="@+id/backToMyProfile"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:layout_gravity="bottom"
-        android:text="Back"
+        android:onClick="backToLoginUserProfile"
+        android:text="My Profile"
         android:textSize="20sp" />
 
 </LinearLayout>

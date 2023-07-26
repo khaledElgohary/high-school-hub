@@ -13,20 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HighschoolHub">
+        <activity android:name=".presentation.Connections" />
         <activity
             android:name=".presentation.MyProfile"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.Connections"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.HighschoolHub">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity android:name=".presentation.Socials" />
         <activity android:name=".presentation.SocialsAddLink" />
         <activity
@@ -38,8 +28,18 @@
         </activity>
         <activity android:name=".presentation.HighSchoolList" />
         <activity android:name=".presentation.HighSchoolExplore" />
+        <activity android:name=".presentation.HighSchools" />
         <activity android:name=".presentation.PrivacyInfo" />
         <activity android:name=".presentation.ViewConnectedUserProfile" />
+        <activity android:name=".presentation.Login"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.Registration" />
     </application>
 
 </manifest>

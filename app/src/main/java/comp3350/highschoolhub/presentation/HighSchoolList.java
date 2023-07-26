@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.highschoolhub.R;
@@ -19,8 +20,10 @@ import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
 import comp3350.highschoolhub.business.ConnectionsManager;
+import comp3350.highschoolhub.business.HighSchoolsManager;
 import comp3350.highschoolhub.business.IAccessHighSchools;
 import comp3350.highschoolhub.business.IAccessUsers;
+import comp3350.highschoolhub.business.IHighSchoolsManager;
 import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.objects.User;
 
@@ -31,17 +34,28 @@ public class HighSchoolList extends Activity {
     private List<HighSchool> highSchoolsList;
     private ArrayAdapter<HighSchool> highSchoolArrayAdapter;
     private int highSchoolListPosition;
+    private List<HighSchool> selectedHighSchools;
+    private IHighSchoolsManager highSchoolsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.high_school_list);
 
-        Button btn = findViewById(R.id.backToMyProfile);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button backBtn = findViewById(R.id.backToHighSchools);
+        backBtn.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       showProfile();
+                                       backToHighSchools();
+                                   }
+                               }
+        );
+
+        Button highSchoolsBtn = findViewById(R.id.submitHighSchools);
+        highSchoolsBtn.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       submitHighSchools();
                                    }
                                }
         );
@@ -52,8 +66,8 @@ public class HighSchoolList extends Activity {
         new AccessRequests();
         new ConnectionsManager();
 
-        //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
+        highSchoolsManager = new HighSchoolsManager();
+        selectedHighSchools = new ArrayList<>();
 
         highSchoolsList = accessHighSchools.getHighSchools();
 
@@ -77,7 +91,7 @@ public class HighSchoolList extends Activity {
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 highSchoolListPosition = position;
-                selectHighSchoolAtPosition(highSchoolListPosition);
+                selectHighSchoolAtPosition(highSchoolListPosition, view, parent);
             });
 
             //Set up what happens when the my profile button is clicked on at the bottom of the screen.
@@ -105,17 +119,27 @@ public class HighSchoolList extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void selectHighSchoolAtPosition(int position) {
+    public void selectHighSchoolAtPosition(int position, View convertView, ViewGroup parent) {
         HighSchool selected = highSchoolArrayAdapter.getItem(position);
         User loggedInUser = AccessUsers.getLoggedInUser();
-        loggedInUser.setHighSchool(selected);
-        accessUsers.updateUser(loggedInUser);
 
-        showProfile();
+        selectedHighSchools = highSchoolsManager.processNewHighSchool(selected, selectedHighSchools);
+        highSchoolArrayAdapter.getView(position, convertView, parent).setSelected(loggedInUser.getHighSchools().contains(selected));
+
+        Button submitBtn = findViewById(R.id.submitHighSchools);
+        submitBtn.setEnabled(!selectedHighSchools.isEmpty());
     }
 
-    private void showProfile() {
-        Intent profile = new Intent(this, MyProfile.class);
-        startActivity(profile);
+    private void submitHighSchools() {
+        User loggedIn = AccessUsers.getLoggedInUser();
+        loggedIn.setHighSchools(selectedHighSchools);
+        accessUsers.updateUser(loggedIn);
+
+        backToHighSchools();
+    }
+
+    private void backToHighSchools() {
+        Intent userHighSchools = new Intent(this, HighSchools.class);
+        startActivity(userHighSchools);
     }
 }
