@@ -21,8 +21,6 @@ leave?</a></li>
 a Feature or User Story that was cut/re-prioritized</a></li>
 <li><a href="#acceptance-testend-to-end" id="toc-acceptance-testend-to-end">Acceptance test/end-to-end</a></li>
 <li><a href="#acceptance-test-untestable" id="toc-acceptance-test-untestable">Acceptance test, untestable</a></li>
-<li><a href="#n1-acceptance-test" id="toc-n1-acceptance-test">n+1
-Acceptance test</a></li>
 <li><a href="#velocityteamwork" id="toc-velocityteamwork">Velocity/teamwork</a></li>
 </ul></li>
 </ul>
@@ -59,11 +57,6 @@ link to that test.</p>
 <h2 id="acceptance-test-untestable">Acceptance test, untestable</h2>
 <p>What challenges did you face when creating acceptance tests? What was
 difficult or impossible to test?</p>
-<h2 id="n1-acceptance-test">n+1 Acceptance test</h2>
-<p>From class, every team must post an acceptance test script to the
-forum. Look at team n+1’s acceptance test, and record yourself
-performing it (the android emulator can do screen recordings!). Post
-that recording to the forum, link to it here.</p>
 <h2 id="velocityteamwork">Velocity/teamwork</h2>
 <p>Did your estimates get better or worse through the course? Show some
 evidence of the estimates/actuals from tasks.</p>
