@@ -6,25 +6,34 @@
 
   flowchart LR
     %% Links between nodes of different subgraphs
-    Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
-    ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
+    Connections <--> AccessRequests & AccessUsers & ConnectionsManager
+    ConnectionsUserOptions <-----> AccessRequests & AccessUsers
+    ConnectionsUserOptions <---> ConnectionsManager
     HighSchoolExplore <--> AccessHighSchools & AccessRequests & AccessUsers
     HighSchoolExplore <--> ConnectionsManager & HighSchoolsManager
-    HighSchoolList <--> AccessUsers & AccessHighSchools
+    HighSchoolList <--> AccessUsers & AccessHighSchools & HighSchoolsManager
+    HighSchools <----> AccessUsers
+    Login <--> AccessUsers & PasswordManager
     MyProfile <--> AccessUsers & ConnectionsManager
     PrivacyInfo <--> PrivacyManager
+    Registration <---> AccessUsers & AccessHighSchools & PasswordManager
     Socials <--> AccessUsers & SocialsManager
     SocialsAddLink <--> AccessUsers & SocialsManager
-    ViewConnectedUserProfile <--> AccessUsers & ConnectionConfirmer & ConnectionsManager
+    ViewConnectedUserProfile <--> AccessUsers & ConnectionConfirmer & ConnectionsManager & HighSchoolsManager
 
     Services <--> HighSchoolPersistence & RequestPersistence & UserPersistence
 
     subgraph Presentation
-    Connections <===> ConnectionsUserOptions
+    Connections <==> ConnectionsUserOptions
+    Connections <==> ViewConnectedUserProfile
+    HighSchoolList <==> HighSchools
+    Login <==> Registration
     MyProfile <==> Connections
     MyProfile <==> HighSchoolExplore
-    MyProfile <==> HighSchoolList
+    MyProfile <==> HighSchools
+    MyProfile <==> Login
     MyProfile <==> PrivacyInfo
+    MyProfile <==> Registration
     Socials <==> MyProfile
     SocialsAddLink <==> Socials
     Connections & HighSchoolList <==> Messages
@@ -34,9 +43,10 @@
     subgraph Business
     AccessHighSchools & AccessRequests & AccessUsers <==> Services
     ConnectionConfirmer <==> AccessHighSchools & AccessRequests
-    ConnectionsManager <==> ConnectionConfirmer
+    ConnectionsManager <===> ConnectionConfirmer
     HighSchoolsManager
-    PrivacyManager
+    PasswordManager
+    PrivacyManager <==> AccessUsers
     SocialsManager
     end
 
@@ -54,6 +64,7 @@
 
     %% Invisible link(s) to keep graphs together
     DSOs ~~~ Presentation
+    AccessHighSchools ~~~ PasswordManager
 
 ```
 
