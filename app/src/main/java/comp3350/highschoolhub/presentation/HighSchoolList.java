@@ -69,9 +69,6 @@ public class HighSchoolList extends Activity {
         highSchoolsManager = new HighSchoolsManager();
         selectedHighSchools = new ArrayList<>();
 
-        //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
-
         highSchoolsList = accessHighSchools.getHighSchools();
 
         try {

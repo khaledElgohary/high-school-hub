@@ -29,9 +29,6 @@ public class HighSchools extends Activity {
 
         accessUsers = new AccessUsers();
 
-        //Remove this line once the login feature is created.
-        AccessUsers.setLoggedInUser(accessUsers.getUsers().get(0));
-
         List<HighSchool> userHighSchools = AccessUsers.getLoggedInUser().getHighSchools();
 
         highSchoolArrayAdapter = new ArrayAdapter<HighSchool>(this, android.R.layout.simple_list_item_activated_2,
