@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.List;
 
@@ -107,6 +109,8 @@ public class Registration extends Activity {
             accessUsers.insertUser(newUser);
 
             AccessUsers.setLoggedInUser(newUser);
+            Toast.makeText(this, "UserID: " + newUser.getUserId() +
+                    ". See privacy info for more.", Toast.LENGTH_LONG).show();
             Intent profile = new Intent(this, MyProfile.class);
             startActivity(profile);
         }
