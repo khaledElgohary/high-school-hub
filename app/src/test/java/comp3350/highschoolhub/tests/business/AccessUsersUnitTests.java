@@ -1,6 +1,8 @@
 package comp3350.highschoolhub.tests.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -25,7 +27,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testSetLoggedInUser() {
-        User newUser = new User(0, "Test", "User", "Hello World", "Single");
+        User newUser = new User(0, "Test", "User", "Hello World", "Single", "password0");
 
         assertEquals(newUser, AccessUsers.setLoggedInUser(newUser));
         assertEquals(newUser, AccessUsers.getLoggedInUser());
@@ -45,7 +47,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testGetProfileUser() {
-        User newUser = new User(0, "Test", "User", "Hello World", "Single");
+        User newUser = new User(0, "Test", "User", "Hello World", "Single", "password0");
 
         assertEquals(newUser, AccessUsers.setProfileUser(newUser));
         assertEquals(newUser, AccessUsers.getProfileUser());
@@ -61,7 +63,7 @@ public class AccessUsersUnitTests {
 
     @Test
     public void testInsertUser() {
-        User user = new User(0, "Test", "User", "Hello World", "Single");
+        User user = new User(0, "Test", "User", "Hello World", "Single", "password0");
 
         assertTrue(accessUsers.insertUser(user));
     }
@@ -69,7 +71,7 @@ public class AccessUsersUnitTests {
     @Test
     public void testUpdateUser() {
         List<User> users;
-        User user = new User(0, "Test", "User", "Hello World", "Single");
+        User user = new User(0, "Test", "User", "Hello World", "Single", "password0");
         accessUsers.insertUser(user);
 
         users = accessUsers.getUsers();
@@ -89,5 +91,33 @@ public class AccessUsersUnitTests {
         boolean returned = accessUsers.updateUser(findUser);
 
         assertTrue(returned);
+    }
+
+    @Test
+    public void testGetNumUsers() {
+        int count = accessUsers.getNumUsers();
+
+        assertNotEquals(-1, count);
+    }
+
+    @Test
+    public void testFindUser() {
+        User newUser = new User(0, "Test", "User", "Hello World", "Single", "password0");
+        accessUsers.insertUser(newUser);
+        User foundUser = accessUsers.findUser(newUser.getUserId(), newUser.getPassword());
+
+        assertNotNull(foundUser);
+        assertEquals(newUser, foundUser);
+    }
+
+    @Test
+    public void testGoBackToConnections() {
+        AccessUsers.setGoBackToConnections(false);
+
+        assertFalse(AccessUsers.goBackToConnections());
+
+        AccessUsers.setGoBackToConnections(true);
+
+        assertTrue(AccessUsers.goBackToConnections());
     }
 }

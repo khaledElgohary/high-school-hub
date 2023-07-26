@@ -6,11 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
-import net.bytebuddy.implementation.bytecode.Throw;
-
 import org.junit.Test;
-
-import java.lang.reflect.Executable;
 
 import comp3350.highschoolhub.business.InvalidLinkException;
 import comp3350.highschoolhub.business.InvalidPlatformException;
@@ -62,7 +58,7 @@ public class SocialsManagerTest {
     public void testAddLink() throws InvalidLinkException, InvalidPlatformException {
         System.out.println("Starting testAddLink.");
 
-        User testUser = new User(0, "Test", "User", "Hello world!", "Single");
+        User testUser = new User(0, "Test", "User", "Hello world!", "Single", "password0");
         String testPlatform = "Facebook";
         String testLink = "facebook.com/my.name";
         String invalidLink = "facebook.com";

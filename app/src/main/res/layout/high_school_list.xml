@@ -31,7 +31,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="#5103A9F4"
-        android:choiceMode="singleChoice"
+        android:choiceMode="multipleChoice"
         android:clickable="false" />
 
     <View
@@ -41,11 +41,19 @@
         android:background="?android:attr/listDivider" />
 
     <Button
-        android:id="@+id/backToMyProfile"
+        android:id="@+id/submitHighSchools"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="#4CAF50"
+        android:enabled="false"
+        android:text="Submit"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/backToHighSchools"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:layout_gravity="bottom"
-        android:onClick="backToLoginUserProfile"
         android:text="Back"
         android:textSize="20sp" />
 

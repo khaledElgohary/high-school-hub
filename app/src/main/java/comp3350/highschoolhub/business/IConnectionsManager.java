@@ -9,8 +9,12 @@ public interface IConnectionsManager {
 
     List<User> getHighSchoolConnections(User loggedIn, List<User> allUsers);
 
+    List<User> getMatchingConnections(User loggedIn, String search, List<User> allUsers);
+
     Request updateRequest(User selectedUser, Request request);
 
     Request findRequest(User loggedIn, User selected, List<Request> allRequests);
+
+    User getOtherUser(User loggedIn, Request request);
     
 }
