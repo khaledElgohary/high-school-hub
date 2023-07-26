@@ -55,7 +55,7 @@ public class AccessRequestsUnitTests {
         User user2 = new User(2, "Test3", "User63", "Hello World", "Married", "password2");
         Request newRequest = new Request(user1, user2);
 
-        accessRequests.insertRequest(newRequest);
+        accessRequests.updateRequest(newRequest);
 
         List<Request> requests = accessRequests.getRequests();
 
