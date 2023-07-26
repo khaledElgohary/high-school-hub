@@ -114,6 +114,14 @@ public class Registration extends Activity {
             Intent profile = new Intent(this, MyProfile.class);
             startActivity(profile);
         }
+        else if(PasswordManager.validDatePassword(password.getText().toString())){
+            Toast.makeText(this, "Please enter a valid first and last name.",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Password (8-30 characters) needs 1 number, 1 lowercase and 1 uppercase",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     private void goToLoginPage() {
