@@ -1,61 +1,7 @@
 # Architecture
 
 ## Architecture Diagram
-```mermaid
-%% Note: In case the diagram is not rendering properly, a backup can be found at https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/docs/mermaid-diagram-backup.png.
-
-  flowchart LR
-    %% Links between nodes of different subgraphs
-    Connections <--> AccessHighSchools & AccessRequests & AccessUsers & ConnectionsManager
-    ConnectionsUserOptions <--> AccessRequests & AccessUsers & ConnectionsManager
-    HighSchoolExplore <--> AccessHighSchools & AccessRequests & AccessUsers
-    HighSchoolExplore <--> ConnectionsManager & HighSchoolsManager
-    HighSchoolList <--> AccessUsers & AccessHighSchools
-    MyProfile <--> AccessUsers & ConnectionsManager
-    PrivacyInfo <--> PrivacyManager
-    Socials <--> AccessUsers & SocialsManager
-    SocialsAddLink <--> AccessUsers & SocialsManager
-    ViewConnectedUserProfile <--> AccessUsers & ConnectionConfirmer & ConnectionsManager
-
-    Services <--> HighSchoolPersistence & RequestPersistence & UserPersistence
-
-    subgraph Presentation
-    Connections <===> ConnectionsUserOptions
-    MyProfile <==> Connections
-    MyProfile <==> HighSchoolExplore
-    MyProfile <==> HighSchoolList
-    MyProfile <==> PrivacyInfo
-    Socials <==> MyProfile
-    SocialsAddLink <==> Socials
-    Connections & HighSchoolList <==> Messages
-    ViewConnectedUserProfile <==> HighSchoolExplore
-    end
-
-    subgraph Business
-    AccessHighSchools & AccessRequests & AccessUsers <==> Services
-    ConnectionConfirmer <==> AccessHighSchools & AccessRequests
-    ConnectionsManager <==> ConnectionConfirmer
-    HighSchoolsManager
-    PrivacyManager
-    SocialsManager
-    end
-
-    subgraph Persistence
-    HighSchoolPersistence
-    RequestPersistence
-    UserPersistence
-    end
-
-    subgraph DSOs
-    User
-    Request
-    HighSchool
-    end
-
-    %% Invisible link(s) to keep graphs together
-    DSOs ~~~ Presentation
-
-```
+![architecture](mermaid-diagram-backup.png)
 
 ## [Application Layer](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/tree/main/app/src/main/java/comp3350/highschoolhub/application)
 The application layer provides a bridge between the business layer and the persistence layer.
@@ -81,6 +27,12 @@ The presentation layer is responsible for displaying and managing the UI of the 
 ### [HighSchoolList](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/HighSchoolList.java)
 `HighSchoolList` presents a list of selectable high schools that a user can add to their account.
 
+### [HighSchools](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/HighSchools.java)
+`HighSchools` displays a list of the user's high schools.
+
+### [Login](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/Login.java)
+`Login` lets the user log into the app with a username and password.
+
 ### [Messages](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/Messages.java)
 `Messages` displays error messages in the app.
 
@@ -89,6 +41,9 @@ The presentation layer is responsible for displaying and managing the UI of the 
 
 ### [PrivacyInfo](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/PrivacyInfo.java)
 `PrivacyInfo` informs the user what info of theirs is private and what is public.
+
+### [Registration](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/Registration.java)
+`Registration` lets the user create a new account.
 
 ### [Socials](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/presentation/Socials.java)
 `Socials` displays a list of clickable social media links that a user has added to their account.
@@ -117,8 +72,14 @@ The business layer is responsible for handling the logic behind the app.
 ### [ConnectionsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/ConnectionsManager.java)
 `ConnectionsManager` handles logic for the connections part of the UI.
 
+### [CopyDatabase](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/CopyDatabase.java)
+`CopyDatabase` copies the database to the device.
+
 ### [HighSchoolsManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/HighSchoolsManager.java)
 `HighSchoolsManager` handles logic for the high schools part of the UI.
+
+### [PasswordManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/PasswordManager.java)
+`PasswordManager` handles logic for user passwords and login.
 
 ### [PrivacyManager](https://code.cs.umanitoba.ca/3350-summer2023/highschool-hub/-/blob/main/app/src/main/java/comp3350/highschoolhub/business/PrivacyManager.java)
 `PrivacyManager` handles logic for the privacy info part of the UI.
