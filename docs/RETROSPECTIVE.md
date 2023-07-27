@@ -21,7 +21,7 @@ this issue in most cases. In fact, this method was frequently used in Iteration 
 
 ## The chart
 The X-axis shows the number of days (starting from day 001). 
-
+```mermaid
 gantt
     title Project Velocity Chart
     dateFormat  X
@@ -32,5 +32,5 @@ gantt
     section IT2
         Estimate IT2    :0, 5d
         Actual IT2      :0, 7d
-
+```
 
