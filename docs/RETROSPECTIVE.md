@@ -27,10 +27,10 @@ gantt
     dateFormat  X
     axisFormat %d
     section IT1
-        Estimate IT1    :1d, 7d
-        Actual IT1      :1d, 14d 
+        Estimate IT1    :1, 7d
+        Actual IT1      :1, 14d 
     section IT2
-        Estimate IT2    :1d, 5d
-        Actual IT2      :1d, 7d
+        Estimate IT2    :1, 5d
+        Actual IT2      :1, 7d
 ```
 
