@@ -53,7 +53,7 @@ public class ConnectionRequestsTest {
                 userPersistence.updateUser(users.get(i));
             }
 
-            if (users.get(i).getUserId() == 0 || users.get(i).getUserId() == 8)
+            if (users.get(i).getUserId() == 0 || users.get(i).getUserId() == 8) {
                 highSchools = users.get(i).getHighSchools();
                 boolean found = false;
 
@@ -66,6 +66,7 @@ public class ConnectionRequestsTest {
                 }
 
                 userPersistence.updateUser(users.get(i));
+            }
         }
 
         //Set up the requests so that all requests sent or received by user 0 are not accepted.
@@ -77,6 +78,7 @@ public class ConnectionRequestsTest {
         }
     }
 
+    //This test is for the feature corresponding to issue 15 in gitlab.
     @Test
     public void sendConnectionRequest() {
 
