@@ -8,7 +8,7 @@
 the build files to your local computer. After Android Studio is done syncing, you will then be able to build the app and run it on the emulator in Android Studio 
 or even on an actual Android device with API 21 or later. Additionally, the project also contains three different types of tests. Unit tests and Integration 
 tests which can be run by running AllTests and AllIntegrationTests classes in Android Studio. These classes can be found in app -> src -> test -> java -> 
-ocmp3350 -> highschoolhub -> tests. There are also system tests for the app which can be found in app -> src -> androidTest -> java -> ocmp3350 -> highschoolhub for testing all layers of the app. </p><br>
+comp3350 -> highschoolhub -> tests. There are also system tests for the app which can be found in app -> src -> androidTest -> java -> comp3350 -> highschoolhub for testing all layers of the app. </p><br>
 
 ## <div align="center"><p style="color: orange; font-size:larger;"><ins>**Important Documetation**</ins></p></div>
 <p style="font-size:large;color:white;">&emsp;&emsp;You can find all the documentation for the application in the docs folder. Some documents that may be very
