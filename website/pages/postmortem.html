@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../styles/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="../assets/svgs/school-solid.svg">
+  <title>Postmortem - Highschool Hub</title>
+</head>
+
+<body>
+  <script src="../scripts/navbar.js"></script>
+  <div class="jumbotron jumbotron-dark-bg text-center light-text">
+    <h1>Postmortem</h1>
+    <span class="lead">A postmortem of the development experience.</span>
+  </div>
+  <div class="row justify-content-center">
+    <div class="block-padding">
+      <div class="row featurette-padding py-4">
+      <h2 class="text-primary">What went right in the development process?</h2>
+      <p class="justify">Notably, communication and teamwork were consistently strong throughout
+        the development process. Before starting development for each iteration, we held at least
+        one meeting to plan our tasks, assign work to team members, and resolve any doubts or
+        problems from the previous iteration. This allowed us to start off each iteration on the
+        right foot, ensuring everyone was on the same page and knew what they needed to complete
+        for the iteration. Additionally, all team members regularly chatted with other team members
+        to address issues, ask and answer questions, and discuss any matters they had on their mind.
+        The frequent communication created an environment where we could work cohesively as a team in
+        order to develop a better application.</p>
+      <p class="indent justify">Along with good communication, everyone played a role in developing a functional
+        app. All team members were dedicated to the project and made important contributions to various
+        aspects such as planning, development, and testing. Because of this, we were able to have a fully
+        functional and stable app by the deadline for iteration 1 and 2, which was also a result of being
+        able to work well together.</p>
+      </div>
+    </div>
+    <div class="alt-bg-block block-padding">
+      <div class="row featurette-padding py-4">
+        <h2 class="text-primary">What went wrong in the development process?</h2>
+        <p class="justify">While we completed all tasks early in iteration 1, we were pressed for time near
+          the end of iteration 2, leaving us little time to test the application. Some of the work for the
+          iteration was completed fairly late, and this impacted our ability to thoroughly verify that the
+          new functionalities were working correctly. We have planned to start and complete our development
+          work earlier for iteration 3, which should increase the time we have for polishing and improving
+          the app as well as lessen the pressure of getting everything complete right before the deadline.</p>
+        <p class="indent justify">We also ran into some problems with merge conflicts and resolving them
+          efficiently. Pulling changes from <code>main</code> into local branches was infrequent at times,
+          which caused issues with attempting to merge these local branches into main later on. For iteration
+          3, we aimed to be more proactive in keeping our local branches up to date, making the process of
+          merging back into <code>main</code> far smoother and less prone to mistakes when resolving potential
+          conflicts.</p>
+      </div>
+      </div>
+    </div>
+    <div class="block-padding">
+      <div class="row featurette-padding py-4">
+        <h2 class="text-primary">How did the project change from our initial vision or stories? Did it work out as predicted?</h2>
+        <p class="justify">We made a couple of reductions to the planned features for our app. For example,
+          we initially wanted to implement admin users in our application. These admin users would be able
+          to manage the high schools available for regular users of the application and create additional
+          admin users to perform this task. However, we realized this may be excessive for the current
+          scope of our app—we are currently only including high schools in Winnipeg, which greatly
+          simplifies and decreases the high schools we can have available. Adding admin users at this time
+          may be an unnecessary addition, though it is something we could theoretically consider implementing
+          in the future.</p>
+        <p class="indent justify">Some of our features also grew bigger or more complicated than expected, and
+          we sometimes moved these features into later iterations so we could have the time we needed to
+          complete them. We also reduced the features that would make it into the app by the end of iteration 3
+          to account for this—some lower priority features have been cut from our initial plan.</p>
+        <p class="indent justify">Aside from the points above, the project does not differ much from our initial
+          vision and stories; we have implemented the general functionality described in our vision statement.</p>
+      </div>
+    </div>
+  </div>
+  <script src="../scripts/footer.js"></script>
+  <script src="../scripts/bootstrap.bundle.js"></script>
+</body>
+
+</html>

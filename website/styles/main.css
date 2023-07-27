@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tauri&display=swap');
+
+:root {
+  --bs-font-sans-serif: 'Raleway', system-ui, -apple-system,
+  "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans",
+  "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#navbar {
+  background-color: var(--bs-white);
+  border-bottom: thick solid var(--bs-primary);
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#footer {
+  background-color: var(--bs-white);
+  border-top: thick solid var(--bs-primary);
+}
+
+.jumbotron {
+  padding: 4rem 2rem;
+  background-color: var(--bs-light);
+}
+
+.jumbotron-dark-bg {
+  background-color: var(--bs-dark);
+  background-image: url("../assets/svgs/diamond-sunset.svg");
+  /* background by SVGBackgrounds.com */
+}
+
+.home-card {
+  max-width: 10em;
+}
+
+.home-img {
+  border: 1em solid var(--bs-primary);
+  border-radius: 50%;
+}
+
+.home-bg {
+  background-color: #545b61;
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.home-jumbotron-bg {
+  background-image: url("../assets/svgs/bullseye-gradient.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.home-btn {
+  white-space: nowrap;
+  padding-left: 1em;
+  padding-right: 2em;
+  margin-top: 0 !important;
+}
+
+.jumbotron-home {
+  height: calc(100vh - 61px);
+}
+
+.team-divider {
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-video {
+  max-width: 100%;
+}
+
+.feature-video-border {
+  border: 20px solid var(--bs-dark);
+  border-radius: 2%;
+}
+
+.med-icon-shadow {
+  filter: drop-shadow(5px -1px 0 var(--bs-dark));
+}
+
+.large-icon-shadow {
+  filter: drop-shadow(8px 5px 0 var(--bs-dark));
+}
+
+.small-icon {
+  max-width: 1em;
+}
+
+.med-icon {
+  max-width: 100px;
+}
+
+.large-icon {
+  max-width: 200px;
+}
+
+h1, h2, .navbar-brand {
+  font-family: 'Tauri', var(--bs-font-sans-serif);
+}
+
+.block-padding {
+  padding: 4em 8em;
+}
+
+.alt-bg-block {
+  background-color: var(--bs-gray-200);
+}
+
+.light-text {
+  color: var(--bs-light);
+}
+
+.dark-text {
+  color: var(--bs-dark);
+}
+
+.test-width {
+  width: 100%;
+}
+
+.indent {
+  text-indent: 2em;
+}
+
+.left {
+  text-align: left !important;
+}
+
+ul {
+  width: fit-content;
+}
+
+.list-group-item::before {
+  content: "●";
+  margin-right: 0.75rem;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  letter-spacing: -.05rem;
+}
+
+.featurette-padding {
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  .featurette-heading, .home-title {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .featurette-padding {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+
+  .justify {
+    text-align: justify !important;
+  }
+}
+
+@media (min-width: 800px) {
+  .text-block {
+    max-width: 75%;
+  }
+
+  #mainTitle {
+    font-size: 6em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .block-padding {
+    padding: 2em;
+  }
+}
