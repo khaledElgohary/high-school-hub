@@ -20,7 +20,7 @@ during Iteration 2. Pulling from "main" before doing any work and doing it again
 this issue in most cases. In fact, this method was frequently used in Iteration 3 and almost no such problems persisted. 
 
 ## The chart
-The X-axis shows the number of days (starting from day 001). 
+The X-axis shows the number of days (starting from day 001). See worksheet for how these data points are extracted.
 ```mermaid
 gantt
     title Project Velocity Chart
