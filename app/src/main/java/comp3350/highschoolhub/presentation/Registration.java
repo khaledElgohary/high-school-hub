@@ -98,7 +98,7 @@ public class Registration extends Activity {
     private void submitUser() {
         if (PasswordManager.validateUser(firstName.getText().toString(), lastName.getText().toString(),
                 password.getText().toString())) {
-            int userID = accessUsers.getNumUsers();
+            int userID = accessUsers.getNumUsers() + 1;
             User newUser = new User(userID, firstName.getText().toString(),
                     lastName.getText().toString(), bio.getText().toString(),
                     maritalStatus.getSelectedItem().toString(), password.getText().toString());
