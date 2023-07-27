@@ -20,13 +20,13 @@ import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessHighSchools;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
-import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.business.HighSchoolsManager;
 import comp3350.highschoolhub.business.IAccessHighSchools;
 import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
-import comp3350.highschoolhub.business.IConnectionsManager;
 import comp3350.highschoolhub.business.IHighSchoolsManager;
+import comp3350.highschoolhub.business.IRequestsManager;
+import comp3350.highschoolhub.business.RequestsManager;
 import comp3350.highschoolhub.objects.HighSchool;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
@@ -36,7 +36,7 @@ public class HighSchoolExplore extends Activity {
     private IAccessHighSchools accessHighSchools;
     private IAccessRequests accessRequests;
     private IHighSchoolsManager highSchoolsManager;
-    private IConnectionsManager connectionsManager;
+    private IRequestsManager requestsManager;
     private ArrayAdapter<User> userArrayAdapter;
 
     @Override
@@ -48,7 +48,7 @@ public class HighSchoolExplore extends Activity {
         accessHighSchools = new AccessHighSchools();
         accessRequests = new AccessRequests();
         highSchoolsManager = new HighSchoolsManager();
-        connectionsManager = new ConnectionsManager();
+        requestsManager = new RequestsManager();
 
         //Set up dropdown menu for high schools
         Spinner spinner = (Spinner) findViewById(R.id.highSchoolDropdown);
@@ -146,11 +146,11 @@ public class HighSchoolExplore extends Activity {
     private void selectUserAtPosition(int position) {
         User selected = userArrayAdapter.getItem(position);
 
-        ConnectionsManager.setRecipientUser(selected);
-        Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+        RequestsManager.setRecipientUser(selected);
+        Request findRequest = requestsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
-        ConnectionsManager.setRecipientUser(selected);
-        ConnectionsManager.setRequest(findRequest);
+        RequestsManager.setRecipientUser(selected);
+        RequestsManager.setRequest(findRequest);
 
         if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
             Intent connectionsUserOptions = new Intent(this, ConnectionsUserOptions.class);

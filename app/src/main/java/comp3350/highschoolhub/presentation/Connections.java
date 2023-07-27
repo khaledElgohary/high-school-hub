@@ -24,6 +24,8 @@ import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
 import comp3350.highschoolhub.business.IConnectionsManager;
+import comp3350.highschoolhub.business.IRequestsManager;
+import comp3350.highschoolhub.business.RequestsManager;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
@@ -32,6 +34,7 @@ public class Connections extends Activity {
     private IAccessUsers accessUsers;
     private IAccessRequests accessRequests;
     private IConnectionsManager connectionsManager;
+    private IRequestsManager requestsManager;
     private List<User> connectionsList;
     private ArrayAdapter<User> connectionsArrayAdapter;
     private int connectionsListPosition;
@@ -53,6 +56,7 @@ public class Connections extends Activity {
         accessUsers = new AccessUsers();
         accessRequests = new AccessRequests();
         connectionsManager = new ConnectionsManager();
+        requestsManager = new RequestsManager();
 
         connectionsList = connectionsManager.getHighSchoolConnections(AccessUsers.getLoggedInUser(), accessUsers.getUsers());
 
@@ -134,21 +138,21 @@ public class Connections extends Activity {
     //This method is used to navigate to a user's profile or provide a popup to send a request.
     public void selectUserAtPosition(int position) {
         User selected = connectionsArrayAdapter.getItem(position);
-        ConnectionsManager.setRecipientUser(selected);
-        Request findRequest = connectionsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
+        RequestsManager.setRecipientUser(selected);
+        Request findRequest = requestsManager.findRequest(AccessUsers.getLoggedInUser(), selected, accessRequests.getRequests());
 
-        ConnectionsManager.setRecipientUser(selected);
-        ConnectionsManager.setRequest(findRequest);
+        RequestsManager.setRecipientUser(selected);
+        RequestsManager.setRequest(findRequest);
 
         if(findRequest != null && findRequest.getAccepted()) {
-            AccessUsers.setProfileUser(connectionsManager.getOtherUser(AccessUsers.getLoggedInUser(), findRequest));
+            AccessUsers.setProfileUser(requestsManager.getOtherUser(AccessUsers.getLoggedInUser(), findRequest));
             AccessUsers.setGoBackToConnections(true);
             Intent userProfile = new Intent(Connections.this, ViewConnectedUserProfile.class);
             startActivity(userProfile);
         }
         else if (((ToggleButton) findViewById(R.id.toggleButton)).isChecked()) {
             //Send a request instead of navigating to the profile or popup when request mode is on
-            Request updated = connectionsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
+            Request updated = requestsManager.updateRequest(AccessUsers.getLoggedInUser(), findRequest);
             accessRequests.updateRequest(updated);
             Toast.makeText(this, "A connection request has been sent.", Toast.LENGTH_SHORT).show();
         } else {

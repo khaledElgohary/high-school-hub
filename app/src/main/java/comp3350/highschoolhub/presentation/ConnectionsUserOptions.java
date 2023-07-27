@@ -1,7 +1,6 @@
 package comp3350.highschoolhub.presentation;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,10 +11,10 @@ import android.widget.TextView;
 import comp3350.highschoolhub.R;
 import comp3350.highschoolhub.business.AccessRequests;
 import comp3350.highschoolhub.business.AccessUsers;
-import comp3350.highschoolhub.business.ConnectionsManager;
 import comp3350.highschoolhub.business.IAccessRequests;
 import comp3350.highschoolhub.business.IAccessUsers;
-import comp3350.highschoolhub.business.IConnectionsManager;
+import comp3350.highschoolhub.business.IRequestsManager;
+import comp3350.highschoolhub.business.RequestsManager;
 import comp3350.highschoolhub.objects.Request;
 import comp3350.highschoolhub.objects.User;
 
@@ -32,7 +31,7 @@ public class ConnectionsUserOptions extends Activity {
 
     private IAccessUsers accessUsers;
 
-    private IConnectionsManager connectionsManager;
+    private IRequestsManager requestsManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,17 +40,17 @@ public class ConnectionsUserOptions extends Activity {
 
         accessUsers = new AccessUsers();
         accessRequests = new AccessRequests();
-        connectionsManager = new ConnectionsManager();
-        request = ConnectionsManager.getRequest();
-        user = ConnectionsManager.getRecipientUser();
+        requestsManager = new RequestsManager();
+        request = RequestsManager.getRequest();
+        user = RequestsManager.getRecipientUser();
         loggedIn = AccessUsers.getLoggedInUser();
 
         final TextView titleText = findViewById(R.id.userOptionText);
-        String showTitleText = ConnectionsManager.getTitleText();
+        String showTitleText = RequestsManager.getTitleText();
         titleText.setText(showTitleText);
 
         //Set up accept or request button.
-        String topButtonText = ConnectionsManager.acceptOrRequest();
+        String topButtonText = RequestsManager.acceptOrRequest();
 
         final Button topButton = findViewById(R.id.acceptRequestButton);
         topButton.setText(topButtonText);
@@ -79,7 +78,7 @@ public class ConnectionsUserOptions extends Activity {
     }
 
     public void updateRequestOnClick(View v) {
-        Request updated = connectionsManager.updateRequest(loggedIn, request);
+        Request updated = requestsManager.updateRequest(loggedIn, request);
 
         accessRequests.updateRequest(updated);
 
